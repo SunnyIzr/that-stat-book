@@ -18,3 +18,5 @@
 /config/database.yml
 
 deployment_key.txt
+
+/config/deploy.rb
