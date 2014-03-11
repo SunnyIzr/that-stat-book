@@ -43,5 +43,11 @@ group :development do
   gem 'capistrano', "~> 2.14.2"
 end
 
+group :test, :development do
+  gem 'rspec-rails'
+  gem 'shoulda'
+  gem 'dotenv-rails'
+  gem 'factory_girl_rails'
+end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
