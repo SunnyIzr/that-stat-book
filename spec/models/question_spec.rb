@@ -7,13 +7,15 @@ describe Question do
   it {should validate_presence_of (:lesson_id)}
 
   it 'should return a random question for a specified lesson' do
+    user = FactoryGirl.create(:user)
     100.times do
       lesson = FactoryGirl.create(:lesson)
       5.times { lesson.questions << FactoryGirl.create(:question,:lesson_id => lesson.id)}
+      3.times { FactoryGirl.create(:quiz,:lesson_id => lesson.id, :user_id => user.id)}
     end
-    lesson = Lesson.all.sample
-    expect(Question.random(lesson.id).class).to eq(Question)
-    expect(Question.random(lesson.id).lesson).to eq(lesson)
+    quiz = Quiz.all.sample
+    expect(Question.random(quiz.id).class).to eq(Question)
+    expect(Question.random(quiz.id).lesson).to eq(quiz.lesson)
 
   end
 
@@ -26,16 +28,10 @@ describe Question do
       quiz = FactoryGirl.create(:quiz, :lesson_id => lesson.id, :user_id => User.last.id)
       3.times { |i| FactoryGirl.create(:answer_submission,:choice_id => lesson.questions[i].choices.sample.id, :quiz_id => quiz.id)}
     end
-    p '*'*50
-    p Lesson.first
-    p Lesson.first.quizzes.first.answered_questions
-    p '*'*50
-    p Lesson.first.quizzes.first.answered_questions.size
 
-
-    expect(Question.available_questions(Lesson.first.id,Lesson.first.quizzes.first.id)).should_not include(Lesson.first.quizzes.first.answered_questions[0])
-    expect(Question.available_questions(Lesson.first.id,Lesson.first.quizzes.first.id)).should_not include(Lesson.first.quizzes.first.answered_questions[1])
-    expect(Question.available_questions(Lesson.first.id,Lesson.first.quizzes.first.id)).should_not include(Lesson.first.quizzes.first.answered_questions[2])
+    expect(Question.available_questions(Lesson.first.quizzes.first.id)).not_to include(Lesson.first.quizzes.first.answered_questions[0])
+    expect(Question.available_questions(Lesson.first.quizzes.first.id)).not_to include(Lesson.first.quizzes.first.answered_questions[1])
+    expect(Question.available_questions(Lesson.first.quizzes.first.id)).not_to include(Lesson.first.quizzes.first.answered_questions[2])
 
 
   end
