@@ -1,4 +1,6 @@
 class Choice < ActiveRecord::Base
-belongs_to :question
+  belongs_to :question
+  validates_presence_of :choice
+  validates_presence_of :question_id
 
 end
