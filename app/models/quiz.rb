@@ -8,7 +8,7 @@ class Quiz < ActiveRecord::Base
 
   def new_question
     self.answer_submissions.new
-
+    Question.random(self.id)
   end
 
   def answered_questions
