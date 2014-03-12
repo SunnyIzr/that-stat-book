@@ -6,4 +6,12 @@ class Quiz < ActiveRecord::Base
   validates_presence_of :user_id
   validates_presence_of :lesson_id
 
+  def new_question
+    self.answer_submissions.new
+
+  end
+
+  def answered_questions
+    self.answer_submissions.map {|ans| ans.choice.question}
+  end
 end
