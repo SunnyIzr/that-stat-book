@@ -3,6 +3,6 @@
 FactoryGirl.define do
   factory :quiz do
     lesson {FactoryGirl.create(:lesson)}
-    user {FactoryGirl.create(:user  )}
+    user {FactoryGirl.create(:user)}
   end
 end

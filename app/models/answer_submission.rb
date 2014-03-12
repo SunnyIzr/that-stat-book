@@ -7,7 +7,7 @@ class AnswerSubmission < ActiveRecord::Base
 
   def question_cannot_be_answered_twice
     question = self.choice.question
-    questions_answered = self.quiz.answer_submissions.map { |ans| ans.choice.question }
+    questions_answered = self.quiz.answered_questions
     if questions_answered.include?(question)
       errors.add(:choice, 'Question has aready been answered in this Quiz.')
     end
