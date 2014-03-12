@@ -1,5 +1,7 @@
 require 'spec_helper'
 
 describe Lesson do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it {should have_many (:questions)}
+  it {should have_many (:quizzes)}
+  it {should validate_presence_of (:title)}
 end

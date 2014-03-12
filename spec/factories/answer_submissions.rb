@@ -2,5 +2,7 @@
 
 FactoryGirl.define do
   factory :answer_submission do
+    choice {FactoryGirl.create(:choice)}
+    quiz {FactoryGirl.create(:quiz)}
   end
 end
