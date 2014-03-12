@@ -4,4 +4,5 @@ describe Question do
   it {should have_many (:choices)}
   it {should belong_to (:lesson)}
   it {should validate_presence_of (:question)}
+  it {should validate_presence_of (:lesson_id)}
 end
