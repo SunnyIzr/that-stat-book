@@ -2,5 +2,7 @@
 
 FactoryGirl.define do
   factory :question do
+    question {'This is a test question'}
+    lesson {FactoryGirl.create(:lesson)}
   end
 end
