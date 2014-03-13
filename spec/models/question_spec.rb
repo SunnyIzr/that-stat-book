@@ -32,7 +32,13 @@ describe Question do
     expect(Question.available_questions(Lesson.first.quizzes.first.id)).not_to include(Lesson.first.quizzes.first.answered_questions[0])
     expect(Question.available_questions(Lesson.first.quizzes.first.id)).not_to include(Lesson.first.quizzes.first.answered_questions[1])
     expect(Question.available_questions(Lesson.first.quizzes.first.id)).not_to include(Lesson.first.quizzes.first.answered_questions[2])
+  end
 
+  it 'should return the answer' do
+    question = FactoryGirl.create(:question)
+    3.times { FactoryGirl.create(:choice, question_id: question.id) }
+    answer = FactoryGirl.create(:choice, question_id: question.id, is_correct: true)
 
+    expect(question.answer).to eq(answer)
   end
 end

@@ -14,4 +14,8 @@ class Question < ActiveRecord::Base
     all_questions = self.where(lesson_id: lesson.id)
     all_questions -= Quiz.find(quiz_id).answered_questions
   end
+
+  def answer
+    self.choices.where(is_correct: true).first
+  end
 end
