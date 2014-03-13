@@ -36,4 +36,31 @@ describe Quiz do
     expect(quiz_1.complete?).to eq(true)
     expect(quiz_2.complete?).to eq(false)
   end
+
+  it 'sholuld return a score for a completed quiz' do
+    lesson = FactoryGirl.create(:lesson)
+    user = FactoryGirl.create(:user)
+    quiz = FactoryGirl.create(:quiz, user_id: user.id)
+    5.times { FactoryGirl.create(:question, lesson_id: lesson.id)}
+    3.times { |i| FactoryGirl.create(:choice, question_id: Question.all[i].id)}
+    4.downto(3) { |i| FactoryGirl.create(:choice, question_id: Question.all[i].id, is_correct: true)}
+    5.times { |i| FactoryGirl.create(:answer_submission, choice_id: Choice.all[i].id, quiz_id: quiz.id)}
+
+    expect(quiz.score).to eq(0.4)
+  end
+
+  it 'sholuld determine whether a quiz has passed or failed' do
+    lesson = FactoryGirl.create(:lesson)
+    user = FactoryGirl.create(:user)
+    quiz_1 = FactoryGirl.create(:quiz, user_id: user.id)
+    quiz_2 = FactoryGirl.create(:quiz, user_id: user.id)
+    5.times { FactoryGirl.create(:question, lesson_id: lesson.id)}
+    1.times { |i| FactoryGirl.create(:choice, question_id: Question.all[i].id)}
+    4.downto(1) { |i| FactoryGirl.create(:choice, question_id: Question.all[i].id, is_correct: true)}
+    5.times { |i| FactoryGirl.create(:answer_submission, choice_id: Choice.all[i].id, quiz_id: quiz_1.id)}
+    3.times { |i| FactoryGirl.create(:answer_submission, choice_id: Choice.all[i].id, quiz_id: quiz_2.id)}
+
+    expect(quiz_1.pass?).to eq(true)
+    expect(quiz_2.pass?).to eq(false)
+  end
 end
