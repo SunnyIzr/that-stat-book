@@ -31,4 +31,8 @@ class User < ActiveRecord::Base
     accessible.include?(level)
   end
 
+  def assigned_lesson
+    Lesson.find_by(level: self.level)
+  end
+
 end

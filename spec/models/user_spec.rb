@@ -142,4 +142,36 @@ describe User do
     expect(User.last.access?(1)).to eq(true)
   end
 
+  it 'should return an assigned level based on level completion' do
+    questions = 5.times.map {FactoryGirl.create(:question)}
+    correct_choices = 5.times.map { |i| FactoryGirl.create(:choice, question_id: questions[i].id, is_correct: true)}
+    incorrect_choices = 5.times.map { |i| FactoryGirl.create(:choice, question_id: questions[i].id)}
+    3.times do
+      quiz = FactoryGirl.create(:quiz)
+      5.times { |i| FactoryGirl.create(:answer_submission, quiz_id: quiz.id, choice_id: correct_choices[i].id)}
+    end
+    FactoryGirl.create(:lesson)
+    questions = 5.times.map {FactoryGirl.create(:question)}
+    correct_choices = 5.times.map { |i| FactoryGirl.create(:choice, question_id: questions[i].id, is_correct: true)}
+    incorrect_choices = 5.times.map { |i| FactoryGirl.create(:choice, question_id: questions[i].id)}
+    3.times do
+      quiz = FactoryGirl.create(:quiz)
+      5.times { |i| FactoryGirl.create(:answer_submission, quiz_id: quiz.id, choice_id: correct_choices[i].id)}
+    end
+    FactoryGirl.create(:lesson)
+    questions = 5.times.map {FactoryGirl.create(:question)}
+    correct_choices = 5.times.map { |i| FactoryGirl.create(:choice, question_id: questions[i].id, is_correct: true)}
+    incorrect_choices = 5.times.map { |i| FactoryGirl.create(:choice, question_id: questions[i].id)}
+    3.times do
+      quiz = FactoryGirl.create(:quiz)
+      5.times { |i| FactoryGirl.create(:answer_submission, quiz_id: quiz.id, choice_id: incorrect_choices[i].id)}
+    end
+    3.times do
+      quiz = FactoryGirl.create(:quiz)
+      4.times { |i| FactoryGirl.create(:answer_submission, quiz_id: quiz.id, choice_id: correct_choices[i].id)}
+    end
+
+    expect(User.last.assigned_lesson).to eq(Lesson.all[2])
+  end
+
 end
