@@ -10,6 +10,7 @@ ThatStatBook::Application.routes.draw do
 
   resources :lessons, only: [:show]
   resources :quizzes, only: [:create]
+  resources :questions, only: [:show]
 
 
 
