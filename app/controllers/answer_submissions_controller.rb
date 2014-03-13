@@ -6,6 +6,7 @@ class AnswerSubmissionsController < ApplicationController
       unless @quiz.complete?
         redirect_to ("/quizzes/#{@quiz.id}/new-question")
       else
+        redirect_to quiz_path(@quiz)
       end
     else
       render text: 'FAIL!'
