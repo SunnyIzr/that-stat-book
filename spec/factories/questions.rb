@@ -3,6 +3,6 @@
 FactoryGirl.define do
   factory :question do
     question {'This is a test question'}
-    lesson {FactoryGirl.create(:lesson)}
+    lesson {Lesson.last.nil? ? FactoryGirl.create(:lesson) : Lesson.last}
   end
 end
