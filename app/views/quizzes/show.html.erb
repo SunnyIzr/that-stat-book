@@ -4,6 +4,7 @@
   <% if @quiz.pass? %>
     Congratulations! You have Passed!<br>
     Score: <%=@quiz.score*100%>%
+    Next Lesson: <%= link_to @user.assigned_lesson.title, @user.assigned_lesson %>
   <%else%>
     I'm Sorry! You have Failed!<br>
     Score: <%=@quiz.score*100%>%
