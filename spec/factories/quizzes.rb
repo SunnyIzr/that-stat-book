@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :quiz do
-    lesson {FactoryGirl.create(:lesson)}
-    user {FactoryGirl.create(:user)}
+    lesson {Lesson.last.nil? ? FactoryGirl.create(:lesson) : Lesson.last}
+    user { User.last.nil? ? FactoryGirl.create(:user) : User.last}
   end
 end

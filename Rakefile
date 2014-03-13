@@ -17,10 +17,11 @@ task 'db:seed_users' => :environment do
   end
 end
 task 'db:seed_lessons' => :environment do
-  5.times do
+  5.times do |i|
     lesson = Lesson.new
     lesson.title = Faker::Company.catch_phrase
     lesson.description = Faker::Lorem.paragraphs(2)
+    lesson.level = i + 1
     lesson.save
   end
 end
