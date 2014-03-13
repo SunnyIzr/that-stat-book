@@ -1,4 +1,17 @@
 <h1> Student Dashboard </h1>
-<%=@user.first_name%><br>
-<%=@user.last_name%><br>
-<%=@user.email%>
+
+<div id='user-info'>
+  <%=@user.first_name%> <%=@user.last_name%><br>
+  <%=@user.email%>
+</div>
+
+<div id='lesson-status'>
+  <div id='current-lesson'>
+    Your current assignment: <%= link_to @user.assigned_lesson.title, @user.assigned_lesson %>
+  </div>
+  <div id='past-lesson'>
+    <% if @user.completed_levels.empty? %>
+      You have not completed any lessons.
+    <%end%>
+  </div>
+</div>
