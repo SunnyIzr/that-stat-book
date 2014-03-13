@@ -22,3 +22,5 @@ deployment_key.txt
 /config/deploy.rb
 
 .DS_Store
+
+/coverage
