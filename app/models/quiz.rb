@@ -6,9 +6,14 @@ class Quiz < ActiveRecord::Base
   validates_presence_of :user_id
   validates_presence_of :lesson_id
 
-  def new_question
-    self.answer_submissions.new
-    Question.random(self.id)
+  def new_random_question
+    self.available_questions.sample
+  end
+
+  def available_questions
+    lesson = self.lesson
+    all_questions = Question.where(lesson_id: self.lesson.id)
+    all_questions -= self.answered_questions
   end
 
   def answered_questions
@@ -16,7 +21,7 @@ class Quiz < ActiveRecord::Base
   end
 
   def complete?
-    self.answer_submissions.size == 5
+    self.answer_submissions.size >= 5
   end
 
   def score
