@@ -12,6 +12,7 @@ task 'db:seed_users' => :environment do
     user.first_name = Faker::Name.first_name
     user.last_name = Faker::Name.last_name
     user.email = Faker::Internet.email
+    user.password = 'password'
     user.save
   end
 end

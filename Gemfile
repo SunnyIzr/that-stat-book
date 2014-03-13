@@ -55,3 +55,5 @@ end
 group :development do
   gem 'faker'
 end
+
+gem 'devise'
