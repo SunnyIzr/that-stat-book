@@ -8,6 +8,9 @@ ThatStatBook::Application.routes.draw do
 
   get '/home' => 'users#dashboard'
 
+  resources :lessons, only: [:show]
+
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
