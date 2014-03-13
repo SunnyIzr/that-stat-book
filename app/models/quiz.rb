@@ -16,7 +16,7 @@ class Quiz < ActiveRecord::Base
   end
 
   def complete?
-    self.answer_submissions.size == 5
+    self.answer_submissions.size >= 5
   end
 
   def score
