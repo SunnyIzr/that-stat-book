@@ -5,6 +5,7 @@
   VIDEO HERE
 </div>
 
-<button>
-  Start Assessment
-</button>
+<%= form_for @quiz, url: quizzes_path, html: {class: 'nifty_form'} do %>
+  <%= hidden_field_tag :lesson_id, @lesson.id %>
+  <%= submit_tag 'Start Assessment' %>
+<%end%>
