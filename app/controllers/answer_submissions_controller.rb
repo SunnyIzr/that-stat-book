@@ -1,8 +1,12 @@
 class AnswerSubmissionsController < ApplicationController
   def create
     @answer_submission = AnswerSubmission.new(answer_submission_params)
+    @quiz = Quiz.find(params[:quiz_id])
     if @answer_submission.save
-      redirect_to ("/quizzes/#{params[:quiz_id]}/new-question")
+      unless @quiz.complete?
+        redirect_to ("/quizzes/#{@quiz.id}/new-question")
+      else
+      end
     else
       render text: 'FAIL!'
     end

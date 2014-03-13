@@ -1,0 +1,15 @@
+<h4>You have completed the assessment for Lesson <%=@quiz.lesson.title%></h4>
+
+<div id='quiz-results'>
+  <% if @quiz.pass? %>
+    Congratulations! You have Passed!<br>
+    Score: <%=@quiz.score*100%>%
+  <%else%>
+    I'm Sorry! You have Failed!<br>
+    Score: <%=@quiz.score*100%>%
+  <%= form_for @new_quiz, url: quizzes_path, html: {class: 'nifty_form'} do %>
+    <%= hidden_field_tag :lesson_id, @quiz.lesson.id %>
+    <%= submit_tag 'Try Again' %>
+  <%end%>
+  <%end%>
+</div>

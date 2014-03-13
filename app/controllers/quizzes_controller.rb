@@ -8,6 +8,11 @@ class QuizzesController < ApplicationController
     end
   end
 
+  def show
+    @quiz = Quiz.find(params[:id])
+    @new_quiz = Quiz.new
+  end
+
   private
   def quiz_params
     params.permit(:lesson_id)

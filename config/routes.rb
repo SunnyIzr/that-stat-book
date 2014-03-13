@@ -9,7 +9,7 @@ ThatStatBook::Application.routes.draw do
   get '/home' => 'users#dashboard'
 
   resources :lessons, only: [:show]
-  resources :quizzes, only: [:create]
+  resources :quizzes, only: [:create,:show]
   resources :questions, only: [:show]
   resources :answer_submissions, only: [:create]
 
