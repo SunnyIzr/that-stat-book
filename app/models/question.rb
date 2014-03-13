@@ -4,17 +4,6 @@ class Question < ActiveRecord::Base
   validates_presence_of :question
   validates_presence_of :lesson_id
 
-  def self.random(quiz_id)
-    self.available_questions(quiz_id).sample
-  end
-
-  def self.available_questions(quiz_id)
-    quiz = Quiz.find(quiz_id)
-    lesson = quiz.lesson
-    all_questions = self.where(lesson_id: lesson.id)
-    all_questions -= Quiz.find(quiz_id).answered_questions
-  end
-
   def answer
     self.choices.where(is_correct: true).first
   end

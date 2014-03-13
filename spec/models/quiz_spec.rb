@@ -63,4 +63,34 @@ describe Quiz do
     expect(quiz_1.pass?).to eq(true)
     expect(quiz_2.pass?).to eq(false)
   end
+
+  it 'should return a new random question' do
+    user = FactoryGirl.create(:user)
+    100.times do
+      lesson = FactoryGirl.create(:lesson)
+      5.times { lesson.questions << FactoryGirl.create(:question,:lesson_id => lesson.id)}
+      3.times { FactoryGirl.create(:quiz,:lesson_id => lesson.id, :user_id => user.id)}
+    end
+    quiz = Quiz.all.sample
+    expect(quiz.new_random_question.class).to eq(Question)
+    expect(quiz.new_random_question.lesson).to eq(quiz.lesson)
+
+  end
+
+  it 'should return a list of available questions that does NOT include questions that have been answered' do
+    user = FactoryGirl.create(:user)
+    10.times do
+      lesson = FactoryGirl.create(:lesson)
+      10.times { lesson.questions << FactoryGirl.create(:question,:lesson_id => lesson.id)}
+      lesson.questions.each { |question| 5.times { question.choices << FactoryGirl.create(:choice, :question_id => question.id) } }
+      quiz = FactoryGirl.create(:quiz, :lesson_id => lesson.id, :user_id => User.last.id)
+      3.times { |i| FactoryGirl.create(:answer_submission,:choice_id => lesson.questions[i].choices.sample.id, :quiz_id => quiz.id)}
+    end
+
+    quiz = Lesson.first.quizzes.first
+
+    expect(quiz.available_questions).not_to include(quiz.answered_questions[0])
+    expect(quiz.available_questions).not_to include(quiz.answered_questions[1])
+    expect(quiz.available_questions).not_to include(quiz.answered_questions[2])
+  end
 end
