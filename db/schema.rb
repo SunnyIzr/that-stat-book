@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140312235652) do
+ActiveRecord::Schema.define(version: 20140313000600) do
 
   create_table "answer_submissions", force: true do |t|
     t.datetime "created_at"
@@ -62,7 +62,6 @@ ActiveRecord::Schema.define(version: 20140312235652) do
   create_table "users", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "emaill"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
