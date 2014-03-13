@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   end
 
   def level
-    self.completed_levels.max + 1
+    self.completed_levels.max.to_i + 1
   end
 
   def access?(level)

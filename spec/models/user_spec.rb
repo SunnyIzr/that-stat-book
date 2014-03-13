@@ -108,6 +108,19 @@ describe User do
     expect(User.last.level).to eq(3)
   end
 
+
+  it 'should return first level if no levels have been completed' do
+    questions = 5.times.map {FactoryGirl.create(:question)}
+    correct_choices = 5.times.map { |i| FactoryGirl.create(:choice, question_id: questions[i].id, is_correct: true)}
+    incorrect_choices = 5.times.map { |i| FactoryGirl.create(:choice, question_id: questions[i].id)}
+    3.times do
+      quiz = FactoryGirl.create(:quiz)
+      4.times { |i| FactoryGirl.create(:answer_submission, quiz_id: quiz.id, choice_id: correct_choices[i].id)}
+    end
+
+    expect(User.last.level).to eq(1)
+  end
+
   it 'should indicate whether a user has access to a given level' do
     questions = 5.times.map {FactoryGirl.create(:question)}
     correct_choices = 5.times.map { |i| FactoryGirl.create(:choice, question_id: questions[i].id, is_correct: true)}
