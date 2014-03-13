@@ -3,5 +3,6 @@
 FactoryGirl.define do
   factory :lesson do
     title {'Test Lesson'}
+    level {1}
   end
 end
