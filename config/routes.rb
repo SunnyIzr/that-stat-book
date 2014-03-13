@@ -12,6 +12,8 @@ ThatStatBook::Application.routes.draw do
   resources :quizzes, only: [:create]
   resources :questions, only: [:show]
 
+  get '/quizzes/:quiz_id/new' => 'questions#show_random_question'
+
 
 
   # Example of regular route:
