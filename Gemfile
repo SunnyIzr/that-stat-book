@@ -59,3 +59,5 @@ end
 gem 'devise'
 
 gem 'simplecov', :require => false, :group => :test
+
+gem "paperclip", "~> 4.1"
