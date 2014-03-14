@@ -12,6 +12,11 @@
   <div id='past-lesson'>
     <% if @user.completed_levels.empty? %>
       You have not completed any lessons.
+    <%else%>
+      Completed Lessons:
+      <% @user.completed_lessons.each do |lesson| %>
+        <li><%= link_to lesson.title, lesson %></li>
+      <%end%>
     <%end%>
   </div>
 </div>
