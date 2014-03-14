@@ -8,6 +8,14 @@ ThatStatBook::Application.routes.draw do
 
   get '/home' => 'users#dashboard'
 
+  resources :lessons, only: [:show]
+  resources :quizzes, only: [:create,:show]
+  resources :questions, only: [:show]
+  resources :answer_submissions, only: [:create]
+
+  get '/quizzes/:quiz_id/new-question' => 'questions#show_random_question'
+
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
