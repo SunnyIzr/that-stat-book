@@ -21,6 +21,12 @@ class User < ActiveRecord::Base
     completed_levels
   end
 
+  def completed_lessons
+    completed_lessons = []
+    self.passed_quizzes.each {|quiz| completed_lessons |= [quiz.lesson]}
+    completed_lessons
+  end
+
   def level
     self.completed_levels.max.to_i + 1
   end
