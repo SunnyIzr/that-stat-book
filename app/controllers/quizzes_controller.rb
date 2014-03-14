@@ -12,6 +12,11 @@ class QuizzesController < ApplicationController
     @quiz = Quiz.find(params[:id])
     @new_quiz = Quiz.new
     @user = current_user
+    if @quiz.complete?
+      render :show
+    else
+      render :incomplete
+    end
   end
 
   private

@@ -14,7 +14,6 @@ ThatStatBook::Application.routes.draw do
   resources :answer_submissions, only: [:create]
 
   get '/quizzes/:quiz_id/new-question' => 'questions#show_random_question'
-  get '/lessons/restricted' => 'lessons#restricted'
 
 
 
