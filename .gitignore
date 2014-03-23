@@ -24,3 +24,5 @@ deployment_key.txt
 .DS_Store
 
 /coverage
+
+/data
