@@ -2,7 +2,9 @@
 <h4><%=@lesson.description%><h4>
 
 <div id='video'>
-  VIDEO HERE
+  <% @lesson.videos.each do |video| %>
+    <%= video_tag video.video.url %>
+  <% end %>
 </div>
 
 <%= form_for @quiz, url: quizzes_path, html: {class: 'nifty_form'} do %>
