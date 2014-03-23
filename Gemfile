@@ -54,7 +54,6 @@ end
 
 group :development do
   gem 'faker'
-  gem 'dotenv-rails'
 end
 
 gem 'devise'
