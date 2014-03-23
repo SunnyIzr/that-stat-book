@@ -26,3 +26,5 @@ deployment_key.txt
 /coverage
 
 /data
+
+.env
