@@ -3,7 +3,7 @@
 
 <div id='video'>
   <% @lesson.videos.each do |video| %>
-    <%= video_tag video.video.url %>
+    <%= video_tag video.video.url, controls: true %>
   <% end %>
 </div>
 
