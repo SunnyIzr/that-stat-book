@@ -38,11 +38,6 @@ end
 # Use unicorn as the app server
 # gem 'unicorn'
 
-# Use Capistrano for deployment
-group :development do
-  gem 'capistrano', "~> 3.1.0"
-end
-
 group :test, :development do
   gem 'rspec-rails'
   gem 'shoulda'
@@ -63,3 +58,4 @@ gem 'simplecov', :require => false, :group => :test
 gem "paperclip", "~> 4.1"
 
 gem 'aws-sdk', '~> 1.5.7'
+
