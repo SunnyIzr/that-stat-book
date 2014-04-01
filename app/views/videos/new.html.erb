@@ -1,4 +1,4 @@
-<%= form_for @video, :url => videos_path, :html => { :multipart => true } do |form| %>
-  <%= form.file_field :video %>
+<%= form_for @video, :url => videos_path, :html => { :multipart => true } do |f| %>
+  <%= f.file_field :video %>
   <%= submit_tag 'Submit' %>
 <% end %>
