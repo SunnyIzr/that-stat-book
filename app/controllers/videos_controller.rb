@@ -5,7 +5,9 @@ class VideosController < ApplicationController
 
   def create
     @video = Video.new( video_params )
-    @video.save
+    if @video.save
+      render text: 'SUCCESS'
+    end
   end
 
   private
@@ -14,6 +16,6 @@ class VideosController < ApplicationController
 # Be sure to update your create() and update() controller methods.
 
   def video_params
-    params.permit(:video)
+    params.require(:video).permit(:video)
   end
 end
