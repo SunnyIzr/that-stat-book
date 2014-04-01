@@ -6,6 +6,7 @@ describe Quiz do
   it {should have_many (:answer_submissions)}
   it {should validate_presence_of (:user_id)}
   it {should validate_presence_of (:lesson_id)}
+  it {should validate_presence_of (:time)}
 
   it 'should return a list of all questions answered' do
     FactoryGirl.create(:quiz)
