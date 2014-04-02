@@ -1,6 +1,7 @@
 <h4>You have completed the assessment for Lesson <%=@quiz.lesson.title%></h4>
 
 <div id='quiz-results'>
+  <p>Total Time: <%= @quiz.time %> Seconds</p>
   <% if @quiz.pass? %>
     Congratulations! You have Passed!<br>
     Score: <%=@quiz.score*100%>%
