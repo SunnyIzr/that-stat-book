@@ -40,5 +40,11 @@ class User < ActiveRecord::Base
   def assigned_lesson
     Lesson.find_by(level: self.level)
   end
+  
+  def last_incomplete_quiz(lesson_id)
+    quizzes_for_lesson = self.quizzes.select { |quiz| quiz.lesson_id == lesson_id }
+    incomplete_quizzes = quizzes_for_lesson.select {|quiz| !quiz.complete?}
+    incomplete_quizzes.last
+  end
 
 end
