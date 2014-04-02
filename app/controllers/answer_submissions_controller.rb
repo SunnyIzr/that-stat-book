@@ -3,6 +3,8 @@ class AnswerSubmissionsController < ApplicationController
     @answer_submission = AnswerSubmission.new(answer_submission_params)
     @quiz = Quiz.find(params[:quiz_id])
     if @answer_submission.save
+      @quiz.time = params[:time].to_i
+      @quiz.save
       unless @quiz.complete?
         redirect_to ("/quizzes/#{@quiz.id}/new-question")
       else

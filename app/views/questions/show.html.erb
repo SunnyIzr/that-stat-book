@@ -1,5 +1,6 @@
 <h5>Time: </h5>
-<p class='time'><%= @quiz.time %></p>
+<p class='timer'><%= @quiz.time %></p>
+
 
 <h4><%=@question.question%></h4>
 
@@ -9,5 +10,6 @@
     <%= label_tag(:choice_id, choice.choice)%><br>
   <% end %>
   <%= hidden_field_tag :quiz_id, @quiz.id %>
+  <%= hidden_field_tag :time, @quiz.time, class: 'time' %>
   <%= submit_tag 'Answer'%>
 <% end %>
