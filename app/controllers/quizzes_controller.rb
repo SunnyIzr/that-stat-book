@@ -1,6 +1,10 @@
 class QuizzesController < ApplicationController
   def create
-    @quiz = Quiz.new(lesson_id: params[:lesson_id], user_id: current_user.id)
+    if current_user.last_incomplete_quiz(params[:lesson_id].to_i).nil?
+      @quiz = Quiz.new(lesson_id: params[:lesson_id], user_id: current_user.id)
+    else
+      @quiz = current_user.last_incomplete_quiz(params[:lesson_id].to_i)
+    end
     if @quiz.save
       redirect_to ("/quizzes/#{@quiz.id}/new-question")
     else
