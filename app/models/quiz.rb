@@ -5,6 +5,7 @@ class Quiz < ActiveRecord::Base
   has_many :answer_submissions
   validates_presence_of :user_id
   validates_presence_of :lesson_id
+  validates_presence_of :time
 
   def new_random_question
     self.available_questions.sample
