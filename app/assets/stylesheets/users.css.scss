@@ -1,3 +1,139 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'variables';
+
+.user-info{
+  margin-top: 15px;
+  margin-right: 10px;
+  float:right;
+  font-size: 16px;
+  .greeting{
+    font-style: italic;
+    margin-right: 40px;
+  }
+}
+
+.side-nav{
+  width:190px;
+  height:1000px;
+  background-color: #e1e1e1;
+  float:left;
+  a{
+    color: $primary-color;
+  }
+  ul{
+    list-style: none;
+    font-size: 18px;
+    padding: 0;
+    li{
+      padding: 8px 15px;
+    }
+    .selected{
+      background-color: white;
+      a {
+        color: $accent-color;
+      }
+    }
+  }
+}
+
+.dashboard{
+  padding-left: 20px;
+  font-size: 15px;
+  h2{
+    font-weight: lighter;
+    color: $emphasis-color;
+    margin-bottom: 30px;
+  }
+  h4{
+    font-weight: lighter;
+    color: $emphasis-color;
+  }
+  .header-break{
+    width: 100%;
+    border-bottom: 1px solid $faded-color;
+    margin-bottom: 15px;
+  }
+  .stats-overview{
+    height: 350px;
+  }
+  .current-lesson{
+    width: 100%;
+    .video-preview{
+      float: left;
+      margin-right: 20px;
+      video{
+        margin-top: 15px;
+        width: 350px;
+      }
+    }
+    .take-assessment{
+      margin-top: 40px;
+      text-align: center;
+      float: left;
+      margin-left: 15px;
+    }
+  }
+  .lesson-stats{
+    margin-top: 40px;
+    width: 100%;
+    float: left;
+    ul{
+      padding: 0;
+      list-style: none;
+      li{
+        display: inline-block;
+        padding: 0px;
+        width: 23%;
+        text-align: center;
+        .stat{
+          color: #bbe363;
+          font-size: 48pt;
+        }
+      }
+    }
+  }
+}
+
+
+.summary{
+  h2{
+    margin-bottom: 10px;
+  }
+  .student-details{
+    margin-bottom: 30px;
+    ul{
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+  }
+  .student-stats{
+    table{
+      width: 100%;
+    }
+    thead{
+      border-bottom: 1px solid $faded-color;
+    }
+    th{
+      color: $emphasis-color;
+      font-size: 22px;
+      font-weight: lighter;
+      text-align: center;
+    }
+    td{
+      padding: 30px 0;
+    }
+    .left{
+      text-align: left;
+    }
+    .stat{
+      text-align: center;
+      color: #bbe363;
+      font-size: 20pt;
+      
+    }
+    
+  }
+}

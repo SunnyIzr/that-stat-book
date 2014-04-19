@@ -7,15 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-  <% if user_signed_in? %>
-    Welcome <%= current_user.first_name %> <%= current_user.last_name %>
-    <%= link_to 'Home', home_path %>
-    <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-  <% end %>
+  <div class='container-fluid'>
+  <div class='user-info'>
+    <% if user_signed_in? %>
+      <span class='greeting'> Hi <%= current_user.first_name %>! </span>
+      <%= link_to('LOGOUT', destroy_user_session_path, :method => :delete, class: 'btn btn-primary btn-md') %>
+    <% end %>
+  </div>
 
 <%= yield %>
+</div>
 
 </body>
 </html>

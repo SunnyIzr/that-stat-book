@@ -6,7 +6,8 @@ ThatStatBook::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'users#dashboard'
 
-  get '/home' => 'users#dashboard'
+  get '/home' => 'users#dashboard', as: :user_dashboard
+  get '/summary' => 'users#summary', as: :user_summary
 
   resources :lessons, only: [:show]
   resources :quizzes, only: [:create,:show]

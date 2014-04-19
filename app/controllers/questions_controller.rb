@@ -1,6 +1,8 @@
 class QuestionsController < ApplicationController
   def show
     @question = Question.find(params[:id])
+    @choices = @question.choices.shuffle
+    @ids = %w[A B C D]
     @quiz = Quiz.find(params[:quiz_id])
     @answer_submission = AnswerSubmission.new
   end

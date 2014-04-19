@@ -7,6 +7,10 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_uniqueness_of :email, :case_sensitive => false
 
+  def name
+    self.first_name + ' ' + self.last_name
+  end
+
   def completed_quizzes
     self.quizzes.select {|quiz| quiz.complete?}
   end
