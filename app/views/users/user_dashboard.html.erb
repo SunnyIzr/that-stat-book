@@ -11,7 +11,8 @@
         <div class='header-break'></div>
         <strong>Progress toward a Ninja Status</strong>
         <center>~PROGRESS BAR~</center>
-        <center>~BELTS EARNED~</center>
+        <div>Belts Earned:</div>
+        <div><%=@user.belts.map { |belt| belt.belt }%></div>
       </div>
 
       <div class='current-lesson'>
@@ -51,7 +52,7 @@
           </li>
           <li>
             <div class='header'>Challenged Belts</div>
-            <div class='stat'>B</div>
+            <div class='stat'><%=@user.assigned_lesson.belt.belt%></div>
           </li>
         </ul>
       </div>

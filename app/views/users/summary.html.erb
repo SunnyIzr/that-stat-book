@@ -7,7 +7,9 @@
       <div class='student-details'>
         <ul>
         <li> NAME: <%= @user.name %> </li>
-        <li> SCHOOL:</li>
+        <% if @user.school.present? %>
+        <li> SCHOOL: <%=@user.school%> </li>
+        <% end %>
         </ul>
       </div>
       
