@@ -15,6 +15,10 @@ class User < ActiveRecord::Base
   def completed_quizzes
     self.quizzes.select {|quiz| quiz.complete?}
   end
+  
+  def completed_quizzes_by_lesson(lesson_id)
+    self.completed_quizzes.select { |quiz| quiz.lesson_id == lesson_id }
+  end
 
   def passed_quizzes
     self.completed_quizzes.select {|quiz| quiz.pass?}
@@ -58,8 +62,23 @@ class User < ActiveRecord::Base
       lessons = belt.lessons
       passes = lessons.map { |lesson| self.completed_lessons.include?(lesson) }
       self.belts << belt unless passes.include?(false)
+      self.belts.uniq!
       self.save
     end
+  end
+  
+  def avg_score(lesson_id)
+    lesson_quizzes = self.completed_quizzes_by_lesson(lesson_id)
+    if lesson_quizzes.empty?
+      '-'
+    else
+      sum = lesson_quizzes.map { |quiz| quiz.score }.sum
+      sum / lesson_quizzes.size
+    end
+  end
+  
+  def ninja_status
+    self.completed_lessons.size.to_f / Lesson.all.size
   end
 
 end

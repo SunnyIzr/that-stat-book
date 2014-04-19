@@ -5,4 +5,9 @@ module ApplicationHelper
     secs = seconds % 60
     mins.to_s + ':' + secs.to_s.rjust(2,'0')
   end
+  
+  def percent(float)
+    num = (float * 100).round(2)
+    num.to_s + '%'
+  end
 end
