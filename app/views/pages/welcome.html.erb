@@ -1,1 +1,54 @@
-hello world!!!
+</div>
+<div class='container'>
+<div class='welcome'>
+  <div class='row'>
+    <div class='top-menu'>
+      <div class='col-sm-4'>
+        <%= image_tag('signup_logo.png') %>
+      </div>
+      <div class='login-form col-sm-8'>
+        <%= form_for(:user, :url => session_path(:user)) do |f| %>
+          <%= f.text_field :email, :placeholder => 'Email address', :autofocus => true %>
+          <%= f.password_field :password, :placeholder => 'Password' %>
+          <%= f.submit 'LOGIN', class: 'btn btn-primary' %><br/>
+          <%= link_to "Forgot your password?", new_password_path(:user) %>
+      <% end %>
+      </div>
+    </div>
+    <div class='hero'>
+      <%= image_tag('hero.jpg',class: 'img-responsive') %>
+    </div>
+  </div>
+  
+  <div class='row'>
+    <div class='steps'>
+      <div class='step col-xs-4'>
+        <div class='image'><%= image_tag('watch.png') %></div>
+        <p class='highlight'>1</p>
+        <h3> Watch the Lesson </h3>
+        <p class='desc'>
+          Lessons are assigned sequentially. Watch them as many times as neccessary, on demand to keep stats concepts fresh.
+        </p>
+      </div>
+      <div class='step two col-xs-4'>
+        <div class='image'><%= image_tag('quiz.png') %></div>
+        <p class='highlight'>2</p>
+        <h3> Watch the Lesson </h3>
+        <p class='desc'>
+          This is your chance test your knowledge before the real test. Take the test as many times you need to truly achieve mastery.
+        </p>
+      </div>
+      <div class='step col-xs-4'>
+        <div class='image'><%= image_tag('belt.png') %></div>
+        <p class='highlight'>3</p>
+        <h3> Watch the Lesson </h3>
+        <p class='desc'>
+          Any score of 80% or higher will earn you a belt and bring you one closer toward becoming a Stats Dojo!
+        </p>
+      </div>
+    </div>
+  </div>
+    <div class='signup_btn'>
+      <%= link_to('Sign up for Free!', new_user_registration_path, class: 'btn btn-primary btn-lg') %>
+    </div>
+</div>
