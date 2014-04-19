@@ -1,3 +1,38 @@
 <div class='row'>
   <%= render 'user_nav' %>
+  
+  <div class='col-sm-9'>
+    <div class='summary dashboard'>
+      <h2> Student Detail </h2>
+      <div class='student-details'>
+        <ul>
+        <li> NAME: <%= @user.name %> </li>
+        <li> SCHOOL:</li>
+        </ul>
+      </div>
+      
+      <div class='student-stats'>
+        <table>
+          <thead>
+            <tr>
+              <th class ='left'>TOPIC</th>
+              <th>VIEWS</th>
+              <th>AVG SCORE</th>
+              <th>ATTEMPTS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Correlation</td>
+              <td class='stat'>2</td>
+              <td class='stat'>60%</td>
+              <td class='stat'>2</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      
+    </div>
+  </div>
 </div>

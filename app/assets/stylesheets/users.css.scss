@@ -88,3 +88,45 @@
     }
   }
 }
+
+
+.summary{
+  h2{
+    margin-bottom: 10px;
+  }
+  .student-details{
+    margin-bottom: 30px;
+    ul{
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+  }
+  .student-stats{
+    table{
+      width: 100%;
+    }
+    thead{
+      border-bottom: 1px solid $faded-color;
+    }
+    th{
+      color: $emphasis-color;
+      font-size: 22px;
+      font-weight: lighter;
+      text-align: center;
+    }
+    td{
+      padding: 30px 0;
+    }
+    .left{
+      text-align: left;
+    }
+    .stat{
+      text-align: center;
+      color: #bbe363;
+      font-size: 20pt;
+      
+    }
+    
+  }
+}

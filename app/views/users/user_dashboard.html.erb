@@ -2,60 +2,60 @@
  <%= render 'user_nav' %>
 
 
- <div class='col-sm-9'>
-  <div class='dashboard'>
-    <h2> Dashboard </h2>
-    
-    <div class='stats-overview'>
-      <h4> YOUR STATS OVERVIEW </h4>
-      <div class='header-break'></div>
-      <strong>Progress toward a Ninja Status</strong>
-    </div>
-
-    <div class='current-lesson'>
-      <div class='header'>
-        <h4> CURRENT ASSIGNMENT </h4>
+  <div class='col-sm-9'>
+    <div class='dashboard'>
+      <h2> Dashboard </h2>
+      
+      <div class='stats-overview'>
+        <h4> YOUR STATS OVERVIEW </h4>
         <div class='header-break'></div>
-        Topic: <strong><%= @user.assigned_lesson.title %></strong>
+        <strong>Progress toward a Ninja Status</strong>
+        <center>~PROGRESS BAR~</center>
+        <center>~BELTS EARNED~</center>
       </div>
-      
-      
-      <div class='video-preview'>
-        <% @user.assigned_lesson.videos.each do |video| %>
-          <%= video_tag video.video.url, controls: true %>
-        <% end %>
+
+      <div class='current-lesson'>
+        <div class='header'>
+          <h4> CURRENT ASSIGNMENT </h4>
+          <div class='header-break'></div>
+          Topic: <strong><%= @user.assigned_lesson.title %></strong>
+        </div>
+        
+        
+        <div class='video-preview'>
+          <% @user.assigned_lesson.videos.each do |video| %>
+            <%= video_tag video.video.url, controls: true %>
+          <% end %>
+        </div>
+        <div class='take-assessment'>
+          <%= form_for @quiz, url: quizzes_path, html:{class: 'nifty_form'} do %>
+            <%= hidden_field_tag :lesson_id, @user.assigned_lesson.id %>
+          <%= submit_tag 'TAKE THE QUIZ', class: 'btn btn-primary btn-lg' %>
+          <%end%>
+        </div>
       </div>
-      <div class='take-assessment'>
-        <%= form_for @quiz, url: quizzes_path, html:{class: 'nifty_form'} do %>
-          <%= hidden_field_tag :lesson_id, @user.assigned_lesson.id %>
-        <%= submit_tag 'TAKE THE QUIZ', class: 'btn btn-primary btn-lg' %>
-        <%end%>
+            
+      <div class='lesson-stats'>
+        <ul>
+          <li>
+            <div class='header'>Views</div>
+            <div class='stat'>5</div>
+          </li>
+          <li>
+            <div class='header'>Quiz Attempts</div>
+            <div class='stat'>4</div>
+          </li>
+          <li>
+            <div class='header'>Average Score</div>
+            <div class='stat'>55%</div>
+          </li>
+          <li>
+            <div class='header'>Challenged Belts</div>
+            <div class='stat'>B</div>
+          </li>
+        </ul>
       </div>
     </div>
-    
-    <br/>
-      
-    <div class='lesson-stats'>
-      <ul>
-        <li>
-          <div class='header'>Views</div>
-          <div class='stat'>5</div>
-        </li>
-        <li>
-          <div class='header'>Quiz Attempts</div>
-          <div class='stat'>4</div>
-        </li>
-        <li>
-          <div class='header'>Average Score</div>
-          <div class='stat'>55%</div>
-        </li>
-        <li>
-          <div class='header'>Challenged Belts</div>
-          <div class='stat'>B</div>
-        </li>
-      </ul>
-    </div>
-      
-      
-</div>
+  </div>
+  
 </div>
