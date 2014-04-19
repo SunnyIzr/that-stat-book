@@ -1,15 +1,39 @@
-<h5>Time: </h5>
-<p class='timer'><%= @quiz.time %></p>
+</div>
+<div class='container'>
+  <div class='row'>
+    <div class='col-sm-1 logo'>
+      <%= image_tag('logo.png') %>
+    </div>
+    <div class='col-sm-10'>
+    <div class='question-answer'>
+      <div class='header'>
+        <h3><strong>Quiz Topic:</strong> <%=@question.lesson.title%></h3>
+        <div class='clock'><%= image_tag('clock.png') %></div>
+      </div>
+      <div class='time'>
+        <span class='timer'><%= @quiz.time %></span> mins left
+      </div>
+      <div class='question-count'>
+        <h4>Question <%= @quiz.answer_submissions.size + 1 %> out of 5.</h4>
+      </div>
+      <div class='question'>
+        <%=@question.question%>
+      </div>
+      <div class='answers'>
+        <%= form_for @answer_submission, html: {class: 'nifty_form'} do%>
+          <% @choices.each_with_index do |choice,index| %>
+            <%= radio_button_tag(:choice_id, choice.id)%>
+            <%= label_tag('choice_id_'+choice.id.to_s, @ids[index] + '. ' + choice.choice)%><br/>
+          <% end %>
+          <%= hidden_field_tag :quiz_id, @quiz.id %>
+          <%= hidden_field_tag :time, @quiz.time, class: 'time' %>
+          <%= submit_tag 'Answer', class: 'btn btn-primary btn-lg' %>
+        <% end %>
+      </div>
+      
 
-
-<h4><%=@question.question%></h4>
-
-<%= form_for @answer_submission, html: {class: 'nifty_form'} do%>
-  <% @question.choices.each do |choice| %>
-    <%= radio_button_tag(:choice_id, choice.id)%>
-    <%= label_tag(:choice_id, choice.choice)%><br>
-  <% end %>
-  <%= hidden_field_tag :quiz_id, @quiz.id %>
-  <%= hidden_field_tag :time, @quiz.time, class: 'time' %>
-  <%= submit_tag 'Answer'%>
-<% end %>
+      
+    </div>
+    </div>
+  </div>
+</div>

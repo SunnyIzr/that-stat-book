@@ -1,0 +1,44 @@
+@import 'variables';
+
+input[type=radio] {  
+  display: none;  
+}
+
+label {  
+    display: inline-block;  
+    cursor: pointer;  
+    position: relative;  
+    padding-left: 25px; 
+    margin-left: 10px; 
+}  
+
+
+
+label:before {  
+  content: "";  
+  display: inline-block;  
+  width: 16px;  
+  height: 16px;  
+  border-radius: 8px;
+  margin-left: -10px;
+  margin-top: 2px;  
+  position: absolute;  
+  left: 0;  
+  border: 1px solid $faded-color;
+  
+}
+
+
+input[type=radio]:checked + label:before {  
+    content: "";  
+    display: inline-block;  
+    width: 16px;  
+    height: 16px;  
+    border-radius: 8px;
+    margin-left: -10px;
+    margin-top: 2px;  
+    position: absolute;  
+    left: 0;  
+    border: 1px solid $faded-color;
+    background-color: $accent-color !important;
+}
