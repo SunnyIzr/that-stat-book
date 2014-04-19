@@ -53,11 +53,13 @@ class User < ActiveRecord::Base
   end
   
   def update_belts
-    belt = self.completed_lessons.last.belt
-    lessons = belt.lessons
-    passes = lessons.map { |lesson| self.completed_lessons.include?(lesson) }
-    self.belts << belt unless passes.include?(false)
-    self.save
+    unless self.completed_lessons.empty?
+      belt = self.completed_lessons.last.belt
+      lessons = belt.lessons
+      passes = lessons.map { |lesson| self.completed_lessons.include?(lesson) }
+      self.belts << belt unless passes.include?(false)
+      self.save
+    end
   end
 
 end

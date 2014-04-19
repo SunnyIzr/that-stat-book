@@ -7,4 +7,8 @@ class Question < ActiveRecord::Base
   def answer
     self.choices.where(is_correct: true).first
   end
+  
+  def random_wrong_choice
+    self.choices.where(is_correct: false).first
+  end
 end

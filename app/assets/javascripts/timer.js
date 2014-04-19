@@ -1,23 +1,20 @@
-var TimerController = {
-  init: function() {
-    this.startTimer()
-  },
-  startTimer: function() {
-    setInterval(function() {
-    TimerModel.quizCountDown();
-    }, 1000);
-  }
-}
+var timerFunc = setInterval(function() {
+      TimerModel.quizCountDown();
+    }, 1000)
+
 
 var TimerModel = {
   quizCountDown: function(){
-    console.log('hello!!')
     quizId = window.location.href.split('=')[1]
     $.post('/countdown', {quiz_id: quizId}, function(res) {
-      console.log('h')
       newTime = res
-      console.log(newTime)
-      TimerView.setNewTime(newTime)
+      if (newTime == '0:00') {
+        TimerView.setNewTime(newTime)
+        clearInterval(timerFunc)
+        window.location = '/quizzes/'+quizId+'/incomplete'
+      } else {
+        TimerView.setNewTime(newTime)
+      }
     })
   }
 }

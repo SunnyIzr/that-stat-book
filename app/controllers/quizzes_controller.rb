@@ -32,6 +32,12 @@ class QuizzesController < ApplicationController
     time = ApplicationHelper.time(@quiz.time)
     render text: time.to_s
   end
+  
+  def incomplete
+    @quiz = Quiz.find(params[:quiz_id])
+    @quiz.finish_incomplete
+    redirect_to quiz_path(@quiz)
+  end
 
   private
   def quiz_params

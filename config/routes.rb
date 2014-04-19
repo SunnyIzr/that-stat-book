@@ -16,6 +16,8 @@ ThatStatBook::Application.routes.draw do
   resources :videos, only: [:new,:create]
 
   get '/quizzes/:quiz_id/new-question' => 'questions#show_random_question'
+  get '/quizzes/:quiz_id/incomplete' => 'quizzes#incomplete'
+  
   
   post '/countdown' => 'quizzes#countdown'
 
