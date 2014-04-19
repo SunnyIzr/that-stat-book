@@ -4,7 +4,14 @@
 @import 'variables';
 
 .user-info{
+  margin-top: 15px;
+  margin-right: 10px;
   float:right;
+  font-size: 16px;
+  .greeting{
+    font-style: italic;
+    margin-right: 40px;
+  }
 }
 
 .side-nav{
