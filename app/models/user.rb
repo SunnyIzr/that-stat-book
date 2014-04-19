@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_and_belongs_to_many :belts
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -49,6 +50,14 @@ class User < ActiveRecord::Base
     quizzes_for_lesson = self.quizzes.select { |quiz| quiz.lesson_id == lesson_id }
     incomplete_quizzes = quizzes_for_lesson.select {|quiz| !quiz.complete?}
     incomplete_quizzes.last
+  end
+  
+  def update_belts
+    belt = self.completed_lessons.last.belt
+    lessons = belt.lessons
+    passes = lessons.map { |lesson| self.completed_lessons.include?(lesson) }
+    self.belts << belt unless passes.include?(false)
+    self.save
   end
 
 end

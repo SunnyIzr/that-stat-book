@@ -17,6 +17,7 @@ class QuizzesController < ApplicationController
     @new_quiz = Quiz.new
     @user = current_user
     if @quiz.complete?
+      @user.update_belts
       render :show
     else
       render :incomplete
