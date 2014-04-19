@@ -1,24 +1,45 @@
-<h2>Sign up</h2>
+<div class='container'>
+  <div class='ninja'>
+    <%= image_tag('ninja.png') %>
+  </div>
+  <div class='sign_up'>
+    <div class='sign_up_content'>
+      <div class='logo'>
+        <%= image_tag('signup_logo.png') %>
+      </div>
+      <h2>Get started with a Free Account.</h2>
+      <p class='desc'>Sign up in 30 seconds. No credit card required.</p>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
 
-  <div><%= f.label :first_name %><br />
-  <%= f.text_field :first_name, :autofocus => true %></div>
+        <div class='name'>
+          <p class='signup_label'>NAME</p>
+          <%= f.text_field :first_name, :placeholder =>'First Name', :autofocus => true, class: 'left' %>
+          <%= f.text_field :last_name, :placeholder => 'Last Name', class: 'right' %>
+        </div>
+        
+        
+        <div class='school'>
+          <p class='signup_label'>SCHOOL INFORMATION (optional)</p>
+          <%= f.text_field :school, :placeholder =>'School', :autofocus => true, class: 'left' %>
+          <%= f.text_field :school_state, :placeholder => 'School State', class: 'right' %>
+        </div>
+        
+        <div class='email'>
+          <p class='signup_label'>EMAIL</p>
+          <%= f.email_field :email, :placeholder => 'Email Address', class: 'full' %>
+        </div>
+        
+        <div class='password'>
+          <p class='signup_label'>PASSWORD</p>
+          <%= f.password_field :password, :placeholder => 'Password', class: 'full' %><br>
+          <%= f.password_field :password_confirmation, :placeholder => 'Type Password Again', class: 'full' %>
+        </div>
 
-  <div><%= f.label :last_name %><br />
-  <%= f.text_field :last_name %></div>
+        <div class='submit'><%= f.submit "CREATE MY ACCOUNT", class: 'btn btn-primary btn-md' %></div>
+      <% end %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
-
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

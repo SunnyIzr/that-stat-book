@@ -4,7 +4,7 @@ ThatStatBook::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'users#dashboard'
+  root 'pages#welcome'
 
   get '/home' => 'users#dashboard', as: :user_dashboard
   get '/summary' => 'users#summary', as: :user_summary

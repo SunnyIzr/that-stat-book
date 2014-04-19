@@ -1,0 +1,61 @@
+@import 'variables';
+
+.ninja{
+  float:left;
+  margin-top: 150px;
+  margin-left: 50px;
+}
+
+.sign_up{
+ margin: 0 auto;
+ text-align: center;
+ width:40%;
+ input{
+  border: 1px solid $primary-color;
+  height: 30px;
+  padding: 3px;
+  width: 45%
+ }
+ .sign_up_content{
+  .logo{
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 45px;
+  }
+  text-align: left;
+  div{
+    width: 100%;
+    float:left;
+  }
+  p {
+    margin-bottom: 1px;
+    margin-top: 19px;
+    font-size: 12px;
+  }
+  .left{
+    float: left;
+  }
+  .right{
+    float: right;
+  }
+  .full{
+    width: 100%;
+  }
+  .password{
+    input{
+      margin-bottom: 20px;
+    }
+  }
+  .desc{
+    font-size: 15px;
+  }
+  .submit {
+    input {
+      border: none;
+    }
+    margin: 0 auto;
+    text-align: center;
+  }
+ }
+}
