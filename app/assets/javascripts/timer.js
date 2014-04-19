@@ -1,24 +1,29 @@
 var TimerController = {
   init: function() {
-    this.setQuizStartTime()
     this.startTimer()
-  },
-  setQuizStartTime: function() {
-    TimerModel.quizStartTime = parseInt($('.time')[0].value)
   },
   startTimer: function() {
     setInterval(function() {
-    $('.timer').text( TimerModel.quizStartTime + parseInt( (new Date - TimerModel.startTime) / 1000 ));
-    $('.time')[0].value = TimerModel.quizStartTime + parseInt( (new Date - TimerModel.startTime) / 1000 );
-}, 1000);
+    TimerModel.quizCountDown();
+    }, 1000);
   }
 }
 
 var TimerModel = {
-  startTime: new Date,
-  quizStartTime: 0
+  quizCountDown: function(){
+    console.log('hello!!')
+    quizId = window.location.href.split('=')[1]
+    $.post('/countdown', {quiz_id: quizId}, function(res) {
+      console.log('h')
+      newTime = res
+      console.log(newTime)
+      TimerView.setNewTime(newTime)
+    })
+  }
 }
 
 var TimerView = {
-  
+  setNewTime: function(newTime){
+    $('.timer').text(newTime);    
+  }
 }
