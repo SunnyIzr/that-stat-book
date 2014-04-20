@@ -35,6 +35,7 @@ GEM
     bcrypt (3.1.7)
     bootstrap-sass (2.2.2.0)
       sass (~> 3.2)
+    bootstrap_form (2.1.0)
     builder (3.1.4)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -71,6 +72,8 @@ GEM
       bootstrap-sass (= 2.2.2)
       railties (>= 3.1)
       sass-rails (>= 3.2.0)
+    font-awesome-sass (4.0.3.1)
+      sass (~> 3.2)
     hike (1.2.3)
     httparty (0.13.0)
       json (~> 1.8)
@@ -120,6 +123,8 @@ GEM
     rake (10.2.2)
     rdoc (4.1.1)
       json (~> 1.4)
+    rest_in_place (2.5.0)
+      rails (>= 3.1)
     rspec-core (2.14.8)
     rspec-expectations (2.14.5)
       diff-lcs (>= 1.1.3, < 2.0)
@@ -183,17 +188,20 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk (~> 1.5.7)
+  bootstrap_form
   coffee-rails (~> 4.0.0)
   devise
   dotenv-rails
   factory_girl_rails
   faker
   flatui-rails
+  font-awesome-sass
   jbuilder (~> 1.2)
   jquery-rails
   paperclip (~> 4.1)
   pg
   rails (= 4.0.0)
+  rest_in_place
   rspec-rails
   sass-rails (~> 4.0.0)
   sdoc

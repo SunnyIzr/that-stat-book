@@ -1,6 +1,3 @@
-var timerFunc = setInterval(function() {
-      TimerModel.quizCountDown();
-    }, 1000)
 
 
 var TimerModel = {

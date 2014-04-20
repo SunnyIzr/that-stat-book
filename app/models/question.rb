@@ -1,8 +1,9 @@
 class Question < ActiveRecord::Base
   belongs_to :lesson
-  has_many :choices
+  has_many :choices, :dependent => :destroy, inverse_of: :question
   validates_presence_of :question
   validates_presence_of :lesson_id
+  accepts_nested_attributes_for :choices
 
   def answer
     self.choices.where(is_correct: true).first

@@ -1,0 +1,40 @@
+<div class='row'>
+ <%= render 'users/admin_nav' %>
+
+
+  <div class='col-sm-9'>
+    <div class='dashboard'>
+      <div class='question-form'>
+      <h2> Question: 
+        <span class="rest-in-place" data-url="/questions/<%=@question.id%>" data-object="question" data-attribute="question" data-placeholder="question">
+          <%=@question.question%>
+        </span>
+      </h2>
+      </div>
+      <%= link_to '< Lesson', lesson_path(@question.lesson) %><br/>
+      <%= link_to 'Delete', question_path(@question), method: :delete, data: { confirm: 'You are about to delete a question. This is irreversible. Are you sure?' }, class: 'btn btn-primary' %>
+       
+    <div class='question-answer'>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th> Answers </th>
+          </tr>
+        <thead>
+        <tbody>
+          <% @question.choices.each_with_index do |choice,index| %>
+          <tr <% if choice.is_correct %> class='success' <% end %> >
+              <td>
+                <span class="rest-in-place" data-url="/choices/<%=choice.id%>" data-object="choice" data-attribute="choice" data-placeholder="choice">
+                  <%= choice.choice %>
+                </span>
+              </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+  
+  </div>
+</div>

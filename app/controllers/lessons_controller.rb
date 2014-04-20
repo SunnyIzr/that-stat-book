@@ -1,11 +1,20 @@
 class LessonsController < ApplicationController
   def show
-    @lesson = Lesson.find(params[:id])
-    @quiz = Quiz.new
-    if current_user.access?(@lesson.level)
+    if current_user.admin?
+      @lesson = Lesson.find(params[:id])
+      @questions = @lesson.questions
       render :show
     else
-      render :restricted
+      render text: 'Restricted'
+    end
+  end
+  
+  def index
+    if current_user.admin?
+      @lessons = Lesson.all
+      render :index
+    else
+      render text: 'Restricted'
     end
   end
 end

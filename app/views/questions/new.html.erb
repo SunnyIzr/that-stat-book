@@ -1,0 +1,26 @@
+<div class='row'>
+ <%= render 'users/admin_nav' %>
+
+
+  <div class='col-sm-9'>
+    <div class='dashboard'>
+      <h2> New Question </h2>
+      <%= bootstrap_form_for @question, url: lesson_questions_path do |f| %>
+      <%= f.text_area :question, required: true %>
+      <%= f.hidden_field :lesson_id, value: @question.lesson.id.to_s %>
+      <%= f.fields_for :choices do |c| %>
+        <%= c.text_field :choice, required: true %>
+      <% end %>
+      <%= f.submit 'Create', class: 'btn btn-primary' %>
+      <% end %>       
+    </div>
+  </div>
+  
+</div>
+
+
+<script>
+$(function() {
+  $($('#new_question > .form-group > label')[1]).html('Choice - CORRECT')
+});
+</script>

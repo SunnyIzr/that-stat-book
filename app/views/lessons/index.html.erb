@@ -1,0 +1,30 @@
+<div class='row'>
+ <%= render 'users/admin_nav' %>
+
+
+  <div class='col-sm-9'>
+    <div class='lessons dashboard'>
+      <h2> Lessons </h2>         
+        <table class='table table-striped'>
+          <thead>
+            <tr>
+              <th class ='left'>TOPIC</th>
+              <th>LEVEL</th>
+              <th>BELT</th>
+              <th>QUESTIONS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @lessons.each do |lesson| %>
+              <tr>
+                <td><%= link_to lesson.title, lesson_path(lesson) %></td>
+                <td class='stat'><%= lesson.level %></td>
+                <td class='stat'><%= lesson.belt.belt %></td>
+                <td class='stat'><%= lesson.questions.size %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+  </div>
+  
+</div>

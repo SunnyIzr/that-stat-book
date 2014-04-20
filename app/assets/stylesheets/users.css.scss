@@ -113,7 +113,8 @@
     }
   }
   .student-stats{
-    table{
+
+  table{
       width: 100%;
     }
     thead{
@@ -134,9 +135,7 @@
     .stat{
       text-align: center;
       color: #bbe363;
-      font-size: 20pt;
-      
+      font-size: 20pt; 
     }
-    
   }
 }

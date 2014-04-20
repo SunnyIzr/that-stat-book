@@ -9,9 +9,13 @@ ThatStatBook::Application.routes.draw do
   get '/home' => 'users#dashboard', as: :user_dashboard
   get '/summary' => 'users#summary', as: :user_summary
 
-  resources :lessons, only: [:show]
+  resources :users, only: [:show,:index]
+  resources :lessons, only: [:show,:index] do
+    resources :questions, only: [:new,:create]
+  end
   resources :quizzes, only: [:create,:show]
-  resources :questions, only: [:show]
+  resources :questions, only: [:show,:destroy,:update]
+  resources :choices, only: [:show,:update]
   resources :answer_submissions, only: [:create]
   resources :videos, only: [:new,:create]
 

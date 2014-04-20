@@ -61,3 +61,9 @@ gem 'aws-sdk', '~> 1.5.7'
 
 gem 'flatui-rails'
 
+gem 'bootstrap_form'
+
+gem 'font-awesome-sass'
+
+gem 'rest_in_place'
+

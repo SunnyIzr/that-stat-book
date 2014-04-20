@@ -1,5 +1,6 @@
 @import 'variables';
 
+.answers{
 input[type=radio] {  
   display: none;  
 }
@@ -41,4 +42,5 @@ input[type=radio]:checked + label:before {
     left: 0;  
     border: 1px solid $faded-color;
     background-color: $accent-color !important;
+}
 }
