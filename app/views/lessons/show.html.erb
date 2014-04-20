@@ -2,38 +2,49 @@
  <%= render 'users/admin_nav' %>
 
 
-  <div class='col-sm-9'>
+  <div class='lessons col-sm-9'>
     <div class='dashboard'>
-      <h2> Lesson: <%=@lesson.title%></h2>
-      <%= link_to 'New Question', new_lesson_question_path(@lesson), class: 'btn btn-primary' %>
-  
-  <div id='video'>
+      <h2> Lesson: 
+        <span class="rest-in-place" data-url="/lessons/<%=@lesson.id%>" data-object="lesson" data-attribute="title" data-placeholder="lesson">
+          <%=@lesson.title%>
+        </span>
+      </h2>
+  <div class='video-preview'>
     <% @lesson.videos.each do |video| %>
       <%= video_tag video.video.url, controls: true %>
     <% end %>
   </div>
+  <div>
+    <%= link_to 'New Question', new_lesson_question_path(@lesson), class: 'btn btn-primary' %>
+    <%= link_to 'Add/Change Video', new_lesson_video_path(@lesson), class: 'new-video-load btn btn-primary' %>
+  </div>
   
-      <table class='table table-striped'>
-          <thead>
-            <tr>
-              <th class ='left'>QUESTION</th>
-              <th>CORRECT ANSWER</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @questions.each do |question| %>
-              <tr>
-                <td><%= link_to question.question, question_path(question) %></td>
-                <td class='stat'><%= question.answer.choice %></td>
-                <td>
-                  <%= link_to "<i class='fa fa-trash-o'></i>".html_safe, question_path(question), method: :delete, data: { confirm: 'You are about to delete a question. This is irreversible. Are you sure?' } %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+  <table class='table table-striped'>
+      <thead>
+        <tr>
+          <th class ='left'>QUESTION</th>
+          <th>CORRECT ANSWER</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @questions.each do |question| %>
+          <tr>
+            <td><%= link_to question.question, question_path(question) %></td>
+            <td class='stat'><%= question.answer.choice %></td>
+            <td>
+              <%= link_to "<i class='fa fa-trash-o'></i>".html_safe, question_path(question), method: :delete, data: { confirm: 'You are about to delete a question. This is irreversible. Are you sure?' } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
 
 
+<script>
+$(document).ready(function() {
+  videoLoad();
+  });
+</script>

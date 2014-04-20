@@ -1,0 +1,5 @@
+<%= form_for @video, :url => lesson_videos_path, :html => { :multipart => true } do |f| %>
+  <%= f.file_field :video %>
+  <%= f.hidden_field :lesson_id, value: @lesson.id.to_s %>
+  <%= submit_tag 'Submit', class: 'btn btn-primary' %>
+<% end %>
