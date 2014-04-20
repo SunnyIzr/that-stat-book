@@ -49,16 +49,18 @@ class QuestionsController < ApplicationController
   end
   
   def update
-    @question = Question.find(params[:id])
-    if @question.update_attributes!(update_question_params)
-      respond_to do |format|
-        format.html { redirect_to( @question )}
-        format.json { render :json => @question }
-      end
-    else
-      respond_to do |format|
-        format.html { render :action  => :edit } # edit.html.erb
-        format.json { render :nothing =>  true }
+    if current_user.admin?
+      @question = Question.find(params[:id])
+      if @question.update_attributes!(update_question_params)
+        respond_to do |format|
+          format.html { redirect_to( @question )}
+          format.json { render :json => @question }
+        end
+      else
+        respond_to do |format|
+          format.html { render :action  => :edit } # edit.html.erb
+          format.json { render :nothing =>  true }
+        end
       end
     end
   end
