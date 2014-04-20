@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140401233540) do
+ActiveRecord::Schema.define(version: 20140419202800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,15 @@ ActiveRecord::Schema.define(version: 20140401233540) do
 
   add_index "answer_submissions", ["choice_id"], name: "index_answer_submissions_on_choice_id", using: :btree
   add_index "answer_submissions", ["quiz_id"], name: "index_answer_submissions_on_quiz_id", using: :btree
+
+  create_table "belts", force: true do |t|
+    t.string "belt"
+  end
+
+  create_table "belts_users", force: true do |t|
+    t.integer "belt_id"
+    t.integer "user_id"
+  end
 
   create_table "choices", force: true do |t|
     t.text     "choice"
@@ -42,7 +51,10 @@ ActiveRecord::Schema.define(version: 20140401233540) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "level"
+    t.integer  "belt_id"
   end
+
+  add_index "lessons", ["belt_id"], name: "index_lessons_on_belt_id", using: :btree
 
   create_table "questions", force: true do |t|
     t.text     "question"
@@ -58,7 +70,7 @@ ActiveRecord::Schema.define(version: 20140401233540) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "lesson_id"
-    t.integer  "time",       default: 0
+    t.integer  "time",       default: 1800
   end
 
   add_index "quizzes", ["lesson_id"], name: "index_quizzes_on_lesson_id", using: :btree
@@ -78,6 +90,8 @@ ActiveRecord::Schema.define(version: 20140401233540) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.boolean  "admin",                  default: false
+    t.string   "school"
+    t.string   "school_state"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

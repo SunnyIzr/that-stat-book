@@ -1,4 +1,5 @@
 class QuizzesController < ApplicationController
+  helper ApplicationHelper
   def create
     if current_user.last_incomplete_quiz(params[:lesson_id].to_i).nil?
       @quiz = Quiz.new(lesson_id: params[:lesson_id], user_id: current_user.id)
@@ -17,10 +18,25 @@ class QuizzesController < ApplicationController
     @new_quiz = Quiz.new
     @user = current_user
     if @quiz.complete?
+      @user.update_belts
       render :show
     else
       render :incomplete
     end
+  end
+  
+  def countdown
+    @quiz = Quiz.find(params[:quiz_id])
+    @quiz.time -= 1
+    @quiz.save
+    time = ApplicationHelper.time(@quiz.time)
+    render text: time.to_s
+  end
+  
+  def incomplete
+    @quiz = Quiz.find(params[:quiz_id])
+    @quiz.finish_incomplete
+    redirect_to quiz_path(@quiz)
   end
 
   private

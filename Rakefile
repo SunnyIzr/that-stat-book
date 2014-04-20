@@ -16,12 +16,20 @@ task 'db:seed_users' => :environment do
     user.save
   end
 end
+task 'db:seed_belts' => :environment do
+  belts = %w[yellow orange green blue purple red brown black]
+  belts.each do |belt|
+    Belt.create(belt: belt)
+  end
+  Belt.all
+end
 task 'db:seed_lessons' => :environment do
-  5.times do |i|
+  24.times do |i|
     lesson = Lesson.new
     lesson.title = Faker::Company.catch_phrase
     lesson.description = Faker::Lorem.paragraph(15)
     lesson.level = i + 1
+    lesson.belt = Belt.all[i/3]
     lesson.save
   end
 end
@@ -50,3 +58,4 @@ task 'db:seed_choices' => :environment do
     choice.save
   end
 end
+  

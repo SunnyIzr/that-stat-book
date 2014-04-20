@@ -11,7 +11,7 @@
         <div class='clock'><%= image_tag('clock.png') %></div>
       </div>
       <div class='time'>
-        <span class='timer'><%= @quiz.time %></span> mins left
+        <span class='timer'><%= time(@quiz.time) %></span> mins left
       </div>
       <div class='question-count'>
         <h4>Question <%= @quiz.answer_submissions.size + 1 %> out of 5.</h4>
@@ -26,7 +26,6 @@
             <%= label_tag('choice_id_'+choice.id.to_s, @ids[index] + '. ' + choice.choice)%><br/>
           <% end %>
           <%= hidden_field_tag :quiz_id, @quiz.id %>
-          <%= hidden_field_tag :time, @quiz.time, class: 'time' %>
           <%= submit_tag 'Answer', class: 'btn btn-primary btn-lg' %>
         <% end %>
       </div>

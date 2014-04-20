@@ -7,7 +7,9 @@
       <div class='student-details'>
         <ul>
         <li> NAME: <%= @user.name %> </li>
-        <li> SCHOOL:</li>
+        <% if @user.school.present? %>
+        <li> SCHOOL: <%=@user.school%> </li>
+        <% end %>
         </ul>
       </div>
       
@@ -22,12 +24,14 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Correlation</td>
-              <td class='stat'>2</td>
-              <td class='stat'>60%</td>
-              <td class='stat'>2</td>
-            </tr>
+            <% @user.completed_lessons.each do |lesson| %>
+              <tr>
+                <td><%= lesson.title %></td>
+                <td class='stat'></td>
+                <td class='stat'><%= percent(@user.avg_score(lesson.id)) %></td>
+                <td class='stat'><%= @user.completed_quizzes_by_lesson(lesson.id).size %></td>
+              </tr>
+            <% end %>
           </tbody>
         </table>
       </div>

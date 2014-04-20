@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   def dashboard
     @user = current_user
     @quiz = Quiz.new
+    @lesson = @user.assigned_lesson
     if current_user.admin?
       render :admin_dashboard
     else

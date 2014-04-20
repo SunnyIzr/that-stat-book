@@ -33,4 +33,21 @@ class Quiz < ActiveRecord::Base
   def pass?
     self.score >= 0.7
   end
+  
+  def remaining_questions
+    5 - self.answer_submissions.size
+  end
+  
+  def add_wrong_submission
+    question = self.new_random_question
+    wrong_submission = self.answer_submissions.new
+    wrong_submission.choice = question.random_wrong_choice
+    wrong_submission.save
+  end
+  
+  def finish_incomplete
+    self.remaining_questions.times do 
+      self.add_wrong_submission
+    end
+  end
 end

@@ -1,4 +1,41 @@
+</div>
+<div class='container'>
+<div class='welcome'>
+  <div class='row'>
+    <div class='quiz-top-menu top-menu'>
+      <div class='col-sm-4'>
+        <%= link_to '< Dashboard', user_dashboard_path %>
+      </div>
+      <div class='quiz-logo col-sm-4'>
+          <%= image_tag('signup_logo.png') %>
+      </div>
+      <div class='col-sm-4'></div>
+    </div>
+    <div class='hero'>
+        <% if @quiz.pass? %>
+          <%= image_tag('quiz_pass.jpg',class: 'img-responsive') %>
+        <% else %>
+          FAIL!!
+        <% end %>
+    </div>
+  </div>
+  
+  <div class='row'>
+    <div class='col-sm-3'>
+      Share your results:
+    </div>
+    <div class='col-sm-8'>
+    </div>
+  </div>
+
+</div>
+
+
+
 <h4>You have completed the assessment for Lesson <%=@quiz.lesson.title%></h4>
+
+
+
 
 <div id='quiz-results'>
   <p>Total Time: <%= @quiz.time %> Seconds</p>
