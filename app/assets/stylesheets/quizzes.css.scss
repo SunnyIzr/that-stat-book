@@ -1,3 +1,14 @@
 // Place all the styles related to the Quizzes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.quiz-top-menu{
+  margin-top: -35px;
+}
+.quiz-logo{
+  text-align: center;
+  margin: 0 auto;
+  img{
+    text-align: center;
+    margin: 0 auto;
+  }
+}
