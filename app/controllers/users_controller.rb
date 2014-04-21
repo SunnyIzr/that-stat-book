@@ -17,4 +17,14 @@ class UsersController < ApplicationController
       render :summary
     end
   end
+  def index
+    if current_user.admin?
+      @users = User.all
+    end
+  end
+  def show
+    if current_user.admin?
+      @user = User.find(params[:id])
+    end
+  end
 end
