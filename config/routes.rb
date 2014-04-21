@@ -11,6 +11,7 @@ ThatStatBook::Application.routes.draw do
 
   resources :users, only: [:show,:index]
   resources :lessons, only: [:show,:index,:update,:destroy,:new,:create] do
+    collection { post :sort }
     resources :questions, only: [:new,:create]
     resources :videos, only: [:new,:create]
   end

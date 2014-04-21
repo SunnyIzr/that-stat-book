@@ -67,6 +67,14 @@ class LessonsController < ApplicationController
     end
   end
   
+  def sort
+    params[:lesson].each_with_index do |id, index|
+      new_level = index + 1
+      Lesson.update_all({level: new_level},{id: id})
+    end
+    render nothing: true
+  end
+  
   private
   def lesson_params
     params.require(:lesson).permit(:title,:belt_id)
