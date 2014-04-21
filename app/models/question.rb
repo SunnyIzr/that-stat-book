@@ -4,6 +4,8 @@ class Question < ActiveRecord::Base
   validates_presence_of :question
   validates_presence_of :lesson_id
   accepts_nested_attributes_for :choices
+  has_attached_file :image
+  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
   def answer
     self.choices.where(is_correct: true).first

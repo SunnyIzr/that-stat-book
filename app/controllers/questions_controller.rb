@@ -67,7 +67,7 @@ class QuestionsController < ApplicationController
   
   private
   def question_params
-    params.require(:question).permit(:question,:lesson_id,choices_attributes:[:choice])
+    params.require(:question).permit(:question,:image,:lesson_id,choices_attributes:[:choice])
   end
   def update_question_params
     params.require(:question).permit(:question)
