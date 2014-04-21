@@ -18,7 +18,9 @@
       </div>
       <div class='question'>
         <%=@question.question%><br>
-        <%= image_tag @question.image.url %>
+        <% if @question.image.present? %>
+          <%= image_tag @question.image.url %>
+        <% end %>
       </div>
       <div class='answers'>
         <%= form_for @answer_submission, html: {class: 'nifty_form'} do%>

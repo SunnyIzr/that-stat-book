@@ -18,6 +18,7 @@ ThatStatBook::Application.routes.draw do
   resources :questions, only: [:show,:destroy,:update]
   resources :choices, only: [:show,:update]
   resources :answer_submissions, only: [:create]
+  resources :video_views, only: [:create]
 
 
   get '/quizzes/:quiz_id/new-question' => 'questions#show_random_question'

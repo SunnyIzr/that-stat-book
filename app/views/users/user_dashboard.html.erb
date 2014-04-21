@@ -29,7 +29,7 @@
         
         <div class='video-preview'>
           <% @lesson.videos.each do |video| %>
-            <%= video_tag video.video.url, controls: true %>
+            <%= video_tag video.video.url, controls: true, data: { user_id: @user.id, video_id: video.id } %>
           <% end %>
         </div>
         <div class='take-assessment'>
@@ -44,7 +44,7 @@
         <ul>
           <li>
             <div class='header'>Views</div>
-            <div class='stat'>N</div>
+            <div class='stat'><%= @user.view_count(@lesson.id) %></div>
           </li>
           <li>
             <div class='header'>Quiz Attempts</div>
@@ -52,7 +52,7 @@
           </li>
           <li>
             <div class='header'>Average Score</div>
-            <div class='stat'><%= @user.avg_score(@lesson.id) %></div>
+            <div class='stat'><%= percent(@user.avg_score(@lesson.id)) %></div>
           </li>
           <li>
             <div class='header'>Challenged Belts</div>
@@ -64,3 +64,9 @@
   </div>
   
 </div>
+
+<script>
+  $(function() {
+    videoView();
+  })
+</script>

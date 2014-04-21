@@ -10,3 +10,12 @@ videoLoad =  function() {
     })
   })
 }
+
+videoView = function(){
+  $("video").on('play', function(e) {
+    userId = $(this).data('user-id')
+    videoId = $(this).data('video-id')
+    $.post('/video_views',{user_id: userId, video_id: videoId}, function(){})
+  });
+  $("video").on('pause', function(e) { $('video').off() })
+}
