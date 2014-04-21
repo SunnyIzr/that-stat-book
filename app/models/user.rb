@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_many :quizzes
+  has_many :quizzes, :dependent => :destroy
+  has_many :video_views, :dependent => :destroy
   validates_presence_of :email
   validates_uniqueness_of :email, :case_sensitive => false
 
@@ -79,6 +80,12 @@ class User < ActiveRecord::Base
   
   def ninja_status
     self.completed_lessons.size.to_f / Lesson.all.size
+  end
+  
+  def view_count(lesson_id)
+    lesson = Lesson.find(lesson_id)
+    video_id = lesson.videos.first.id
+    self.video_views.where(video_id: video_id).size
   end
 
 end

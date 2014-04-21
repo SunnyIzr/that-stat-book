@@ -10,14 +10,16 @@ ThatStatBook::Application.routes.draw do
   get '/summary' => 'users#summary', as: :user_summary
 
   resources :users, only: [:show,:index]
-  resources :lessons, only: [:show,:index] do
+  resources :lessons, only: [:show,:index,:update,:destroy,:new,:create] do
     resources :questions, only: [:new,:create]
+    resources :videos, only: [:new,:create]
   end
   resources :quizzes, only: [:create,:show]
   resources :questions, only: [:show,:destroy,:update]
   resources :choices, only: [:show,:update]
   resources :answer_submissions, only: [:create]
-  resources :videos, only: [:new,:create]
+  resources :video_views, only: [:create]
+
 
   get '/quizzes/:quiz_id/new-question' => 'questions#show_random_question'
   get '/quizzes/:quiz_id/incomplete' => 'quizzes#incomplete'

@@ -1,0 +1,16 @@
+<div class='row'>
+  <%= render 'users/admin_nav' %>
+  
+  <div class='col-sm-9'>
+    <div class='dashboard'>
+      <h2> New Lesson </h2>
+      <%= bootstrap_form_for @lesson, url: lessons_path do |f| %>
+      <%= f.text_field :title, required: true %>
+      <%= f.select(:belt_id, options_for_select(Belt.pluck(:belt,:id)) ) %>
+      <%= f.submit 'Create', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+      
+  

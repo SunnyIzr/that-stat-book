@@ -5,8 +5,14 @@
 @import 'variables';
 
 .lessons {
-  
-}
+  .video-preview{
+    margin-right: 20px;
+      video{
+        margin-top: 15px;
+        width: 350px;
+      }
+    }
+  }
 
 .rest-in-place-question{
   width: 100%;
@@ -15,3 +21,8 @@
 .rest-in-place-choice{
   width: 100%;
 }
+
+.rest-in-place-title{
+  width: 100%;
+}
+

@@ -2,7 +2,7 @@ class Quiz < ActiveRecord::Base
   belongs_to :user
   belongs_to :lesson
   has_many :questions
-  has_many :answer_submissions
+  has_many :answer_submissions, :dependent => :destroy
   validates_presence_of :user_id
   validates_presence_of :lesson_id
   validates_presence_of :time

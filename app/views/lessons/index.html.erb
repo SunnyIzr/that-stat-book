@@ -4,7 +4,8 @@
 
   <div class='col-sm-9'>
     <div class='lessons dashboard'>
-      <h2> Lessons </h2>         
+      <h2> Lessons </h2>        
+      <%= link_to 'New Lesson', new_lesson_path, class: 'btn btn-primary' %> 
         <table class='table table-striped'>
           <thead>
             <tr>
@@ -12,15 +13,19 @@
               <th>LEVEL</th>
               <th>BELT</th>
               <th>QUESTIONS</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
             <% @lessons.each do |lesson| %>
               <tr>
                 <td><%= link_to lesson.title, lesson_path(lesson) %></td>
-                <td class='stat'><%= lesson.level %></td>
-                <td class='stat'><%= lesson.belt.belt %></td>
-                <td class='stat'><%= lesson.questions.size %></td>
+                <td><%= lesson.level %></td>
+                <td><%= lesson.belt.belt %></td>
+                <td><%= lesson.questions.size %></td>
+                <td>
+                  <%= link_to "<i class='fa fa-trash-o'></i>".html_safe, lesson_path(lesson), method: :delete, data: { confirm: 'You are about to delete a lesson. This is irreversible. Are you sure?' } %>
+                </td>
               </tr>
             <% end %>
           </tbody>

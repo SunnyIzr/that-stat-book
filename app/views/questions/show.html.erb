@@ -17,7 +17,10 @@
         <h4>Question <%= @quiz.answer_submissions.size + 1 %> out of 5.</h4>
       </div>
       <div class='question'>
-        <%=@question.question%>
+        <%=@question.question%><br>
+        <% if @question.image.present? %>
+          <%= image_tag @question.image.url %>
+        <% end %>
       </div>
       <div class='answers'>
         <%= form_for @answer_submission, html: {class: 'nifty_form'} do%>
