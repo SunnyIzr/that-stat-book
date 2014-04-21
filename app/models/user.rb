@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
   def avg_score(lesson_id)
     lesson_quizzes = self.completed_quizzes_by_lesson(lesson_id)
     if lesson_quizzes.empty?
-      '-'
+      0
     else
       sum = lesson_quizzes.map { |quiz| quiz.score }.sum
       sum / lesson_quizzes.size
@@ -84,8 +84,12 @@ class User < ActiveRecord::Base
   
   def view_count(lesson_id)
     lesson = Lesson.find(lesson_id)
-    video_id = lesson.videos.first.id
-    self.video_views.where(video_id: video_id).size
+    if lesson.videos.empty?
+      0
+    else
+      video_id = lesson.videos.first.id
+      self.video_views.where(video_id: video_id).size
+    end
   end
 
 end
