@@ -16,11 +16,14 @@
               <th></th>
             </tr>
           </thead>
-          <tbody data-update-url="<%= sort_lessons_path %>">
-            <% @lessons.each do |lesson| %>
-              <tr id="lesson_<%= lesson.id %>">
-                <td><%= link_to lesson.title, lesson_path(lesson) %></td>
-                <td class='level'><%= lesson.level %></td>
+          <tbody class='main-tbody' data-update-url="<%= sort_lessons_url %>">
+          <% @belt_lessons.each do |belt,lessons| %>
+          <tbody>
+            <tr class='header <%=belt.belt%>'><td colspan = "5"><%=belt.belt.capitalize%></td><tr>
+            <% lessons.each do |lesson| %>
+              <tr id="<%= lesson.id %>" data-color='<%= belt.belt %>'class='lesson'>
+                <td><%=lesson.id%><%= link_to lesson.title, lesson_path(lesson) %></td>
+                <td><%= lesson.level %></td>
                 <td><%= lesson.belt.belt %></td>
                 <td><%= lesson.questions.size %></td>
                 <td>
@@ -28,6 +31,8 @@
                 </td>
               </tr>
             <% end %>
+          </tbody>
+          <% end %>
           </tbody>
         </table>
   </div>

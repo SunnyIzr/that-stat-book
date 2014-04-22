@@ -14,7 +14,7 @@ class LessonsController < ApplicationController
   
   def index
     if current_user.admin?
-      @lessons = Lesson.all.sort_by { |lesson| lesson.level }
+      @belt_lessons = Belt.sorted_lessons
       render :index
     else
       render text: 'Restricted'
@@ -68,7 +68,8 @@ class LessonsController < ApplicationController
   end
   
   def sort
-    params[:lesson].each_with_index do |id, index|
+    new_levels = params[:lesson].values.flatten
+    new_levels.each_with_index do |id, index|
       new_level = index + 1
       Lesson.update_all({level: new_level},{id: id})
     end
@@ -76,6 +77,7 @@ class LessonsController < ApplicationController
   end
   
   private
+
   def lesson_params
     params.require(:lesson).permit(:title,:belt_id)
   end
