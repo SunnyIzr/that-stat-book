@@ -1,0 +1,32 @@
+<div class='row'>
+  <%= render 'users/admin_nav' %>
+  
+  <div class='col-sm-9'>
+    <div class='dashboard'>
+      <h2> Rearrange Lessons </h2>
+      <div class='rearrange'>
+      <ol class="sortable">
+      <% @belt_lessons.each do |belt,lessons| %>
+        <li id='belt_<%= belt.belt %>' class='belt'>
+            <div><%= belt.belt.capitalize %></div>
+            
+            <ol>
+            <% lessons.each do |lesson| %>
+              <li id='lesson_<%= lesson.id %>' class='lesson'>
+                <div><%= lesson.title %></div>
+              </li>
+            <% end %>
+              <li class='lesson'><div>&nbsp;</div></li>
+            </ol>
+            
+        </li>
+      <% end %>
+      </ol>
+      </div>
+    </div>
+  </div>
+</div>
+      
+      
+
+  

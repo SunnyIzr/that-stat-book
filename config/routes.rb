@@ -11,6 +11,7 @@ ThatStatBook::Application.routes.draw do
 
   resources :users, only: [:show,:index]
   resources :lessons, only: [:show,:index,:update,:destroy,:new,:create] do
+    collection { post :sort }
     resources :questions, only: [:new,:create]
     resources :videos, only: [:new,:create]
   end
@@ -23,6 +24,8 @@ ThatStatBook::Application.routes.draw do
 
   get '/quizzes/:quiz_id/new-question' => 'questions#show_random_question'
   get '/quizzes/:quiz_id/incomplete' => 'quizzes#incomplete'
+  
+  get 'rearrange' => 'lessons#rearrange'
   
   
   post '/countdown' => 'quizzes#countdown'

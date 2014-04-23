@@ -14,7 +14,8 @@ class LessonsController < ApplicationController
   
   def index
     if current_user.admin?
-      @lessons = Lesson.all.sort_by { |lesson| lesson.level }
+      @lessons = Lesson.all
+      @belt_lessons = Belt.sorted_lessons
       render :index
     else
       render text: 'Restricted'
@@ -67,7 +68,23 @@ class LessonsController < ApplicationController
     end
   end
   
+  def rearrange
+    @belt_lessons = Belt.sorted_lessons
+  end
+  
+  def sort
+    new_levels = params[:lesson].keys
+    p '*'*100
+    p params[:lesson][new_levels.first]
+    new_levels.each_with_index do |id, index|
+      new_level = index + 1
+      Lesson.update_all({level: new_level, belt_id: Belt.find_by(belt: params[:lesson][id.to_s]).id},{id: id})
+    end
+    render nothing: true
+  end
+  
   private
+
   def lesson_params
     params.require(:lesson).permit(:title,:belt_id)
   end

@@ -1,0 +1,31 @@
+<div class='row'>
+ <%= render 'users/admin_nav' %>
+
+
+  <div class='lessons col-sm-9'>
+    <div class='dashboard'>
+      <h2> Members </h2>
+  
+  <table class='table table-striped'>
+      <thead>
+        <tr>
+          <th class ='left'>Name</th>
+          <th>School</th>
+          <th>Last Quiz Score</th>
+          <th>Last Belt</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= link_to user.name, user_path(user) %></td>
+            <td><%= user.school %></td>
+            <td><%= percent(user.quizzes.last.score) unless user.quizzes.empty? %></td>
+            <td><%= user.belts.last.belt unless user.belts.empty? %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
