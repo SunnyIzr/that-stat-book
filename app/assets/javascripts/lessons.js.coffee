@@ -1,9 +1,7 @@
 $ ->
-  $("#lessons tbody").sortable
-    axis: 'y'
+  $('.sortable').nestedSortable
+    handle: 'div',
+    items: 'li',
+    toleranceElement: '> div'
     update: ->
-      data = {yellow: [], orange: [], green: [], blue: [], purple: [], red: [], brown: [], black: []}
-      $('.lesson').each ->
-        data[$(this).data('color')].push(this.id)
-      console.log(data)
-      $.post($(this).data('update-url'),{lesson:data})
+      $.post('/lessons/sort', $('ol.sortable').nestedSortable('serialize'))

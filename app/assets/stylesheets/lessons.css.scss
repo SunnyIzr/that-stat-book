@@ -26,13 +26,41 @@
   width: 100%;
 }
 
-
-#lessons{
-  cursor:move;
-  .header{
-    text-align: center;
-    td{
-      height: 10px;
+.rearrange{
+  width:100%;
+  cursor: move;
+  ol{
+    list-style: none;
+    padding: 0;
+    ol{
+      padding:0;
     }
   }
+  .belt{
+    border: 1px #d4d4d4 solid;
+    text-align: center;
+    .lesson{
+      height: 35px;
+      vertical-align: middle;
+      text-align: left;
+      border-top: 1px solid #d4d4d4;
+      padding-left: 10px;
+      padding-top: 5px;
+      background: -webkit-linear-gradient(top, #ffffff 0%,#f6f6f6 47%,#f0ece9 100%)
+    }
+  }
+  #belt_yellow{ background-color: #fff888;}
+  #belt_orange{ background-color: #ffc77f;}
+  #belt_green{ background-color: #c9ffd3;}
+  #belt_blue{ background-color: #c9f0ff;}
+  #belt_purple{ background-color: #e6d8fe;}
+  #belt_red{ background-color: #ff9f9f;}
+  #belt_brown{ background-color: #dca68e;}
+  #belt_black{ 
+    background-color: black; color: white;
+    li {
+      color: #404041;
+    }
+  }
+  
 }
