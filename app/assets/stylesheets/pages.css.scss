@@ -124,4 +124,45 @@
 }
 
 
-
+@media (max-width: 768px) {
+  .welcome{
+    .hero{
+      img{
+      }
+      margin-top: -22px;
+    }
+    .steps{
+      .image{
+        height: auto;
+      }
+      .highlight{
+        font-size: 16pt;
+      }
+      .step{
+        padding-left: 2%;
+        padding-right: 2%;
+      }
+      .two{
+        padding-top: 25px;
+        border-top: 1px solid $primary-color;
+        border-bottom: 1px solid $primary-color;
+        border-left: none;
+        border-right: none;
+        width: 60%;
+        margin-top: 0;
+        margin-bottom: 25px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }
+  .sign_up{
+    width: 100%;
+  }
+  .ninja{
+    float:left;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 25px;
+  }
+}

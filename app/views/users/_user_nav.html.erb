@@ -1,4 +1,4 @@
-  <div class='side-nav'>
+  <div class='side-nav hidden-xs'>
     <%= image_tag('dashboard_logo.png') %>
     <ul>
       <li <%='class=selected' if current_page?(user_dashboard_path)%>>
@@ -9,3 +9,5 @@
       </li>
     </ul>
   </div>
+  
+ <%= render 'user_mobile_nav' %>

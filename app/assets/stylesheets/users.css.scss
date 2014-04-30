@@ -139,3 +139,69 @@
     }
   }
 }
+
+.navbar{
+  text-align: center;
+  border-bottom: 1px solid $faded-color; 
+  .navbar-toggle{
+    position: absolute;
+    right: 0px;
+    margin-right: 4px;
+  }
+  .navbar-brand{
+    padding: 0;
+    img{
+      height: 55px;
+    }
+  }
+  
+}
+
+
+@media (max-width: 768px) {
+  .dashboard{
+    padding-left: 0px;
+    .current-lesson{
+      .video-preview{
+        text-align: center;
+        margin: 0 auto;
+        float: none;
+      }
+      .take-assessment{
+        text-align: center;
+        margin: 0 auto;
+        float: none; 
+      }
+    }
+    .lesson-stats{
+      ul{
+        li{
+          .stat{
+            font-size: 23pt; 
+          }   
+        }
+      }
+    }
+  }
+.summary{
+  h2{
+    margin-bottom: 10px;
+  }
+  .student-details{
+    margin-bottom: 30px;
+    ul{
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+  }
+  .student-stats{
+      th{
+        font-size: 18px;
+      }
+      .stat{
+        font-size: 16pt; 
+      }
+    }
+  }
+}

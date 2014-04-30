@@ -14,8 +14,7 @@ class LessonsController < ApplicationController
   
   def index
     if current_user.admin?
-      @lessons = Lesson.all
-      @belt_lessons = Belt.sorted_lessons
+      @lessons = Lesson.all.sort_by { |lesson| lesson.level }
       render :index
     else
       render text: 'Restricted'

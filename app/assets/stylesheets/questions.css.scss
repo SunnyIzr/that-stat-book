@@ -41,3 +41,15 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .question-answer{
+    margin-top:-45px;
+    .header{
+      border: none;
+      h3{
+        position: absolute;
+      }
+    }
+  }
+}

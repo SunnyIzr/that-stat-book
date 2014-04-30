@@ -1,11 +1,15 @@
+<div class='row'>
+   <%= render 'pages/pages_mobile_nav' %>
+</div>
+
 <div class='container'>
   <div class='ninja'>
     <%= image_tag('ninja.png') %>
   </div>
   <div class='sign_up'>
     <div class='sign_up_content'>
-      <div class='logo'>
-        <%= image_tag('signup_logo.png') %>
+      <div class='logo hidden-xs'>
+        <%= image_tag('signup_logo.png', class: 'img-responsive') %>
       </div>
       <h2>Get started with a Free Account.</h2>
       <p class='desc'>Sign up in 30 seconds. No credit card required. If you already have a StatsDojo account <%= link_to 'log in', root_url %>.</p>

@@ -1,8 +1,12 @@
+<div class='row'>
+   <%= render 'pages_mobile_nav' %>
+</div>
+
 </div>
 <div class='container'>
 <div class='welcome'>
   <div class='row'>
-    <div class='top-menu'>
+    <div class='top-menu hidden-xs'>
       <div class='col-sm-4'>
         <%= image_tag('signup_logo.png') %>
       </div>
@@ -16,33 +20,34 @@
       </div>
     </div>
     <div class='hero'>
-      <%= image_tag('hero.jpg',class: 'img-responsive') %>
+      <%= image_tag('hero.jpg',class: 'img-responsive hidden-xs') %>
+      <%= image_tag('hero_mobile.jpg',class: 'img-responsive visible-xs') %>
     </div>
   </div>
   
   <div class='row'>
     <div class='steps'>
-      <div class='step col-xs-4'>
+      <div class='step col-sm-4'>
         <div class='image'><%= image_tag('watch.png') %></div>
         <p class='highlight'>1</p>
         <h3> Watch the Lesson </h3>
-        <p class='desc'>
+        <p class='desc hidden-xs'>
           Lessons are assigned sequentially. Watch them as many times as neccessary, on demand to keep stats concepts fresh.
         </p>
       </div>
-      <div class='step two col-xs-4'>
+      <div class='step two col-sm-4'>
         <div class='image'><%= image_tag('quiz.png') %></div>
         <p class='highlight'>2</p>
-        <h3> Watch the Lesson </h3>
-        <p class='desc'>
+        <h3> Take the Quiz </h3>
+        <p class='desc hidden-xs'>
           This is your chance test your knowledge before the real test. Take the test as many times you need to truly achieve mastery.
         </p>
       </div>
-      <div class='step col-xs-4'>
+      <div class='step col-sm-4'>
         <div class='image'><%= image_tag('belt.png') %></div>
         <p class='highlight'>3</p>
-        <h3> Watch the Lesson </h3>
-        <p class='desc'>
+        <h3> Get Your Belt! </h3>
+        <p class='desc hidden-xs'>
           Any score of 80% or higher will earn you a belt and bring you one closer toward becoming a Stats Dojo!
         </p>
       </div>

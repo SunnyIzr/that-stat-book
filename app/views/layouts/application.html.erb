@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class='container-fluid'>
-  <div class='user-info'>
+  <div class='user-info hidden-xs'>
     <% if user_signed_in? %>
       <span class='greeting'> Hi <%= current_user.first_name %>! </span>
       <%= link_to('LOGOUT', destroy_user_session_path, :method => :delete, class: 'btn btn-primary btn-md') %>
