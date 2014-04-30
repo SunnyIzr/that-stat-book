@@ -1,8 +1,11 @@
+<div class='row'>
+ <%= render 'users/user_mobile_nav' %>
+</div>
 </div>
 <div class='container'>
-<div class='welcome'>
+<div class='quiz welcome'>
   <div class='row'>
-    <div class='quiz-top-menu top-menu'>
+    <div class='quiz-top-menu top-menu hidden-xs'>
       <div class='col-sm-4'>
         <%= link_to '< Dashboard', user_dashboard_path %>
       </div>
@@ -13,42 +16,108 @@
     </div>
     <div class='hero'>
         <% if @quiz.pass? %>
-          <%= image_tag('quiz_pass.jpg',class: 'img-responsive') %>
+          <%= image_tag('quiz_pass.jpg',class: 'img-responsive hidden-xs') %>
+          <%= image_tag('quiz_pass_mobile.jpg',class: 'img-responsive visible-xs') %>
         <% else %>
-          FAIL!!
+          <%= image_tag('quiz_fail.jpg',class: 'img-responsive hidden-xs') %>
+          <%= image_tag('quiz_fail_mobile.jpg',class: 'img-responsive visible-xs') %>
         <% end %>
     </div>
   </div>
-  
+  <% if @quiz.pass? %>
   <div class='row'>
-    <div class='col-sm-3'>
-      Share your results:
+    <div class='col-sm-4 hidden-xs'>
+      <div class='left-panel'>
+        <div class='social'>
+          <p class='heading'>Share your results:<p>
+        </div>
+        <div class='certificate'>
+          <p class='heading'>Your results will be emailed:<p>
+          <p><%= image_tag('cert.png') %></p>
+          <p class='print-link'><a href='#' class='btn btn-primary'> PRINT CERTIFICATE <a><p>
+            
+        </div>
+      </div>
     </div>
-    <div class='col-sm-8'>
+    <div class='col-sm-8 col-xs-12'>
+      <div class='right-panel'>
+        <div class='score'>
+          <p class='stat'><%= @quiz.score*100 %></p>
+          <p class='sub-head'> Your Score </p>
+        </div>
+        <div class='belt-status'>
+          <%= @user.assigned_lesson.belt.belt %>
+          <p class='sub-head'> Your Challenged Belt </p>
+        </div>
+        <div class='quiz-again'>
+          <p class='icon'><%= image_tag('quiz.png') %></p>
+          <p>
+            <%= form_for @new_quiz, url: quizzes_path, html:{class: 'nifty_form'} do %>
+              <%= hidden_field_tag :lesson_id, @quiz.lesson.id %>
+              <%= submit_tag 'TAKE QUIZ AGAIN', class: 'btn btn-primary' %>
+            <% end %>
+        </div>
+        <div class='video-again'>
+          <p class='icon'><%= image_tag('watch.png') %></p>
+          <p class='btn-link'>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#videoModal">
+              WATCH VIDEO AGAIN
+            </button>
+          </p>
+        </div>
+      </div>
     </div>
   </div>
+  <% else %>
+  <div class='fail row'>
+    <div class='col-sm-4'>
+      <div class='score'>
+        <p class='stat'><%= @quiz.score*100 %></p>
+        <p class='sub-head'> Your Score </p>
+      </div>
+    </div>
+    <div class='col-sm-4'>
+      <div class='quiz-again'>
+        <p class='icon'><%= image_tag('quiz.png') %></p>
+        <p>
+          <%= form_for @new_quiz, url: quizzes_path, html:{class: 'nifty_form'} do %>
+            <%= hidden_field_tag :lesson_id, @quiz.lesson.id %>
+            <%= submit_tag 'TAKE QUIZ AGAIN', class: 'btn btn-primary' %>
+          <% end %>
+      </div>
+    </div>
+    <div class='col-sm-4'>
+      <div class='video-again'>
+        <p class='icon'><%= image_tag('watch.png') %></p>
+        <p class='btn-link'>
+          <button class="btn btn-primary" data-toggle="modal" data-target="#videoModal">
+            WATCH VIDEO AGAIN
+          </button>
+        </p>
+      </div>
+    </div>
+  </div>
+  <% end %>
 
 </div>
 
 
-
-<h4>You have completed the assessment for Lesson <%=@quiz.lesson.title%></h4>
-
-
-
-
-<div id='quiz-results'>
-  <p>Total Time: <%= @quiz.time %> Seconds</p>
-  <% if @quiz.pass? %>
-    Congratulations! You have Passed!<br>
-    Score: <%=@quiz.score*100%>%
-    Next Lesson: <%= link_to @user.assigned_lesson.title, @user.assigned_lesson %>
-  <%else%>
-    I'm Sorry! You have Failed!<br>
-    Score: <%=@quiz.score*100%>%
-  <%= form_for @new_quiz, url: quizzes_path, html: {class: 'nifty_form'} do %>
-    <%= hidden_field_tag :lesson_id, @quiz.lesson.id %>
-    <%= submit_tag 'Try Again' %>
-  <%end%>
-  <%end%>
+<div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel"><%= @quiz.lesson.title %></h4>
+      </div>
+      <div class="modal-body">
+        <% @quiz.lesson.videos.each do |video| %>
+            <%= video_tag video.video.url, controls: true, data: { user_id: @user.id, video_id: video.id } %>
+          <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
+
