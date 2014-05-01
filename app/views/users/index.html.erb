@@ -19,7 +19,7 @@
         <% @users.each do |user| %>
           <tr>
             <td><%= link_to user.name, user_path(user) %></td>
-            <td><%= user.school %></td>
+            <td><%= user.school.school if user.school.present? %></td>
             <td><%= percent(user.quizzes.last.score) unless user.quizzes.empty? %></td>
             <td><%= user.belts.last.belt unless user.belts.empty? %></td>
           </tr>

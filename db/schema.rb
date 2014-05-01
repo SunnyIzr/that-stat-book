@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140421001857) do
+ActiveRecord::Schema.define(version: 20140501191343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,12 @@ ActiveRecord::Schema.define(version: 20140421001857) do
   add_index "quizzes", ["lesson_id"], name: "index_quizzes_on_lesson_id", using: :btree
   add_index "quizzes", ["user_id"], name: "index_quizzes_on_user_id", using: :btree
 
+  create_table "schools", force: true do |t|
+    t.string "school"
+    t.string "state"
+    t.string "country"
+  end
+
   create_table "users", force: true do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -93,12 +99,12 @@ ActiveRecord::Schema.define(version: 20140421001857) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.boolean  "admin",                  default: false
-    t.string   "school"
-    t.string   "school_state"
+    t.integer  "school_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["school_id"], name: "index_users_on_school_id", using: :btree
 
   create_table "video_views", force: true do |t|
     t.integer  "user_id"

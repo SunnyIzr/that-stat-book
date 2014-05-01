@@ -25,9 +25,8 @@
         
         
         <div class='school'>
-          <p class='signup_label'>SCHOOL INFORMATION (optional)</p>
-          <%= f.text_field :school, :placeholder =>'School', :autofocus => true, class: 'left' %>
-          <%= f.text_field :school_state, :placeholder => 'School State', class: 'right' %>
+          <p class='signup_label'>SCHOOL INFORMATION</p>
+          <%= f.select :school_id, School.all.sort_by{|school| school.school}.map{|s| [s.school,s.id]}, class: 'right' %>
         </div>
         
         <div class='email'>
