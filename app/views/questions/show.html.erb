@@ -23,7 +23,7 @@
       <div class='question'>
         <%=@question.question%><br>
         <% if @question.image.present? %>
-          <%= image_tag @question.image.url %>
+          <%= image_tag @question.image.url, class: 'img-responsive' %>
         <% end %>
       </div>
       <div class='answers'>

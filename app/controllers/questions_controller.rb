@@ -65,11 +65,18 @@ class QuestionsController < ApplicationController
     end
   end
   
+  def delete_image
+    @question = Question.find(params[:id])
+    @question.image = nil
+    @question.save
+    redirect_to question_path(@question)
+  end
+  
   private
   def question_params
     params.require(:question).permit(:question,:image,:lesson_id,choices_attributes:[:choice])
   end
   def update_question_params
-    params.require(:question).permit(:question)
+    params.require(:question).permit(:question,:image)
   end
 end

@@ -29,6 +29,8 @@ ThatStatBook::Application.routes.draw do
   
   
   post '/countdown' => 'quizzes#countdown'
+  
+  get '/questions/:id/delete_image' => 'questions#delete_image', as: :delete_question_image
 
 
 
