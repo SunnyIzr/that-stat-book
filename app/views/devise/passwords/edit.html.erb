@@ -1,16 +1,31 @@
-<h2>Change your password</h2>
+<div class='row'>
+   <%= render 'pages/pages_mobile_nav' %>
+</div>
 
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :reset_password_token %>
+<div class='container'>
+  <div class='ninja'>
+    <%= image_tag('ninja.png') %>
+  </div>
+  <div class='sign_up'>
+    <div class='sign_up_content'>
+      <div class='logo hidden-xs'>
+        <%= image_tag('signup_logo.png', class: 'img-responsive') %>
+      </div>
+      <h2>Change Your Password.</h2>
+      <p class='desc'>Please select a brand new password for your account.</p>
 
-  <div><%= f.label :password, "New password" %><br />
-  <%= f.password_field :password, :autofocus => true %></div>
+      <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
+        <%= devise_error_messages! %>
+        
+        <div class='password'>
+          <p class='signup_label'>PASSWORD</p>
+          <%= f.password_field :password, :autofocus => true, :placeholder => 'Password', class: 'full' %><br>
+          <%= f.password_field :password_confirmation, :placeholder => 'Type Password Again', class: 'full' %>
+        </div>
 
-  <div><%= f.label :password_confirmation, "Confirm new password" %><br />
-  <%= f.password_field :password_confirmation %></div>
+        <div class='submit'><%= f.submit "Change My Password", class: 'btn btn-primary btn-md' %></div>
+      <% end %>
 
-  <div><%= f.submit "Change my password" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>
