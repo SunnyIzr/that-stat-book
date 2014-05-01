@@ -13,7 +13,7 @@ class Quiz < ActiveRecord::Base
 
   def available_questions
     lesson = self.lesson
-    all_questions = Question.where(lesson_id: self.lesson.id)
+    all_questions = Question.where(lesson_id: self.lesson.id,active: true)
     all_questions -= self.answered_questions
   end
 

@@ -43,7 +43,8 @@ class QuestionsController < ApplicationController
     if current_user.admin?
       @question = Question.find(params[:id])
       @lesson = @question.lesson
-      @question.destroy
+      @question.active = false
+      @question.save
       redirect_to lesson_path(@lesson)
     end
   end

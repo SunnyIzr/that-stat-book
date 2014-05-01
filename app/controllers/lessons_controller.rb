@@ -2,7 +2,7 @@ class LessonsController < ApplicationController
   def show
     if current_user.admin?
       @lesson = Lesson.find(params[:id])
-      @questions = @lesson.questions
+      @questions = @lesson.questions.select { |q| q.active == true }
       respond_to do |format|
         format.html {render :show}
         format.json {render :json => @lesson}
