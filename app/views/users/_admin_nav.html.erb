@@ -1,5 +1,5 @@
   <div class='side-nav'>
-    <%= image_tag('dashboard_logo.png') %>
+    <a href='/'><%= image_tag('dashboard_logo.png') %></a>
     <ul>
       <li <%='class=selected' if current_page?(lessons_path)%>>
         <%= link_to 'Lessons', lessons_path %>
