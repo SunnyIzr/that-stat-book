@@ -41,6 +41,6 @@ input[type=radio]:checked + label:before {
     position: absolute;  
     left: 0;  
     border: 1px solid $faded-color;
-    background-color: $accent-color !important;
+    background-color: $emphasis-color !important;
 }
 }
