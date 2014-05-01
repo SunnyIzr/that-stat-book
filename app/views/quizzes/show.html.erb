@@ -46,7 +46,7 @@
           <p class='sub-head'> Your Score </p>
         </div>
         <div class='belt-status'>
-          <%= @user.assigned_lesson.belt.belt %>
+          <%= image_tag('belt.png', class: "img-responsive #{@user.assigned_lesson.belt.belt}") %>
           <p class='sub-head'> Your Challenged Belt </p>
         </div>
         <div class='quiz-again'>

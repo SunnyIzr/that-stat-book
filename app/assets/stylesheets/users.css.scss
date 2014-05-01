@@ -56,7 +56,7 @@
     margin-bottom: 15px;
   }
   .stats-overview{
-    height: 350px;
+    height: auto;
     .progress{
       margin-top: 15px;
     }
@@ -82,6 +82,12 @@
     margin-top: 40px;
     width: 100%;
     float: left;
+    .challenged-belts{
+      margin-top: -20px;
+      img{
+        max-width: 100%;
+      }
+    }
     ul{
       padding: 0;
       list-style: none;
@@ -205,3 +211,39 @@
     }
   }
 }
+
+.earned-belts{
+  text-align: center;
+  margin:0 auto;
+  ul{
+    padding:0px;
+    list-style: none;
+    border-radius: 0px;
+    text-align: center;
+    li {
+      padding: 25px 0;
+      margin:0 auto;
+      display: inline-block;
+      text-align: center;
+      width: 24%;
+    }
+  }
+}
+
+
+.yellow{background-color: yellow;}
+.orange{background-color: orange;}
+.green{background-color: green;}
+.blue{background-color: blue;}
+.purple{background-color: purple;}
+.red{background-color: red;}
+.brown{background-color: brown;}
+.black{background-color: black;}
+
+#belt_yellow{ background-color: #fff888;}
+#belt_orange{ background-color: #ffc77f;}
+#belt_green{ background-color: #c9ffd3;}
+#belt_blue{ background-color: #c9f0ff;}
+#belt_purple{ background-color: #e6d8fe;}
+#belt_red{ background-color: #ff9f9f;}
+#belt_brown{ background-color: #dca68e;}

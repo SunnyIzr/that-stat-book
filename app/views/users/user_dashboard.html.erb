@@ -16,7 +16,15 @@
           </div>
         </div>
         <div>Belts Earned:</div>
-        <div><%=@user.belts.map { |belt| belt.belt }%></div>
+        <div class='earned-belts'>
+          <ul>
+            <% Belt.all.each do |belt| %>
+            <li>
+              <%= image_tag('belt.png',class: "img-responsive #{belt.belt if @user.belts.include?(belt)}" ) %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
       </div>
 
       <div class='current-lesson'>
@@ -55,8 +63,10 @@
             <div class='stat'><%= percent(@user.avg_score(@lesson.id)) %></div>
           </li>
           <li>
-            <div class='header'>Challenged Belts</div>
-            <div class='stat'><%=@lesson.belt.belt%></div>
+            <div class='challenged-belts'>
+              <div class='header'>Challenged Belts</div>
+              <div><%= image_tag('belt.png', class: @lesson.belt.belt) %></div>
+            </div>
           </li>
         </ul>
       </div>

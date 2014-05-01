@@ -63,6 +63,10 @@
       border-bottom: 1px solid $faded-color;
       width: 50%;
       float: right;
+      img{
+        max-width: 50%;
+        margin-left:67px;
+      }
     }
     .quiz-again{
       margin-left: -20px;
