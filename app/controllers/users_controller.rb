@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     @quiz = Quiz.new
     @lesson = @user.assigned_lesson
     if current_user.admin?
-      render :admin_dashboard
+      redirect_to lessons_path
     else
       render :user_dashboard
     end
