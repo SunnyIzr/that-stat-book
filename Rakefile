@@ -6,16 +6,6 @@ require File.expand_path('../config/application', __FILE__)
 ThatStatBook::Application.load_tasks
 
 desc 'Seed Database with Dummy Data'
-task 'db:seed_users' => :environment do
-  10.times do
-    user = User.new
-    user.first_name = Faker::Name.first_name
-    user.last_name = Faker::Name.last_name
-    user.email = Faker::Internet.email
-    user.password = 'password'
-    user.save
-  end
-end
 task 'db:seed_belts' => :environment do
   belts = %w[yellow orange green blue purple red brown black]
   belts.each do |belt|
