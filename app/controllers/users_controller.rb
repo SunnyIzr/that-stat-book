@@ -14,6 +14,9 @@ class UsersController < ApplicationController
     if current_user.admin?
       render :admin_summary
     else
+      @lessons = @user.completed_lessons
+      @lessons << @user.assigned_lesson
+      @quiz = Quiz.new
       render :summary
     end
   end

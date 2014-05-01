@@ -21,15 +21,29 @@
               <th>VIEWS</th>
               <th>AVG SCORE</th>
               <th>ATTEMPTS</th>
+              <th>STATUS</th>
             </tr>
           </thead>
           <tbody>
-            <% @user.completed_lessons.each do |lesson| %>
+            <% @lessons.each do |lesson| %>
               <tr>
-                <td><%= lesson.title %></td>
+                <td>
+                  <%= lesson.title %>
+                  <%= form_for @quiz, url: quizzes_path, html:{class: 'nifty_form'} do %>
+                  <p class='lesson-links'>
+                    <a href='#' data-toggle="modal" data-target="#<%=lesson.id%>"> View Video </a>
+                    <span class='mdot'> &#183; </span>
+                    <%= hidden_field_tag :lesson_id, lesson.id %>
+                    <%= submit_tag 'Retake Quiz', class: 'linkify' %>
+                  </p>
+                  <%end%>
+                </td>
                 <td class='stat'><%= @user.view_count(lesson.id) %></td>
                 <td class='stat'><%= percent(@user.avg_score(lesson.id)) %></td>
                 <td class='stat'><%= @user.completed_quizzes_by_lesson(lesson.id).size %></td>
+                <td class='stat'>
+                  <%= @user.completed_lessons.include?(lesson) ? 'Pass' : 'Fail' %>
+                </td>
               </tr>
             <% end %>
           </tbody>
@@ -40,3 +54,31 @@
     </div>
   </div>
 </div>
+
+<% @lessons.each do |lesson| %>
+  <div class="modal fade" id="<%=lesson.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel"><%= lesson.title %></h4>
+        </div>
+        <div class="modal-body">
+          <% lesson.videos.each do |video| %>
+              <%= video_tag video.video.url, controls: true, data: { user_id: @user.id, video_id: video.id } %>
+            <% end %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
+<script>
+  $(function() {
+    videoView();
+  })
+</script>
