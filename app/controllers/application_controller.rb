@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   helper ApplicationHelper
   protect_from_forgery with: :exception
-  before_filter :authenticate_user!, :except => :welcome
+  before_filter :authenticate_user!, :except => [:welcome,:password_reset]
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(resource)

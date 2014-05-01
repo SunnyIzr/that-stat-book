@@ -4,4 +4,6 @@ class PagesController < ApplicationController
       redirect_to user_dashboard_path
     end
   end
+  def password_reset
+  end
 end

@@ -1,5 +1,5 @@
 ThatStatBook::Application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => { :passwords => 'passwords' }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -20,6 +20,7 @@ ThatStatBook::Application.routes.draw do
   resources :choices, only: [:show,:update]
   resources :answer_submissions, only: [:create]
   resources :video_views, only: [:create]
+  
 
 
   get '/quizzes/:quiz_id/new-question' => 'questions#show_random_question'
@@ -27,6 +28,7 @@ ThatStatBook::Application.routes.draw do
   
   get 'rearrange' => 'lessons#rearrange'
   
+  get 'password-reset' =>'pages#password_reset', as: :password_reset
   
   post '/countdown' => 'quizzes#countdown'
   
