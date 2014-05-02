@@ -68,3 +68,4 @@ gem 'font-awesome-sass'
 
 gem 'rest_in_place'
 
+gem 'social-share-button'

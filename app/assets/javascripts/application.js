@@ -15,3 +15,4 @@
 //= require jquery.ui.all
 //= require_tree .
 //= require 'rest_in_place'
+//= require social-share-button

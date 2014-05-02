@@ -28,6 +28,9 @@
     .social{
       height: 145px;
       border-bottom: 1px solid $faded-color;
+      .fb-share{
+       margin-bottom: 5px; 
+      }
     }
     .print-link{
       margin-top: 15px;
