@@ -176,3 +176,32 @@
     }
   }
 }
+
+.top-logo{
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+.mid-layer{
+  background-color: #d75156;
+  padding: 20px;
+  h2{
+    color: white;
+    font-weight: lighter;
+  }
+}
+.cert-info{
+  margin-right: -100px;
+  .sub-head{
+    margin-top: 45px;
+    font-style: italic;
+  }
+  h1{
+    font-size: 50px;
+  }
+}
+
+.cert-ninja{
+  float:right;
+  margin-top: 0px;
+  margin-right: 200px;
+}

@@ -54,7 +54,7 @@
         <div class='certificate'>
           <p class='heading'>Your results will be emailed:<p>
           <p><%= image_tag('cert.png') %></p>
-          <p class='print-link'><a href='#' class='btn btn-primary'> PRINT CERTIFICATE <a><p>
+          <p class='print-link'><a href='/quizzes/<%=@quiz.id%>/certificate' target='_blank' class='btn btn-primary'> PRINT CERTIFICATE <a><p>
             
         </div>
       </div>

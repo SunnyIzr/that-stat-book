@@ -1,0 +1,21 @@
+<center>
+  <div class='top-logo'><%= image_tag('signup_logo.png') %></div>
+  <div class='mid-layer'>
+    <h2>CERTIFICATE OF ACCOMPLISHMENT</h2>
+  </div>
+  <div class='cert-ninja'>
+    <%= image_tag('cert_ninja.png', class: 'img-responsive') %>
+  </div>
+  <div class='cert-info'>
+    <p class='sub-head'> This is to certify that </p>
+    <h1> <%= @quiz.user.name %> </h1>
+      
+    <p class='sub-head'> Has successfully completed </p>
+    <h1> <%= @quiz.lesson.title %> </h1>
+    
+  </div>
+</center>
+
+<script>
+$('.user-info').hide()
+</script>

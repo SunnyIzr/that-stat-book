@@ -39,6 +39,15 @@ class QuizzesController < ApplicationController
     @quiz.finish_incomplete
     redirect_to quiz_path(@quiz)
   end
+  
+  def certificate
+    @quiz = Quiz.find(params[:quiz_id])
+    if @quiz.pass?
+      render :certificate
+    else
+      render_text 'This Quiz is a Fail.'
+    end
+  end
 
   private
   def quiz_params

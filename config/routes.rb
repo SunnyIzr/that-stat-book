@@ -25,6 +25,7 @@ ThatStatBook::Application.routes.draw do
 
   get '/quizzes/:quiz_id/new-question' => 'questions#show_random_question'
   get '/quizzes/:quiz_id/incomplete' => 'quizzes#incomplete'
+  get '/quizzes/:quiz_id/certificate' => 'quizzes#certificate', as: :certificate
   
   get 'rearrange' => 'lessons#rearrange'
   
