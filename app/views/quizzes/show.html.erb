@@ -1,3 +1,13 @@
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=499960483441857&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 <div class='row'>
  <%= render 'users/user_mobile_nav' %>
 </div>
@@ -30,6 +40,10 @@
       <div class='left-panel'>
         <div class='social'>
           <p class='heading'>Share your results:<p>
+            <div class="fb-share-button" data-href="http://statsdojo.com" data-type="button"></div>
+            
+            <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-url='http://statsdojo.com' data-text='I just passed my StatsDojo Test and got a <%= @quiz.score * 100 %>%!' data-count='none'>Tweet</a>
+            <div class="g-plusone" data-href='http://statsdojo.com' data-annotation="none"></div>
         </div>
         <div class='certificate'>
           <p class='heading'>Your results will be emailed:<p>
@@ -126,4 +140,15 @@
   $(function() {
     videoView();
   })
+</script>
+
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/platform.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
 </script>
