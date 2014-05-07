@@ -33,7 +33,9 @@
             <%= label_tag('choice_id_'+choice.id.to_s, @ids[index] + '. ' + choice.choice)%><br/>
           <% end %>
           <%= hidden_field_tag :quiz_id, @quiz.id %>
-          <%= submit_tag 'Answer', class: 'btn btn-primary btn-lg' %>
+          <div class='submit'>
+            <%= submit_tag 'Answer', class: 'btn btn-primary btn-lg' %>
+          </div>
         <% end %>
       </div>
       

@@ -13,6 +13,7 @@
     width: 100%;
     margin-top: 40px;
     margin-bottom: 60px;
+    height: auto;
     border-bottom: 1px solid black;
     .clock{
       float: right;
@@ -36,8 +37,14 @@
     label{
       font-weight: lighter;
     }
-    input[type=submit]{
-      margin-top: 35px;
+    .submit{
+      input[type=submit]{
+        margin-top: 35px;
+        margin-bottom: 35px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+      }
     }
   }
 }
@@ -47,8 +54,15 @@
     margin-top:-45px;
     .header{
       border: none;
+      margin-bottom: 100px;
       h3{
         position: absolute;
+      }
+    }
+    .answers{
+      .submit{
+        margin: 0 auto;
+        text-align: center;
       }
     }
   }
