@@ -25,8 +25,8 @@
         
         
         <div class='school'>
-          <p class='signup_label'>SCHOOL INFORMATION</p>
-          <%= f.select :school_id, School.all.sort_by{|school| school.school}.map{|s| [s.school,s.id]}, class: 'right' %>
+          <p class='signup_label'>SCHOOL</p>
+           <%= f.autocomplete_field :school, autocomplete_school_school_suggestions_path,:placeholder => 'School Name' %>
         </div>
         
         <div class='email'>

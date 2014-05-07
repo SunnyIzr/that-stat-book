@@ -10,6 +10,11 @@
  margin: 0 auto;
  text-align: center;
  width:40%;
+ .school{
+  input{
+    width: 100%;
+  }
+ }
  input{
   border: 1px solid $primary-color;
   height: 30px;

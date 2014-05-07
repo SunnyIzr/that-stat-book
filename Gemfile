@@ -69,3 +69,5 @@ gem 'font-awesome-sass'
 gem 'rest_in_place'
 
 gem 'social-share-button'
+
+gem 'rails4-autocomplete'

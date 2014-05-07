@@ -1,5 +1,5 @@
 ThatStatBook::Application.routes.draw do
-  devise_for :users, :controllers => { :passwords => 'passwords' }
+  devise_for :users, :controllers => { :passwords => 'passwords', :registrations => 'registrations' }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -21,7 +21,9 @@ ThatStatBook::Application.routes.draw do
   resources :answer_submissions, only: [:create]
   resources :video_views, only: [:create]
   
-
+  resources :suggestions do
+    get :autocomplete_school_school, :on => :collection
+  end
 
   get '/quizzes/:quiz_id/new-question' => 'questions#show_random_question'
   get '/quizzes/:quiz_id/incomplete' => 'quizzes#incomplete'
