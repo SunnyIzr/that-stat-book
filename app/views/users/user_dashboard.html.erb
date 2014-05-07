@@ -7,23 +7,17 @@
       <h2> Dashboard </h2>
       
       <div class='stats-overview'>
-        <h4> YOUR STATS OVERVIEW </h4>
+        <h4> YOUR PROGRESS OVERVIEW </h4>
         <div class='header-break'></div>
-        <strong>Progress toward a Ninja Status</strong>
+        <div><strong>Progress toward a Ninja Status</strong></div>
         <div class="progress">
           <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <%= percent(@user.ninja_status) %>">
             <%= percent(@user.ninja_status) %>
           </div>
         </div>
-        <div>Belts Earned:</div>
-        <div class='earned-belts'>
-          <ul>
-            <% Belt.all.each do |belt| %>
-            <li>
-              <%= image_tag('belt.png',class: "img-responsive #{belt.belt if @user.belts.include?(belt)}" ) %>
-            </li>
-            <% end %>
-          </ul>
+        <div class='current-belt'>
+          <p class='header'>Current Belt</p>
+          <%= image_tag('belt.png',class: "img-responsive #{@user.belts.last.belt if @user.belts.last.present?}" ) %>
         </div>
       </div>
 
@@ -69,6 +63,23 @@
             </div>
           </li>
         </ul>
+      </div>
+      
+      <div class='belts-earned'>
+        <h4> EARNED BELTS </h4>
+        <div class='header-break'></div>
+        <div class='earned-belts'>
+          <ul>
+            <li>
+              <%= image_tag('belt.png',class: "img-responsive" ) %>
+            </li>
+            <% Belt.all.each do |belt| %>
+            <li>
+              <%= image_tag('belt.png',class: "img-responsive #{@user.belts.include?(belt) ? belt.belt : 'gray' }" ) %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

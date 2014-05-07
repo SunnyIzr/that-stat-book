@@ -16,7 +16,7 @@
 
 .side-nav{
   width:190px;
-  height:1000px;
+  height:1200px;
   background-color: #e1e1e1;
   float:left;
   a{
@@ -60,13 +60,30 @@
     margin-bottom: 15px;
   }
   .stats-overview{
-    height: auto;
+    height: 200px;
     .progress{
       margin-top: 15px;
+      width: 60%;
+      float: left;
+    }
+    .current-belt{
+      margin-top: 15px;
+      width: 35%;
+      float: right;
+      text-align: center;
+      margin: 0 auto;
+      .header{
+      }
+      img{
+        width: 50%;
+        margin: 0 auto;
+        text-align: center;
+      }
     }
   }
   .current-lesson{
     width: 100%;
+    height: 280px;
     .video-preview{
       float: left;
       margin-right: 20px;
@@ -187,6 +204,15 @@
 @media (max-width: 768px) {
   .dashboard{
     padding-left: 0px;
+    .stats-overview{
+      height: 280px;
+      .progress{
+        width: 100%;
+      }
+      .current-belt{
+        width: 100%;
+      }
+    }
     .current-lesson{
       .video-preview{
         text-align: center;
@@ -221,6 +247,15 @@
           }
         }
       } 
+    }
+    .earned-belts{
+      ul{
+        li{
+          img{
+            width: 90%;
+          }
+        }
+      }
     }
   }
 .summary{
@@ -259,9 +294,9 @@
       margin:0 auto;
       display: inline-block;
       text-align: center;
-      width: 24%;
+      width: 19%;
       img{
-        width: 50%;
+        width: 75%;
       }
     }
   }
@@ -276,6 +311,7 @@
 .red{background-color: red;}
 .brown{background-color: brown;}
 .black{background-color: black;}
+.gray{background-color: gray;}
 
 #belt_yellow{ background-color: #fff888;}
 #belt_orange{ background-color: #ffc77f;}
