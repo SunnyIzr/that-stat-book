@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140507221648) do
+ActiveRecord::Schema.define(version: 20140501194651) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -122,10 +122,6 @@ ActiveRecord::Schema.define(version: 20140507221648) do
     t.integer  "lesson_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "ogv_video_file_name"
-    t.string   "ogv_video_content_type"
-    t.integer  "ogv_video_file_size"
-    t.datetime "ogv_video_updated_at"
   end
 
 end
