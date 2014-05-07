@@ -74,19 +74,37 @@
     .quiz-again{
       margin-left: -20px;
       height: 150px;
-      width: 50%;
+      width: 32%;
       float: left;
       .icon{
         margin-top: 15px;
+      }
+      img{
+        margin: 0 auto;
       }
     }
     .video-again{
       margin-right: 20px;
       height: 150px;
-      width: 50%;
-      float: right;
+      width: 32%;
+      float: left;
       .btn-link{
         margin-top: 21px;
+      }
+      img{
+        margin: 0 auto;
+      }
+    }
+    .next-video{
+      margin-right: 20px;
+      height: 150px;
+      width: 32%;
+      float: left;
+      .btn-link{
+        margin-top: 21px;
+      }
+      img{
+        margin: 0 auto;
       }
     }
   }
@@ -159,19 +177,58 @@
       .sub-head{
       }
       .score{
+        width: 100%;
+        margin-left: 0;
+        border: none;
+        height:115px;
         .stat{
           font-size: 40px;
         }
       }
       .belt-status{
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        img{
+          margin: 0 auto;
+          width: 37%;
+        }
       }
       .quiz-again{
+        .btn{
+          font-size: 10px;
+        }
+        height: 175px;
+        margin-top: 25px;
+        margin-left: 0;
+        width: 100%;
+        img {
+          margin: 0 auto;
+        }
         .icon{
         }
       }
       .video-again{
+        .btn{
+          font-size: 10px;
+        }
+        img{
+          margin: 0 auto;
+        }
+        width: 100%;
         .btn-link{
         }
+      }
+      .next-video{
+        .btn{
+          font-size: 10px;
+        }
+        img{
+          margin: 0 auto;
+        }
+        margin: 0 auto;
+        width: 100%;
+        
       }
     }
   }

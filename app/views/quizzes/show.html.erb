@@ -69,19 +69,27 @@
           <%= image_tag('belt.png', class: "img-responsive #{@user.assigned_lesson.belt.belt}") %>
           <p class='sub-head'> Your Challenged Belt </p>
         </div>
+        <div class='video-again'>
+          <p class='icon'><%= image_tag('watch.png', class: 'img-responsive') %></p>
+          <p class='btn-link'>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#videoModal">
+              WATCH VIDEO AGAIN
+            </button>
+          </p>
+        </div>
         <div class='quiz-again'>
-          <p class='icon'><%= image_tag('quiz.png') %></p>
+          <p class='icon'><%= image_tag('quiz.png', class: 'img-responsive' ) %></p>
           <p>
             <%= form_for @new_quiz, url: quizzes_path, html:{class: 'nifty_form'} do %>
               <%= hidden_field_tag :lesson_id, @quiz.lesson.id %>
               <%= submit_tag 'TAKE QUIZ AGAIN', class: 'btn btn-primary' %>
             <% end %>
         </div>
-        <div class='video-again'>
-          <p class='icon'><%= image_tag('watch.png') %></p>
+        <div class='next-video'>
+          <p class='icon'><%= image_tag('watch.png', class: 'img-responsive') %></p>
           <p class='btn-link'>
             <button class="btn btn-primary" data-toggle="modal" data-target="#videoModal">
-              WATCH VIDEO AGAIN
+              WATCH NEXT VIDEO
             </button>
           </p>
         </div>
@@ -131,6 +139,26 @@
       </div>
       <div class="modal-body">
         <% @quiz.lesson.videos.each do |video| %>
+            <%= video_tag video.video.url, controls: true, data: { user_id: @user.id, video_id: video.id } %>
+          <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="nextVideo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel"><%= @user.assigned_lesson.title %></h4>
+      </div>
+      <div class="modal-body">
+        <% @user.assigned_lesson.videos.each do |video| %>
             <%= video_tag video.video.url, controls: true, data: { user_id: @user.id, video_id: video.id } %>
           <% end %>
       </div>
