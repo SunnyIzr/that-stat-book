@@ -200,6 +200,17 @@
   
 }
 
+.modal{
+  text-align: center;
+  margin: 0 auto;
+  .modal-content{
+    border: 1px solid $faded-color;
+  }
+  video{
+    width: 500px;
+  }
+}
+
 
 @media (max-width: 768px) {
   .dashboard{
@@ -272,11 +283,16 @@
   }
   .student-stats{
       th{
-        font-size: 18px;
+        font-size: 14px;
       }
       .stat{
         font-size: 16pt; 
       }
+    }
+  }
+  .modal{
+    video{
+      width: 100%;
     }
   }
 }
@@ -322,13 +338,4 @@
 #belt_brown{ background-color: #dca68e;}
 
 
-.modal{
-  text-align: center;
-  margin: 0 auto;
-  .modal-content{
-    border: 1px solid $faded-color;
-  }
-  video{
-    width: 500px;
-  }
-}
+

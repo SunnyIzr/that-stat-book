@@ -19,7 +19,7 @@
               <th>VIEWS</th>
               <th>AVG SCORE</th>
               <th>ATTEMPTS</th>
-              <th>STATUS</th>
+              <th class='hidden-xs'>STATUS</th>
             </tr>
           </thead>
           <tbody>
@@ -39,7 +39,7 @@
                 <td class='stat'><%= @user.view_count(lesson.id) %></td>
                 <td class='stat'><%= percent(@user.avg_score(lesson.id)) %></td>
                 <td class='stat'><%= @user.completed_quizzes_by_lesson(lesson.id).size %></td>
-                <td class='stat'>
+                <td class='hidden-xs stat'>
                   <%= @user.completed_lessons.include?(lesson) ? 'Pass' : 'Fail' %>
                 </td>
               </tr>
