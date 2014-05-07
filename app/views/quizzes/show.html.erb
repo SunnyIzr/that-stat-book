@@ -139,8 +139,11 @@
       </div>
       <div class="modal-body">
         <% @quiz.lesson.videos.each do |video| %>
-            <%= video_tag video.video.url, controls: true, data: { user_id: @user.id, video_id: video.id } %>
-          <% end %>
+          <video controls="controls" data-user-id=<%=@user.id%> data-video-id=<%=video.id%>>
+            <source src=<%=video.video%> type=<%=video.video_content_type%>>
+            <source src=<%=video.ogv_video%> type=<%=video.ogv_video_content_type%>>
+          </video>
+        <% end %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -159,8 +162,11 @@
       </div>
       <div class="modal-body">
         <% @user.assigned_lesson.videos.each do |video| %>
-            <%= video_tag video.video.url, controls: true, data: { user_id: @user.id, video_id: video.id } %>
-          <% end %>
+          <video controls="controls" data-user-id=<%=@user.id%> data-video-id=<%=video.id%>>
+            <source src=<%=video.video%> type=<%=video.video_content_type%>>
+            <source src=<%=video.ogv_video%> type=<%=video.ogv_video_content_type%>>
+          </video>
+        <% end %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>

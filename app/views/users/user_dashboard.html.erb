@@ -31,7 +31,10 @@
         
         <div class='video-preview'>
           <% @lesson.videos.each do |video| %>
-            <%= video_tag video.video.url, controls: true, data: { user_id: @user.id, video_id: video.id } %>
+            <video controls="controls" data-user-id=<%=@user.id%> data-video-id=<%=video.id%>>
+              <source src=<%=video.video%> type=<%=video.video_content_type%>>
+              <source src=<%=video.ogv_video%> type=<%=video.ogv_video_content_type%>>
+            </video>
           <% end %>
         </div>
         <div class='take-assessment'>

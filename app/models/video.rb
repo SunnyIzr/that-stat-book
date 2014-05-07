@@ -3,6 +3,9 @@ class Video < ActiveRecord::Base
   has_attached_file :video,
                     :storage => :s3,
                     :s3_credentials => Proc.new{|a| a.instance.s3_credentials }
+  has_attached_file :ogv_video,
+                    :storage => :s3,
+                    :s3_credentials => Proc.new{|a| a.instance.s3_credentials }
   do_not_validate_attachment_file_type :video
 
   def s3_credentials

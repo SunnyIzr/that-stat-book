@@ -22,6 +22,6 @@ class VideosController < ApplicationController
 # Be sure to update your create() and update() controller methods.
 
   def video_params
-    params.require(:video).permit(:video,:lesson_id)
+    params.require(:video).permit(:video,:ogv_video,:lesson_id)
   end
 end

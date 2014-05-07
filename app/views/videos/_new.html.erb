@@ -1,5 +1,8 @@
 <%= form_for @video, :url => lesson_videos_path, :html => { :multipart => true } do |f| %>
+  .MOV Video File
   <%= f.file_field :video %>
+  .OGV Video File
+  <%= f.file_field :ogv_video %>
   <%= f.hidden_field :lesson_id, value: @lesson.id.to_s %>
   <%= submit_tag 'Submit', class: 'btn btn-primary' %>
 <% end %>
