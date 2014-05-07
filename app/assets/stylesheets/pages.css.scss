@@ -159,15 +159,26 @@
         margin-left: auto;
         margin-right: auto;
       }
+      .three{
+        border-bottom: 1px solid $primary-color;
+        width: 60%;
+        margin: 0 auto;
+      }
     }
   }
   .sign_up{
     width: 100%;
+    .submit{
+      width: 100%;
+      input{
+        margin-bottom: 50px;
+        width: 75%;
+      }
+    }
   }
   .ninja{
     float:left;
-    margin-top: 0px;
-    margin-left: 0px;
-    margin-right: 25px;
+    margin: 0 auto;
+    width: 100%;
   }
 }

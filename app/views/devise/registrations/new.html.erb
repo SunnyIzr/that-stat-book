@@ -12,7 +12,7 @@
         <%= image_tag('signup_logo.png', class: 'img-responsive') %>
       </div>
       <h2>Get started with a Free Account.</h2>
-      <p class='desc'>Sign up in 30 seconds. No credit card required. If you already have a StatsDojo account <%= link_to 'log in', root_url %>.</p>
+      <p class='desc'>Sign up in 30 seconds. No credit card required. If you already have a StatsDojo account <%= link_to 'log in', new_user_session_path %>.</p>
 
       <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
         <%= devise_error_messages! %>
