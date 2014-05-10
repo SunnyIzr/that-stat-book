@@ -8,7 +8,7 @@ ThatStatBook::Application.routes.draw do
 
   get '/home' => 'users#dashboard', as: :user_dashboard
   get '/summary' => 'users#summary', as: :user_summary
-
+  
   resources :users, only: [:show,:index]
   resources :lessons, only: [:show,:index,:update,:destroy,:new,:create] do
     collection { post :sort }

@@ -17,7 +17,7 @@
         </div>
         <div class='current-belt'>
           <p class='header'>Current Belt</p>
-          <%= image_tag('belt.png',class: "img-responsive #{@user.belts.last.belt if @user.belts.last.present?}" ) %>
+          <%= image_tag('belt.png',class: "img-responsive #{@user.belts.last.present? ? @user.belts.last.belt : 'white' }" ) %>
         </div>
       </div>
 
@@ -74,7 +74,7 @@
         <div class='earned-belts'>
           <ul>
             <li>
-              <%= image_tag('belt.png',class: "img-responsive" ) %>
+              <%= image_tag('belt.png',class: "img-responsive white" ) %>
             </li>
             <% Belt.all.each do |belt| %>
             <li>
