@@ -10,6 +10,7 @@ module DeviseHelper
       error_key = 'devise.failure.invalid'
     end
     
+    flash_alerts.delete('Signed out successfully.')
     return '' if resource.errors.empty? && flash_alerts.empty?
     errors = resource.errors.empty? ? flash_alerts : resource.errors.full_messages
 
