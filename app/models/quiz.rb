@@ -22,7 +22,7 @@ class Quiz < ActiveRecord::Base
   end
 
   def complete?
-    self.answer_submissions.size >= 5
+    self.answer_submissions.size >= 20
   end
 
   def score
@@ -35,7 +35,7 @@ class Quiz < ActiveRecord::Base
   end
   
   def remaining_questions
-    5 - self.answer_submissions.size
+    20 - self.answer_submissions.size
   end
   
   def add_wrong_submission
