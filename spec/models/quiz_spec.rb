@@ -95,4 +95,28 @@ describe Quiz do
     expect(quiz.available_questions).not_to include(quiz.answered_questions[1])
     expect(quiz.available_questions).not_to include(quiz.answered_questions[2])
   end
+  
+  it 'should answer the next question as incorrect; this is used for when a user does not finish their quiz in time' do
+    quiz = FactoryGirl.create(:quiz)
+    total_questions.times do
+      FactoryGirl.create(:question)
+      FactoryGirl.create(:choice, question_id: Question.last.id, is_correct: false)
+      FactoryGirl.create(:choice, question_id: Question.last.id, is_correct: true)
+    end
+    (total_questions).times {quiz.add_wrong_submission}
+    expect(quiz.complete?).to eq(true)
+    expect(quiz.score).to eq(0.0)
+  end
+  
+  it 'should answer all remaining questions on a quiz as incorrect; this is used when a user runs out of time' do
+    quiz = FactoryGirl.create(:quiz)
+    total_questions.times do
+      FactoryGirl.create(:question)
+      FactoryGirl.create(:choice, question_id: Question.last.id, is_correct: false)
+      FactoryGirl.create(:choice, question_id: Question.last.id, is_correct: true)
+    end
+    quiz.finish_incomplete
+    expect(quiz.complete?).to eq(true)
+    expect(quiz.score).to eq(0.0)
+  end
 end
