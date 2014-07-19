@@ -73,8 +73,6 @@ class LessonsController < ApplicationController
   
   def sort
     new_levels = params[:lesson].keys
-    p '*'*100
-    p params[:lesson][new_levels.first]
     new_levels.each_with_index do |id, index|
       new_level = index + 1
       Lesson.update_all({level: new_level, belt_id: Belt.find_by(belt: params[:lesson][id.to_s]).id},{id: id})
