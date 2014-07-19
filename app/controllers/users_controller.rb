@@ -11,9 +11,7 @@ class UsersController < ApplicationController
   end
   def summary
     @user = current_user
-    if current_user.admin?
-      render :admin_summary
-    else
+    unless current_user.admin?
       @lessons = @user.completed_lessons
       @lessons << @user.assigned_lesson
       @quiz = Quiz.new
@@ -29,7 +27,5 @@ class UsersController < ApplicationController
     if current_user.admin?
       @user = User.find(params[:id])
     end
-  end
-  def issue 
   end
 end
