@@ -7,6 +7,7 @@ describe Quiz do
   it {should validate_presence_of (:user_id)}
   it {should validate_presence_of (:lesson_id)}
   it {should validate_presence_of (:time)}
+  let(:total_questions) {ENV['QUIZ_QUESTIONS'].to_i}
 
   it 'should return a list of all questions answered' do
     FactoryGirl.create(:quiz)
@@ -24,14 +25,14 @@ describe Quiz do
     expect(Quiz.first.answered_questions).to eq(Question.all[0..9])
   end
 
-  it 'sholuld identify if a quiz is complete based on 5 answer submissions' do
+  it 'sholuld identify if a quiz is complete based on total_questions answer submissions' do
     lesson = FactoryGirl.create(:lesson)
     user = FactoryGirl.create(:user)
     quiz_1 = FactoryGirl.create(:quiz, user_id: user.id)
     quiz_2 = FactoryGirl.create(:quiz, user_id: user.id)
-    5.times { FactoryGirl.create(:question, lesson_id: lesson.id)}
-    5.times { |i| FactoryGirl.create(:choice, question_id: Question.all[i].id)}
-    5.times { |i| FactoryGirl.create(:answer_submission, choice_id: Choice.all[i].id, quiz_id: quiz_1.id)}
+    total_questions.times { FactoryGirl.create(:question, lesson_id: lesson.id)}
+    total_questions.times { |i| FactoryGirl.create(:choice, question_id: Question.all[i].id)}
+    total_questions.times { |i| FactoryGirl.create(:answer_submission, choice_id: Choice.all[i].id, quiz_id: quiz_1.id)}
     4.times { |i| FactoryGirl.create(:answer_submission, choice_id: Choice.all[i].id, quiz_id: quiz_2.id)}
 
     expect(quiz_1.complete?).to eq(true)

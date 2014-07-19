@@ -18,7 +18,7 @@
         <span class='timer'><%= time(@quiz.time) %></span> mins left
       </div>
       <div class='question-count'>
-        <h4>Question <%= @quiz.answer_submissions.size + 1 %> out of 20.</h4>
+        <h4>Question <%= @quiz.answer_submissions.size + 1 %> out of <%=@total_questions%>.</h4>
       </div>
       <div class='question'>
         <%=@question.question%><br>
