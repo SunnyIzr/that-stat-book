@@ -219,5 +219,129 @@ describe User do
 
     expect(User.last.assigned_lesson).to eq(Lesson.all[2])
   end
+  
+  it 'should return stringified first and last name' do
+    user = FactoryGirl.create(:user, first_name: 'Stats', last_name: 'Ninja')
+    
+    expect(user.name).to eq('Stats Ninja')
+  end
+  
+  it 'should return all completed quizzes given a specific lesson id' do
+    user = FactoryGirl.create(:user)
+    3.times do
+      FactoryGirl.create(:lesson)
+      5.times do 
+        FactoryGirl.create(:quiz) 
+        total_questions.times do
+          FactoryGirl.create(:question)
+          FactoryGirl.create(:choice, question_id: Question.last.id)
+          FactoryGirl.create(:answer_submission, quiz_id: Quiz.last.id, choice_id: Choice.last.id)
+        end
+      end
+    end
+    
+    expect(user.completed_quizzes_by_lesson(Lesson.first.id)).to eq(Quiz.all[0..4])
+  end
+  
+  it 'should return the last incomplete quiz given a specific lesson id' do
+    user = FactoryGirl.create(:user)
+    
+    3.times do
+      FactoryGirl.create(:lesson)
+      6.times do |i|
+        unless i == 5 
+          FactoryGirl.create(:quiz) 
+          total_questions.times do
+            FactoryGirl.create(:question)
+            FactoryGirl.create(:choice, question_id: Question.last.id)
+            FactoryGirl.create(:answer_submission, quiz_id: Quiz.last.id, choice_id: Choice.last.id)
+          end
+        else
+          FactoryGirl.create(:quiz)
+          (total_questions-1).times do
+            FactoryGirl.create(:question)
+            FactoryGirl.create(:choice, question_id: Question.last.id)
+            FactoryGirl.create(:answer_submission, quiz_id: Quiz.last.id, choice_id: Choice.last.id)
+          end
+        end
+      end
+    end
+    expect(user.last_incomplete_quiz(Lesson.all[1].id)).to eq(Quiz.all[11])
+  end
+  
+  it 'should return the average score across all completed quizzes given a specific lesson id' do
+    user = FactoryGirl.create(:user)
+    FactoryGirl.create(:lesson)
+    3.times do 
+      FactoryGirl.create(:quiz) 
+      total_questions.times do
+        FactoryGirl.create(:question)
+        FactoryGirl.create(:choice, question_id: Question.last.id, is_correct: true)
+        FactoryGirl.create(:answer_submission, quiz_id: Quiz.last.id, choice_id: Choice.last.id)
+      end
+    end
+    2.times do 
+      FactoryGirl.create(:quiz) 
+      total_questions.times do
+        FactoryGirl.create(:question)
+        FactoryGirl.create(:choice, question_id: Question.last.id)
+        FactoryGirl.create(:answer_submission, quiz_id: Quiz.last.id, choice_id: Choice.last.id)
+      end
+    end
+    
+    FactoryGirl.create(:lesson)
+    5.times do 
+      FactoryGirl.create(:quiz) 
+      total_questions.times do
+        FactoryGirl.create(:question)
+        FactoryGirl.create(:choice, question_id: Question.last.id, is_correct: true)
+        FactoryGirl.create(:answer_submission, quiz_id: Quiz.last.id, choice_id: Choice.last.id)
+      end
+    end
+    
+    FactoryGirl.create(:lesson)
+    2.times do
+      FactoryGirl.create(:quiz) 
+      (total_questions-1).times do
+        FactoryGirl.create(:question)
+        FactoryGirl.create(:choice, question_id: Question.last.id, is_correct: true)
+        FactoryGirl.create(:answer_submission, quiz_id: Quiz.last.id, choice_id: Choice.last.id)
+      end
+    end
+    
+    expect(user.avg_score(Lesson.first.id)).to eq(0.6)
+    expect(user.avg_score(Lesson.all[1].id)).to eq(1.0)
+    expect(user.avg_score(Lesson.last.id)).to eq(0.0)
+    
+  end
+  
+  it 'should return ninja status progress' do
+    user = FactoryGirl.create(:user)
+    3.times do
+      FactoryGirl.create(:lesson)
+      5.times do 
+        FactoryGirl.create(:quiz) 
+        total_questions.times do
+          FactoryGirl.create(:question)
+          FactoryGirl.create(:choice, question_id: Question.last.id, is_correct: true)
+          FactoryGirl.create(:answer_submission, quiz_id: Quiz.last.id, choice_id: Choice.last.id)
+        end
+      end
+    end
+    2.times do
+      FactoryGirl.create(:lesson)
+      5.times do 
+        FactoryGirl.create(:quiz) 
+        total_questions.times do
+          FactoryGirl.create(:question)
+          FactoryGirl.create(:choice, question_id: Question.last.id)
+          FactoryGirl.create(:answer_submission, quiz_id: Quiz.last.id, choice_id: Choice.last.id)
+        end
+      end
+    end
+    
+    expect(user.ninja_status).to eq(0.6)
+    
+  end
 
 end
