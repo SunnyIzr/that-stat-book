@@ -15,6 +15,10 @@ class User < ActiveRecord::Base
   def name
     self.first_name + ' ' + self.last_name
   end
+  
+  def student?
+    !self.admin? && self.type.nil?
+  end
 
   def completed_quizzes
     self.quizzes.select {|quiz| quiz.complete?}

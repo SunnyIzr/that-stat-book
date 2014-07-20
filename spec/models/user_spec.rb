@@ -26,6 +26,16 @@ describe User do
     expect(User.last.completed_quizzes).should match_array(Quiz.all[0..2])
 
   end
+  
+  it 'should indicate if user is a student' do
+    admin = FactoryGirl.create(:user, email: 'admin@gmail.com', admin: true)
+    prof = FactoryGirl.create(:user, email: 'prof@prof.com', type: 'Professor')
+    user = FactoryGirl.create(:user)
+    
+    expect(admin.student?).to eq(false)
+    expect(prof.student?).to eq(false)
+    expect(user.student?).to eq(true)
+  end
 
   it 'should return passed quizzes' do
     total_questions.times {FactoryGirl.create(:question)}
