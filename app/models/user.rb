@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :video_views, :dependent => :destroy
   validates_presence_of :email
   validates_uniqueness_of :email, :case_sensitive => false
+  self.inheritance_column = :type
 
   def name
     self.first_name + ' ' + self.last_name
