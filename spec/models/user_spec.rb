@@ -243,7 +243,7 @@ describe User do
       end
     end
     
-    expect(user.quiz_attempts(Lesson.first.id)).to eq(Quiz.all[0..4])
+    expect(user.quiz_attempts(Lesson.first.id).sort).to eq(Quiz.all[0..4])
   end
   
   it 'should return the last incomplete quiz given a specific lesson id' do
@@ -396,7 +396,7 @@ describe User do
     roster.lessons << Lesson.all[0..4]
     total_avg_score = user.completed_quizzes.map {|quiz| quiz.score}.sum / user.completed_quizzes.size
     
-    expect(user.roster_avg_score(roster)).to eq(0.6)
+    expect(user.roster_avg_score(roster)).to eq(0.6) #3 Passing Tests Across 5 Lessons
     expect(total_avg_score).to eq(0.3)  
   end
   
