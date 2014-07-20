@@ -54,7 +54,7 @@ describe LessonsController do
     end
   end
   
-  describe 'PUT #update' do
+  describe 'PATCH #update' do
     context 'user is admin' do
       it "should update a lesson's attributes" do
         sign_in(admin)
