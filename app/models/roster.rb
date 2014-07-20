@@ -1,5 +1,5 @@
 class Roster < ActiveRecord::Base
   belongs_to :professor
-  has_many :users, through: :rosters_users
-  has_many :lessons, through: :lessons_rosters
+  has_and_belongs_to_many :users
+  has_and_belongs_to_many :lessons
 end
