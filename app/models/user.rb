@@ -74,12 +74,12 @@ class User < ActiveRecord::Base
   
   #Lesson Level Stats
   
-  def completed_quizzes_by_lesson(lesson_id)
+  def quiz_attempts(lesson_id)
     self.completed_quizzes.select { |quiz| quiz.lesson_id == lesson_id }
   end
   
   def avg_score(lesson_id)
-    lesson_quizzes = self.completed_quizzes_by_lesson(lesson_id)
+    lesson_quizzes = self.quiz_attempts(lesson_id)
     if lesson_quizzes.empty?
       0
     else
@@ -99,5 +99,14 @@ class User < ActiveRecord::Base
   end
   
   #Roster-Level Stats
+  
+  def roster_quiz_attempts(roster)
+    lessons = roster.lessons
+    lessons.map{ |lesson| self.quiz_attempts(lesson.id)}.flatten
+  end
+  
+  def roster_avg_score(roster)
+    self.roster_quiz_attempts(roster).map{|quiz| quiz.score}.sum / self.roster_quiz_attempts(roster).size
+  end
 
 end

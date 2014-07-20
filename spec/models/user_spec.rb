@@ -1,12 +1,13 @@
 require 'spec_helper'
 
 describe User do
+  let(:total_questions) {ENV['QUIZ_QUESTIONS'].to_i}
+  
   it {should have_many (:quizzes)}
   it {should validate_presence_of (:email)}
   it {should validate_uniqueness_of (:email)}
   it {should have_and_belong_to_many(:rosters)}
   it {should have_and_belong_to_many(:belts)}
-  let(:total_questions) {ENV['QUIZ_QUESTIONS'].to_i}
 
   it 'should return all completed quizzes' do
     3.times do
@@ -242,7 +243,7 @@ describe User do
       end
     end
     
-    expect(user.completed_quizzes_by_lesson(Lesson.first.id)).to eq(Quiz.all[0..4])
+    expect(user.quiz_attempts(Lesson.first.id)).to eq(Quiz.all[0..4])
   end
   
   it 'should return the last incomplete quiz given a specific lesson id' do
@@ -345,5 +346,60 @@ describe User do
     expect(user.ninja_status).to eq(0.6)
     
   end
+  
+  it 'should generate all quiz attempts for the lessons on a given roster' do
+    user = FactoryGirl.create(:user)
+    10.times do
+      FactoryGirl.create(:lesson)
+      (total_questions*3).times do 
+        FactoryGirl.create(:question)
+        FactoryGirl.create(:choice, question_id: Question.last.id)
+      end
+      3.times do 
+        FactoryGirl.create(:quiz)
+        Quiz.last.finish_incomplete
+      end
+    end
+    roster = FactoryGirl.create(:roster)
+    roster.lessons << Lesson.all[0..3]
+    expect(user.roster_quiz_attempts(roster)).to eq(Quiz.all[0..11])
+  end
+  
+  it 'should calculate average score across on quiz attempts for the lessons on a given roster' do
+    user = FactoryGirl.create(:user)
+    3.times do
+      FactoryGirl.create(:lesson)
+      (total_questions*3).times do 
+        FactoryGirl.create(:question)
+        FactoryGirl.create(:choice, question_id: Question.last.id, is_correct: true)
+      end
+      3.times do 
+        FactoryGirl.create(:quiz)
+        total_questions.times do |i|
+          questions = Question.where(lesson_id: Lesson.last.id)
+          FactoryGirl.create(:answer_submission, quiz_id: Quiz.last.id, choice_id: questions[i].choices.first.id)
+        end
+      end
+    end
+    7.times do
+      FactoryGirl.create(:lesson)
+      (total_questions*3).times do 
+        FactoryGirl.create(:question)
+        FactoryGirl.create(:choice, question_id: Question.last.id)
+      end
+      3.times do 
+        FactoryGirl.create(:quiz)
+        Quiz.last.finish_incomplete
+      end
+    end
+    roster = FactoryGirl.create(:roster)
+    roster.lessons << Lesson.all[0..4]
+    total_avg_score = user.completed_quizzes.map {|quiz| quiz.score}.sum / user.completed_quizzes.size
+    
+    expect(user.roster_avg_score(roster)).to eq(0.6)
+    expect(total_avg_score).to eq(0.3)  
+  end
+  
+  it 'should calculate total video views on all lessons associated with a given roster'
 
 end
