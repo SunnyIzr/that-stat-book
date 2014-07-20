@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_and_belongs_to_many :belts, :uniq => true
+  has_and_belongs_to_many :belts, -> { where uniq: true }
   belongs_to :school
   has_many :rosters, through: :rosters_users
   # Include default devise modules. Others available are:
