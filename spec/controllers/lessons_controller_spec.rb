@@ -106,7 +106,7 @@ describe LessonsController do
   
   describe 'POST #create' do
     context 'user is admin' do
-      it 'create a new lesson with specified params' do
+      it 'should create a new lesson with specified params' do
         sign_in(admin)
         Belt.create(belt: 'white')
         FactoryGirl.create(:lesson, belt_id: Belt.first.id)
