@@ -4,6 +4,7 @@ describe User do
   it {should have_many (:quizzes)}
   it {should validate_presence_of (:email)}
   it {should validate_uniqueness_of (:email)}
+  it {should have_many(:rosters)}
   let(:total_questions) {ENV['QUIZ_QUESTIONS'].to_i}
 
   it 'should return all completed quizzes' do
