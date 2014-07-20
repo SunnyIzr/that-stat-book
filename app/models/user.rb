@@ -66,6 +66,13 @@ class User < ActiveRecord::Base
     incomplete_quizzes = quizzes_for_lesson.select {|quiz| !quiz.complete?}
     incomplete_quizzes.last
   end
+
+  def ninja_status
+    self.completed_lessons.size.to_f / Lesson.all.size
+  end
+  
+  
+  #Lesson Level Stats
   
   def completed_quizzes_by_lesson(lesson_id)
     self.completed_quizzes.select { |quiz| quiz.lesson_id == lesson_id }
@@ -90,9 +97,7 @@ class User < ActiveRecord::Base
       self.video_views.where(video_id: video_id).size
     end
   end
-
-  def ninja_status
-    self.completed_lessons.size.to_f / Lesson.all.size
-  end
+  
+  #Roster-Level Stats
 
 end
