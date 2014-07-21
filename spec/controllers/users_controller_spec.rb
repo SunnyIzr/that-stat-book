@@ -20,6 +20,13 @@ describe UsersController do
         expect(response).to render_template(:user_dashboard)
       end
     end
+    context 'user is professor' do
+      it 'should redirect to roster#index' do
+        sign_in(professor)
+        get :dashboard
+        expect(response).to redirect_to(:rosters)
+      end
+    end
   end
   
   describe 'GET #summary' do

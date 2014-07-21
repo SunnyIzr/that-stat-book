@@ -7,6 +7,8 @@ class UsersController < ApplicationController
       redirect_to lessons_path
     elsif current_user.student?
       render :user_dashboard
+    elsif current_user.class == Professor
+      redirect_to rosters_path 
     end
   end
   def summary
