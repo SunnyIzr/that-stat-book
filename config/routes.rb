@@ -21,6 +21,8 @@ ThatStatBook::Application.routes.draw do
   resources :answer_submissions, only: [:create]
   resources :video_views, only: [:create]
   
+  resources :rosters, only: [:index,:show,:new,:update,:create]
+  
   resources :suggestions do
     get :autocomplete_school_school, :on => :collection
   end

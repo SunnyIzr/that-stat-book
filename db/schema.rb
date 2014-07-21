@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140507221648) do
+ActiveRecord::Schema.define(version: 20140720161240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,13 @@ ActiveRecord::Schema.define(version: 20140507221648) do
 
   add_index "lessons", ["belt_id"], name: "index_lessons_on_belt_id", using: :btree
 
+  create_table "lessons_rosters", force: true do |t|
+    t.integer  "lesson_id"
+    t.integer  "roster_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "questions", force: true do |t|
     t.text     "question"
     t.datetime "created_at"
@@ -80,6 +87,22 @@ ActiveRecord::Schema.define(version: 20140507221648) do
   add_index "quizzes", ["lesson_id"], name: "index_quizzes_on_lesson_id", using: :btree
   add_index "quizzes", ["user_id"], name: "index_quizzes_on_user_id", using: :btree
 
+  create_table "rosters", force: true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "professor_id"
+  end
+
+  add_index "rosters", ["professor_id"], name: "index_rosters_on_professor_id", using: :btree
+
+  create_table "rosters_users", force: true do |t|
+    t.integer  "roster_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "schools", force: true do |t|
     t.string "school"
     t.string "state"
@@ -101,6 +124,7 @@ ActiveRecord::Schema.define(version: 20140507221648) do
     t.string   "last_sign_in_ip"
     t.boolean  "admin",                  default: false
     t.integer  "school_id"
+    t.string   "type"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

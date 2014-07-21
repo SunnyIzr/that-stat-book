@@ -11,7 +11,7 @@ describe LessonsController do
         4.times {FactoryGirl.create(:question)}
         1.times {FactoryGirl.create(:question, active: false)}
         get :show, {id: Lesson.first.id.to_s}
-        assigns(:questions).should eq(Question.all[0..3].reverse)
+        assigns(:questions).should match_array(Question.all[0..3])
       end
       it 'should render :show view for a specific lesson on html request' do
         sign_in(admin)
@@ -54,7 +54,7 @@ describe LessonsController do
     end
   end
   
-  describe 'PUT #update' do
+  describe 'PATCH #update' do
     context 'user is admin' do
       it "should update a lesson's attributes" do
         sign_in(admin)
@@ -106,7 +106,7 @@ describe LessonsController do
   
   describe 'POST #create' do
     context 'user is admin' do
-      it 'create a new lesson with specified params' do
+      it 'should create a new lesson with specified params' do
         sign_in(admin)
         Belt.create(belt: 'white')
         FactoryGirl.create(:lesson, belt_id: Belt.first.id)

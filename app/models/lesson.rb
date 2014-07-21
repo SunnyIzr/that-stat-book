@@ -2,6 +2,7 @@ class Lesson < ActiveRecord::Base
   has_many :questions
   has_many :quizzes, :dependent => :destroy
   has_many :videos, :dependent => :destroy
+  has_and_belongs_to_many :rosters
   belongs_to :belt
   validates_presence_of :title
   validates_uniqueness_of :level

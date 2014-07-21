@@ -5,13 +5,13 @@ class UsersController < ApplicationController
     @lesson = @user.assigned_lesson
     if current_user.admin?
       redirect_to lessons_path
-    else
+    elsif current_user.student?
       render :user_dashboard
     end
   end
   def summary
     @user = current_user
-    unless current_user.admin?
+    if @user.student?
       @lessons = @user.completed_lessons
       @lessons << @user.assigned_lesson
       @quiz = Quiz.new
