@@ -3,6 +3,7 @@ require 'spec_helper'
 describe UsersController do
   let(:user) {FactoryGirl.create(:user)}
   let(:admin) {FactoryGirl.create(:user, admin: true)}
+  let(:professor) {FactoryGirl.create(:professor)}
   
   describe 'GET #dashboard' do
     context 'user is admin' do
