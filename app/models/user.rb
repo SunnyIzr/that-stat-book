@@ -110,7 +110,15 @@ class User < ActiveRecord::Base
   end
   
   def roster_avg_score(roster)
-    self.roster_quiz_attempts(roster).map{|quiz| quiz.score}.sum / self.roster_quiz_attempts(roster).size
+    if self.roster_quiz_attempts(roster).empty?
+      0
+    else
+      self.roster_quiz_attempts(roster).map{|quiz| quiz.score}.sum / self.roster_quiz_attempts(roster).size
+    end
+  end
+  
+  def roster_view_count(roster)
+    
   end
 
 end

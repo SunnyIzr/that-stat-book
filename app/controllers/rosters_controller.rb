@@ -1,7 +1,7 @@
 class RostersController < ApplicationController
   def index
     if current_user.class == Professor
-      @rosters = current_user.rosters
+      @rosters = current_user.rosters.sort!
       render :index_professor
     elsif current_user.student?
       @rosters = current_user.rosters

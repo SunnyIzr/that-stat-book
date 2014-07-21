@@ -14,9 +14,14 @@ class Roster < ActiveRecord::Base
   end
   
   def avg_score
-    self.quiz_attempts.map{|quiz| quiz.score}.sum / self.quiz_attempts.size
+    if self.quiz_attempts.empty?
+      0
+    else
+      self.quiz_attempts.map{|quiz| quiz.score}.sum / self.quiz_attempts.size
+    end
   end
   
   def view_count
+    0
   end
 end
