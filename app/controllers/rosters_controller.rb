@@ -12,6 +12,8 @@ class RostersController < ApplicationController
   def show
     @roster = Roster.find(params[:id])
     if current_user.class == Professor
+      @new_student = User.new
+      @all_lessons = Lesson.all.sort_by { |lesson| lesson.level }
       @students = @roster.users
       render :show_professor
     elsif current_user.student?
@@ -43,12 +45,27 @@ class RostersController < ApplicationController
       @roster = Roster.find(params[:id])
       if @roster.update_attributes!(update_roster_params)
         respond_to do |format|
+          format.html {redirect_to roster_path(@roster)}
           format.json {render :json => @roster}
         end
       else
         format.json { render :nothing =>  true }
       end
     end
+  end
+  
+  def add_student
+    @roster = Roster.find(params[:id])
+    @student_pending_addition = User.find(params[:user_id])
+    @roster.users << @student_pending_addition
+    redirect_to roster_path(@roster)
+  end
+  
+  def remove_student
+    @roster = Roster.find(params[:id])
+    @student_pending_removal = User.find(params[:user_id])
+    @roster.users.delete(@student_pending_removal)
+    redirect_to roster_path(@roster)
   end
   
   private

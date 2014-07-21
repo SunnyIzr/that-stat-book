@@ -1,0 +1,12 @@
+ <table id='lessons' class='table table-striped'>
+  <%= form_for @roster, url: roster_path(@roster), method: :patch do |f| %>
+  <tbody data-update-url="<%= sort_lessons_path %>">
+    <% @all_lessons.each do |lesson| %>
+    <tr id="lesson_<%= lesson.id %>">
+      <td><%= f.check_box("lesson_ids", {multiple: true, checked: @roster.lessons.pluck(:id).include?(lesson.id)}, lesson.id, nil) %></td>
+      <td><%= lesson.title %></td>
+    <% end %>
+  </tbody>
+  <%= f.submit 'Update', class: 'btn btn-primary' %>
+  <% end %>
+</table>

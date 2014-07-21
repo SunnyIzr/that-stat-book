@@ -38,7 +38,9 @@ ThatStatBook::Application.routes.draw do
   post '/countdown' => 'quizzes#countdown'
   
   get '/questions/:id/delete_image' => 'questions#delete_image', as: :delete_question_image
-
+  
+  post '/rosters/:id/add_student' => 'rosters#add_student', as: :add_student
+  post '/rosters/:id/remove_student/:user_id' => 'rosters#remove_student', as: :remove_student
 
 
   # Example of regular route:

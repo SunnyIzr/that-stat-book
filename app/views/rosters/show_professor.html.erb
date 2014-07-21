@@ -1,10 +1,23 @@
 <div class='row'>
   <%= render 'users/prof_nav' %>
   
-  <div class='col-sm-9'>
+  <div class='rosters col-sm-9'>
     <div class='lessons dashboard'>
-      <h2> <%= @roster.title %> </h2>
-      <div class='lesson-stats'>
+      <h2>
+        <span class="rest-in-place" data-url="/rosters/<%=@roster.id%>" data-object="roster" data-attribute="title" data-placeholder="roster">
+          <%= @roster.title %> 
+        </span>
+      </h2>
+      <div id='accordion'>
+        <%= link_to 'Edit Lessons','#editLessons',  data: {toggle: 'collapse', parent: '#accordion'}, class: 'btn btn-primary' %>
+        
+        <div id='editLessons' class='panel-collapse collapse'>
+          <div class='panel-body'>
+            <%= render 'edit_lessons' %>
+          </div>
+        </div>
+      </div>
+      <div class='hide roster-stats lesson-stats'>
         <ul>
           <li>
             <div class='header'>Views</div>
@@ -31,13 +44,24 @@
           </tr>
         </thead>
         <tbody data-update-url="<%= sort_lessons_path %>">
+          <tr>
+            <td>
+              <form name='add_student' action="rosters/<%=@roster.id%>/add_student" method='post'>
+                <input type='text' name'student_name'>
+              </form>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
           <% @students.each do |student| %>
           <tr id="student_<%= student.id %>">
             <td><%= student.name %></td>
             <td><%= student.roster_view_count(@roster) %></td>
             <td><%= student.roster_quiz_attempts(@roster).size %></td>
             <td><%= percent(student.roster_avg_score(@roster)) %></td>
-            <td></td>
+            <td><%= link_to "<i class='fa fa-trash-o'></i>".html_safe, remove_student_path(@roster.id,student.id), method: :post,data: { confirm: 'You are about to remove this student from your roster. Are you sure?' } %></td>
           </tr>
           <% end %>
         </tbody>
