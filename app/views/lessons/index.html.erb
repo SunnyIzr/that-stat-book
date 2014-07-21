@@ -2,35 +2,34 @@
  <%= render 'users/admin_nav' %>
 
 
-  <div class='col-sm-9'>
-    <div class='lessons dashboard'>
-      <h2> Lessons </h2>        
-      <%= link_to 'New Lesson', new_lesson_path, class: 'btn btn-primary' %> 
-      <%= link_to 'Rearrange', rearrange_path, class: 'btn btn-primary' %> 
-        <table id='lessons' class='table table-striped'>
-          <thead>
-            <tr>
-              <th class ='left'>TOPIC</th>
-              <th>LEVEL</th>
-              <th>BELT</th>
-              <th>QUESTIONS</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody data-update-url="<%= sort_lessons_path %>">
-            <% @lessons.each do |lesson| %>
-              <tr id="lesson_<%= lesson.id %>">
-                <td><%= link_to lesson.title, lesson_path(lesson) %></td>
-                <td class='level'><%= lesson.level %></td>
-                <td><%= lesson.belt.belt %></td>
-                <td><%= lesson.questions.size %></td>
-                <td>
-                  <%= link_to "<i class='fa fa-trash-o'></i>".html_safe, lesson_path(lesson), method: :delete, data: { confirm: 'You are about to delete a lesson. This is irreversible. Are you sure?' } %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+ <div class='col-sm-9'>
+  <div class='lessons dashboard'>
+    <h2> Lessons </h2>        
+    <%= link_to 'New Lesson', new_lesson_path, class: 'btn btn-primary' %> 
+    <%= link_to 'Rearrange', rearrange_path, class: 'btn btn-primary' %> 
+    <table id='lessons' class='table table-striped'>
+      <thead>
+        <tr>
+          <th class ='left'>TOPIC</th>
+          <th>LEVEL</th>
+          <th>BELT</th>
+          <th>QUESTIONS</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody data-update-url="<%= sort_lessons_path %>">
+        <% @lessons.each do |lesson| %>
+        <tr id="lesson_<%= lesson.id %>">
+          <td><%= link_to lesson.title, lesson_path(lesson) %></td>
+          <td class='level'><%= lesson.level %></td>
+          <td><%= lesson.belt.belt %></td>
+          <td><%= lesson.questions.size %></td>
+          <td>
+            <%= link_to "<i class='fa fa-trash-o'></i>".html_safe, lesson_path(lesson), method: :delete, data: { confirm: 'You are about to delete a lesson. This is irreversible. Are you sure?' } %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
-  
 </div>
