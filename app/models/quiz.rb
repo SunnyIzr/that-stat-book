@@ -20,6 +20,14 @@ class Quiz < ActiveRecord::Base
   def answered_questions
     self.answer_submissions.map {|ans| ans.choice.question}
   end
+  
+  def belt?
+    self.roster_id.nil?
+  end
+  
+  def roster?
+    !self.roster_id.nil?
+  end
 
   def complete?
     self.answer_submissions.size >= ENV['QUIZ_QUESTIONS'].to_i

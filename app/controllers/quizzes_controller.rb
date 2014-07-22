@@ -1,10 +1,18 @@
 class QuizzesController < ApplicationController
   helper ApplicationHelper
   def create
-    if current_user.last_incomplete_quiz(params[:lesson_id].to_i).nil?
-      @quiz = Quiz.new(lesson_id: params[:lesson_id], user_id: current_user.id)
+    if params[:roster_id].nil?
+      if current_user.last_incomplete_quiz(params[:lesson_id].to_i).nil?
+        @quiz = Quiz.new(lesson_id: params[:lesson_id], user_id: current_user.id, roster_id: params[:roster_id])
+      else
+        @quiz = current_user.last_incomplete_quiz(params[:lesson_id].to_i)
+      end
     else
-      @quiz = current_user.last_incomplete_quiz(params[:lesson_id].to_i)
+      if current_user.last_incomplete_roster_quiz(params[:lesson_id].to_i,params[:roster_id].to_i).nil?
+        @quiz = Quiz.new(lesson_id: params[:lesson_id], user_id: current_user.id, roster_id: params[:roster_id])
+      else
+        @quiz = current_user.last_incomplete_roster_quiz(params[:lesson_id].to_i,params[:roster_id].to_i)
+      end
     end
     if @quiz.save
       redirect_to ("/quizzes/#{@quiz.id}/new-question")
@@ -51,6 +59,6 @@ class QuizzesController < ApplicationController
 
   private
   def quiz_params
-    params.permit(:lesson_id)
+    params.permit(:lesson_id,:roster_id)
   end
 end

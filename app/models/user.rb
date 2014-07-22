@@ -21,11 +21,19 @@ class User < ActiveRecord::Base
   end
 
   def completed_quizzes
-    self.quizzes.select {|quiz| quiz.complete?}
+    self.quizzes.select {|quiz| quiz.complete? && quiz.belt?}
+  end
+  
+  def completed_roster_quizzes(roster_id)
+    self.quizzes.select {|quiz| quiz.complete? && quiz.roster_id == roster_id}
   end
 
   def passed_quizzes
     self.completed_quizzes.select {|quiz| quiz.pass?}
+  end
+  
+  def passed_roster_quizzes(roster_id)
+    self.completed_roster_quizzes(roster_id).select {|quiz| quiz.pass?}
   end
 
   def completed_levels
@@ -37,6 +45,12 @@ class User < ActiveRecord::Base
   def completed_lessons
     completed_lessons = []
     self.passed_quizzes.each {|quiz| completed_lessons |= [quiz.lesson]}
+    completed_lessons
+  end
+  
+  def completed_roster_lessons(roster_id)
+    completed_lessons = []
+    self.passed_roster_quizzes(roster_id).each {|quiz| completed_lessons |= [quiz.lesson]}
     completed_lessons
   end
 
@@ -65,8 +79,26 @@ class User < ActiveRecord::Base
     Lesson.find_by(level: self.level)
   end
   
+  def assigned_roster_lesson(roster_id)
+    lessons = Roster.find(roster_id).lessons.all.sort_by { |lesson| lesson.level }
+    remaining_lessons = lessons - self.completed_roster_lessons(roster_id)
+    remaining_lessons.first
+  end
+  
+  def accessible_roster_lessons(roster_id)
+    accessible = self.completed_roster_lessons(roster_id)
+    accessible << self.assigned_roster_lesson(roster_id) unless self.assigned_roster_lesson(roster_id).nil?
+    accessible.map{ |lesson| lesson.id }
+  end
+  
   def last_incomplete_quiz(lesson_id)
-    quizzes_for_lesson = self.quizzes.select { |quiz| quiz.lesson_id == lesson_id }
+    quizzes_for_lesson = self.quizzes.select { |quiz| quiz.lesson_id == lesson_id && quiz.belt?}
+    incomplete_quizzes = quizzes_for_lesson.select {|quiz| !quiz.complete?}
+    incomplete_quizzes.last
+  end
+  
+  def last_incomplete_roster_quiz(lesson_id,roster_id)
+    quizzes_for_lesson = self.quizzes.select { |quiz| quiz.lesson_id == lesson_id && quiz.roster_id == roster_id}
     incomplete_quizzes = quizzes_for_lesson.select {|quiz| !quiz.complete?}
     incomplete_quizzes.last
   end

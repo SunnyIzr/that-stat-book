@@ -1,0 +1,30 @@
+<div class='row'>
+  <%= render 'user_nav' %>
+  <div class='col-sm-9'>
+    <div class='lessons dashboard'>
+      <h2> My Classes </h2>        
+      <%= link_to 'New Class', new_roster_path, class: 'btn btn-primary' %> 
+      <table id='lessons' class='table table-striped'>
+        <thead>
+          <tr>
+            <th class ='left'>CLASS</th>
+            <th>VIDEO VIEWS</th>
+            <th>QUIZ ATTEMPTS</th>
+            <th>QUESTIONS</th>
+            <th>STUDENTS</th>
+          </tr>
+        </thead>
+        <tbody data-update-url="<%= sort_lessons_path %>">
+          <% @rosters.each do |roster| %>
+          <tr id="roster_<%= roster.id %>">
+            <td><%= link_to roster.title, roster_path(roster) %></td>
+            <td><%= @user.roster_view_count(roster) %></td>
+            <td><%= @user.roster_quiz_attempts(roster).size %></td>
+            <td><%= percent(@user.roster_avg_score(roster))%></td>
+            <td><%= roster.users.size%></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>

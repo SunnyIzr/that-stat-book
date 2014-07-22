@@ -1,1 +1,60 @@
-
+<div class='row'>
+  <%= render 'user_nav' %>
+  <div class='col-sm-9'>
+    <div class='lessons dashboard'>
+      <h2> <%= @roster.title %> </h2>        
+      <table id='lessons' class='table table-striped'>
+        <thead>
+          <tr>
+            <th class ='left'>LESSON</th>
+            <th>VIDEO VIEWS</th>
+            <th>QUIZ ATTEMPTS</th>
+            <th>AVG SCORE</th>
+          </tr>
+        </thead>
+        <tbody id='accordion' data-update-url="<%= sort_lessons_path %>">
+          <% @lessons.each do |lesson| %>
+          <tr id="lesson_<%= lesson.id %>">
+            <td>
+              <% if @accessible_lessons.include?(lesson.id)%>
+              <a href='#openLesson<%=lesson.id%>' data-toggle='collapse' data-parent='#accordion'>
+                <%= lesson.title %>
+              </a>
+              <% else %>
+                <%= lesson.title %>
+              <% end %>
+            </td>
+            <td><%= @user.view_count(lesson.id) %></td>
+            <td><%= @user.quiz_attempts(lesson.id).size %></td>
+            <td><%= percent(@user.avg_score(lesson.id))%></td>
+            </tr>
+            <tr id='openLesson<%=lesson.id%>' class='panel-collapse collapse'>
+              <td colspan="4">
+                <div class='current-lesson'>
+                  <div class='header'>
+                    Topic: <strong><%= lesson.title %></strong>
+                  </div>
+                  <div class='video-preview'>
+                    <% lesson.videos.each do |video| %>
+                    <video controls="controls" data-user-id=<%=@user.id%> data-video-id=<%=video.id%>>
+                      <source src=<%=video.video%> type=<%=video.video_content_type%>>
+                      <source src=<%=video.ogv_video%> type=<%=video.ogv_video_content_type%>>
+                    </video>
+                    <% end %>
+                  </div>
+                  <div class='take-assessment'>
+                    <%= form_for Quiz.new, url: quizzes_path, html:{class: 'nifty_form'} do %>
+                      <%= hidden_field_tag :lesson_id, lesson.id %>
+                      <%= hidden_field_tag :roster_id, @roster.id %>
+                      <%= submit_tag 'TAKE THE QUIZ', class: 'btn btn-primary btn-lg' %>
+                    <%end%>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+        

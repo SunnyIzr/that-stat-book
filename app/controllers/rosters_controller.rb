@@ -4,6 +4,7 @@ class RostersController < ApplicationController
       @rosters = current_user.rosters.sort!
       render :index_professor
     elsif current_user.student?
+      @user = current_user
       @rosters = current_user.rosters
       render :index_student
     end
@@ -17,7 +18,9 @@ class RostersController < ApplicationController
       @students = @roster.users
       render :show_professor
     elsif current_user.student?
-      @lessons = @roster.lessons
+      @accessible_lessons = current_user.accessible_roster_lessons(@roster.id)
+      @user = current_user
+      @lessons = @roster.lessons.sort_by { |lesson| lesson.level }
       render :show_student
     end
   end

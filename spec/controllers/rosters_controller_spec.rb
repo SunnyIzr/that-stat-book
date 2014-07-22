@@ -35,6 +35,7 @@ describe RostersController do
       it 'should render :show_student template' do
         sign_in(student)
         FactoryGirl.create(:roster)
+
         get :show, {id: Roster.last.id.to_s}
         expect(response).to render_template(:show_student)
       end
