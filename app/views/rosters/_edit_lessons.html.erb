@@ -4,7 +4,7 @@
     <% @all_lessons.each do |lesson| %>
     <tr id="lesson_<%= lesson.id %>">
       <td><%= f.check_box("lesson_ids", {multiple: true, checked: @roster.lessons.pluck(:id).include?(lesson.id)}, lesson.id, nil) %></td>
-      <td><%= lesson.title %></td>
+      <td><%= link_to lesson.title, lesson_path(lesson) %></td>
     <% end %>
   </tbody>
   <%= f.submit 'Update', class: 'btn btn-primary' %>

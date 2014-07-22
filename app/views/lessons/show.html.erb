@@ -1,5 +1,10 @@
 <div class='row'>
- <%= render 'users/admin_nav' %>
+  <% if @user.admin? %>
+    <%= render 'users/admin_nav' %>
+  <% else %>
+    <%= render 'users/prof_nav' %>
+  <% end %>
+ 
 
 
   <div class='lessons col-sm-9'>
@@ -18,8 +23,10 @@
     <% end %>
   </div>
   <div>
+    <% if @user.admin? %>
     <%= link_to 'New Question', new_lesson_question_path(@lesson), class: 'btn btn-primary' %>
     <%= link_to 'Add/Change Video', new_lesson_video_path(@lesson), class: 'new-video-load btn btn-primary' %>
+    <% end %>
   </div>
   
   <table class='table table-striped'>
@@ -36,7 +43,9 @@
             <td><%= link_to question.question, question_path(question) %></td>
             <td class='stat'><%= question.answer.choice %></td>
             <td>
+              <% if @user.admin? %>
               <%= link_to "<i class='fa fa-trash-o'></i>".html_safe, question_path(question), method: :delete, data: { confirm: 'You are about to delete a question. This is irreversible. Are you sure?' } %>
+              <% end %>
             </td>
           </tr>
         <% end %>

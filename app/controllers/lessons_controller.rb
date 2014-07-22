@@ -1,6 +1,7 @@
 class LessonsController < ApplicationController
   def show
-    if current_user.admin?
+    unless current_user.student?
+      @user = current_user
       @lesson = Lesson.find(params[:id])
       @questions = @lesson.questions.select { |q| q.active == true }
       respond_to do |format|

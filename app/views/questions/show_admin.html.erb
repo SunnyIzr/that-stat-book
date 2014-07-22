@@ -1,5 +1,9 @@
 <div class='row'>
- <%= render 'users/admin_nav' %>
+  <% if @user.admin? %>
+    <%= render 'users/admin_nav' %>
+  <% else %>
+    <%= render 'users/prof_nav' %>
+  <% end %>
 
 
   <div class='col-sm-9'>
@@ -11,9 +15,11 @@
           <%=@question.question%>
         </span>
       </h2>
+      <% if @user.admin? %>
       <div class='delete-question'>
         <%= link_to 'Delete Question', question_path(@question), method: :delete, data: { confirm: 'You are about to delete a question. This is irreversible. Are you sure?' }, class: 'btn btn-primary' %>
       </div>
+      <% end %>
       
       <div class='question-image'>
         <% if @question.image.present? %>
@@ -28,6 +34,8 @@
           No Image
         <% end %>
       </div>
+      
+      <% if @user.admin? %>
       <div class='upload-new-image'>
         <%= form_for @question, :url => question_path, :html => { :multipart => true } do |form| %>
           <%= form.file_field :image %>
@@ -37,7 +45,10 @@
           </div>
         <% end %>
       </div>
-      </div>
+      <% end %>
+    
+    
+    </div>
       
 
        

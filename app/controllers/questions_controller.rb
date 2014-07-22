@@ -2,7 +2,8 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find(params[:id])
     @total_questions = ENV['QUIZ_QUESTIONS']
-    if current_user.admin?
+    unless current_user.student?
+      @user = current_user
       respond_to do |format|
         format.html {render :show_admin}
         format.json {render :json => @question}
