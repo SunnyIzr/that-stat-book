@@ -39,7 +39,7 @@ ThatStatBook::Application.routes.draw do
   
   get '/questions/:id/delete_image' => 'questions#delete_image', as: :delete_question_image
   
-  post '/rosters/:id/add_student' => 'rosters#add_student', as: :add_student
+  patch '/rosters/:id/add_students' => 'rosters#add_students', as: :add_students
   post '/rosters/:id/remove_student/:user_id' => 'rosters#remove_student', as: :remove_student
 
 

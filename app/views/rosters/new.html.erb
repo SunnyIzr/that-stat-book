@@ -5,8 +5,10 @@
       <h2> New Class </h2>
       <%= bootstrap_form_for @roster, url: rosters_path do |f| %>
       <%= f.text_field :title, required: true %>
+      <%= render 'student_select'%>
       <%= f.submit 'Create', class: 'btn btn-primary' %>
       <% end %>
     </div>
   </div>
 </div>
+

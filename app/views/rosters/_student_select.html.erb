@@ -1,0 +1,4 @@
+<div class='student-select'>
+<%= select_tag 'users[]', options_for_select(@all_students.map{ |student| [student.list_name,student.id] }), class: 'existing-students', :multiple => true, :size => 10 %>
+<%= select_tag 'roster[user_ids]', options_for_select([]), class: 'confirmed-students', :multiple => true, :size => 10 %>
+</div>

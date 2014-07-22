@@ -9,6 +9,7 @@
         </span>
       </h2>
       <div id='accordion'>
+        <%= link_to 'Add Students','',  data: {toggle: 'modal', target: '#myModal'}, class: 'btn btn-primary' %>
         <%= link_to 'Edit Lessons','#editLessons',  data: {toggle: 'collapse', parent: '#accordion'}, class: 'btn btn-primary' %>
         
         <div id='editLessons' class='panel-collapse collapse'>
@@ -17,7 +18,27 @@
           </div>
         </div>
       </div>
-      <div class='roster-stats lesson-stats'>
+      
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+          <%= form_for @roster, url: add_students_path(@roster), method: :patch do |f| %>
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title" id="myModalLabel">Add Students</h4>
+            </div>
+            <div class="modal-body">
+              <%= render 'student_select'%>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <%= f.submit 'Update', class: 'btn btn-primary' %>
+            <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='hide roster-stats lesson-stats'>
         <ul>
           <li>
             <div class='header'>Views</div>
@@ -44,17 +65,6 @@
           </tr>
         </thead>
         <tbody data-update-url="<%= sort_lessons_path %>">
-          <tr>
-            <td>
-              <form name='add_student' action="rosters/<%=@roster.id%>/add_student" method='post'>
-                <input type='text' name'student_name'>
-              </form>
-            </td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
           <% @students.each do |student| %>
           <tr id="student_<%= student.id %>">
             <td><%= student.name %></td>

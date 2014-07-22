@@ -15,7 +15,8 @@ class RostersController < ApplicationController
     if current_user.class == Professor
       @new_student = User.new
       @all_lessons = Lesson.all.sort_by { |lesson| lesson.level }
-      @students = @roster.users
+      @students = @roster.users.sort_by {|student| student.last_name }
+      @all_students = User.all.select{ |user| user.student? }.sort_by{ |student| student.last_name } - @students
       render :show_professor
     elsif current_user.student?
       @accessible_lessons = current_user.accessible_roster_lessons(@roster.id)
@@ -28,6 +29,7 @@ class RostersController < ApplicationController
   def new
     if current_user.class == Professor
       @roster = Roster.new
+      @all_students = User.all.select{ |user| user.student? }.sort_by{ |student| student.last_name }
     end
   end
   
@@ -57,10 +59,12 @@ class RostersController < ApplicationController
     end
   end
   
-  def add_student
+  def add_students
     @roster = Roster.find(params[:id])
-    @student_pending_addition = User.find(params[:user_id])
-    @roster.users << @student_pending_addition
+    @student_ids = @roster.user_ids
+    @student_ids << update_roster_params[:user_ids]
+    @student_ids.flatten!
+    @roster.update_attributes!({user_ids: @student_ids})
     redirect_to roster_path(@roster)
   end
   
