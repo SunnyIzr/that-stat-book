@@ -154,7 +154,8 @@ class User < ActiveRecord::Base
   end
   
   def roster_view_count(roster)
-    
+    lessons = roster.lessons
+    lessons.map{ |lesson| self.view_count(lesson)}.sum
   end
 
 end

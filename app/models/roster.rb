@@ -22,6 +22,7 @@ class Roster < ActiveRecord::Base
   end
   
   def view_count
-    0
+    users = self.users
+    users.map { |user| user.roster_view_count(self)}.sum
   end
 end
