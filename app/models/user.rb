@@ -115,7 +115,7 @@ class User < ActiveRecord::Base
   #Lesson Level Stats
   
   def quiz_attempts(lesson_id)
-    self.completed_quizzes.select { |quiz| quiz.lesson_id == lesson_id }
+    self.quizzes.select {|quiz| quiz.complete? }.select { |quiz| quiz.lesson_id == lesson_id }
   end
   
   def avg_score(lesson_id)
