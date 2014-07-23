@@ -70,6 +70,12 @@
         max-width: 50%;
         margin-left:67px;
       }
+        .stat{
+          width: 100%;
+          height: 100px;
+          color: #bbe363;
+          font-size: 40px; 
+        }
     }
     .quiz-again{
       margin-left: -20px;
@@ -200,7 +206,9 @@
           margin: 0 auto;
           width: 37%;
         }
+
       }
+      
       .quiz-again{
         .btn{
           font-size: 10px;

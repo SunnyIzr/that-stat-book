@@ -239,6 +239,12 @@ describe User do
     expect(user.name).to eq('Stats Ninja')
   end
   
+  it 'should return stringified last name, first name' do
+    user = FactoryGirl.create(:user, first_name: 'Stats', last_name: 'Ninja')
+    
+    expect(user.list_name).to eq('Ninja, Stats')
+  end
+  
   it 'should return all completed quizzes given a specific lesson id' do
     user = FactoryGirl.create(:user)
     3.times do
@@ -410,6 +416,17 @@ describe User do
     expect(total_avg_score).to eq(0.3)  
   end
   
+  it 'should calculate average score as 0 across on quiz attempts for the lessons on a given roster if there are no quiz attempts' do
+    user = FactoryGirl.create(:user)
+    roster = FactoryGirl.create(:roster)
+    
+    expect(user.roster_avg_score(roster)).to eq(0) #3 Passing Tests Across 5 Lessons
+  end
+  
+  it 'should calculate total video views on a specific lesson'
+  
   it 'should calculate total video views on all lessons associated with a given roster'
+  
+  it 'should update user belts based on completed lessons'
 
 end

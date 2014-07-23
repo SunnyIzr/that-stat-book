@@ -25,7 +25,7 @@ class QuizzesController < ApplicationController
     @user = current_user
     if @quiz.complete?
       @user.update_belts
-      UserMailer.successful_pass_email(@user) if @quiz.pass?
+      # UserMailer.successful_pass_email(@user) if @quiz.pass?
       render :show
     else
       render :incomplete

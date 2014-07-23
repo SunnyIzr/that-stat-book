@@ -1,6 +1,7 @@
 class Quiz < ActiveRecord::Base
   belongs_to :user
   belongs_to :lesson
+  belongs_to :roster
   has_many :questions
   has_many :answer_submissions, :dependent => :destroy
   validates_presence_of :user_id
