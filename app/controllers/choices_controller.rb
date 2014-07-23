@@ -14,11 +14,6 @@ class ChoicesController < ApplicationController
       respond_to do |format|
         format.json { render :json => @choice }
       end
-    else
-      respond_to do |format|
-        format.html { render :action  => :edit } # edit.html.erb
-        format.json { render :nothing =>  true }
-      end
     end
   end
   
