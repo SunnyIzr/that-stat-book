@@ -423,10 +423,73 @@ describe User do
     expect(user.roster_avg_score(roster)).to eq(0) #3 Passing Tests Across 5 Lessons
   end
   
-  it 'should calculate total video views on a specific lesson'
+  it 'should add user belts if all lessons associated with belt have been passed' do
+    user = FactoryGirl.create(:user)
+    belt = FactoryGirl.create(:belt)
+    lesson = FactoryGirl.create(:lesson, belt: belt)
+    quiz = FactoryGirl.create(:quiz)
+    total_questions.times do
+      FactoryGirl.create(:question)
+      FactoryGirl.create(:choice, question_id: Question.last.id, is_correct: true)
+      FactoryGirl.create(:answer_submission, quiz_id: Quiz.last.id, choice_id: Choice.last.id)
+    end
+    user.update_belts
+    
+    expect(user.belts).to eq([belt])
+  end
   
-  it 'should calculate total video views on all lessons associated with a given roster'
+  it 'should NOT add user belts if all lessons associated with belt have NOT been passed' do
+    user = FactoryGirl.create(:user)
+    belt = FactoryGirl.create(:belt)
+    lesson = FactoryGirl.create(:lesson, belt: belt)
+    quiz = FactoryGirl.create(:quiz)
+    total_questions.times do
+      FactoryGirl.create(:question)
+      FactoryGirl.create(:choice, question_id: Question.last.id)
+      FactoryGirl.create(:answer_submission, quiz_id: Quiz.last.id, choice_id: Choice.last.id)
+    end
+    user.update_belts
+    
+    expect(user.belts).to eq([])
+  end
   
-  it 'should update user belts based on completed lessons'
+  it 'should calculate total video views on a specific lesson' do
+    user = FactoryGirl.create(:user)
+    lesson_1 = FactoryGirl.create(:lesson)
+    FactoryGirl.create(:video_view)
+    lesson_2 = FactoryGirl.create(:lesson)
+    
+    
+    expect(user.view_count(lesson_1.id)).to eq(1)
+    expect(user.view_count(lesson_2.id)).to eq(0)
+  end
+  
+  it 'should calculate total video views on all lessons associated with a given roster' do
+    user = FactoryGirl.create(:user)
+    roster_1 = FactoryGirl.create(:roster)
+    roster_2 = FactoryGirl.create(:roster)
+    roster_3 = FactoryGirl.create(:roster)
+    lesson_1 = FactoryGirl.create(:lesson)
+    video_1 = FactoryGirl.create(:video)
+    lesson_2 = FactoryGirl.create(:lesson)
+    video_2 = FactoryGirl.create(:video)
+    lesson_3 = FactoryGirl.create(:lesson)
+    video_3 = FactoryGirl.create(:video)
+    lesson_4 = FactoryGirl.create(:lesson)
+    video_4 = FactoryGirl.create(:video)
+    
+    3.times {FactoryGirl.create(:video_view, video: video_1, user: user)}
+    2.times {FactoryGirl.create(:video_view, video: video_2, user: user)}
+    4.times {FactoryGirl.create(:video_view, video: video_3, user: user)}
+    
+    roster_1.lessons << [lesson_1,lesson_2]
+    roster_2.lessons << [lesson_3]
+    roster_3.lessons << [lesson_4]
+    
+    expect(user.roster_view_count(roster_1)).to eq(5)
+    expect(user.roster_view_count(roster_2)).to eq(4)
+    expect(user.roster_view_count(roster_3)).to eq(0)
+  end
+  
 
 end

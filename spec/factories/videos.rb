@@ -2,5 +2,6 @@
 
 FactoryGirl.define do
   factory :video do
+    lesson {Lesson.last.nil? ? FactoryGirl.create(:lesson) : Lesson.last}
   end
 end

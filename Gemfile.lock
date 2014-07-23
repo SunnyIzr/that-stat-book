@@ -48,6 +48,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
+    database_cleaner (1.1.1)
     devise (3.2.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -197,6 +198,7 @@ DEPENDENCIES
   aws-sdk (~> 1.5.7)
   bootstrap_form
   coffee-rails (~> 4.0.0)
+  database_cleaner
   devise
   dotenv-rails
   factory_girl_rails
