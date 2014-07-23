@@ -155,7 +155,7 @@ describe RostersController do
     end
   end
   
-  describe 'POST #add_student' do
+  describe 'PATCH #add_students' do
     context 'user is professor' do
       it 'should add a specified student' do
         sign_in(professor)
@@ -163,8 +163,8 @@ describe RostersController do
         roster = FactoryGirl.create(:roster)
         roster.users = User.all[1..5]
         
-        post :add_student, {id: roster.id.to_s, user_id: User.all[6].id.to_s}
-        expect(Roster.last.users).to match_array(User.all[1..6])
+        patch :add_students, {id: roster.id.to_s, roster: {user_ids: [User.all[6].id.to_s,User.all[7].id.to_s]}}
+        expect(Roster.last.users).to match_array(User.all[1..7])
       end
       it 'should redirect to roster path' do
         sign_in(professor)
@@ -172,7 +172,7 @@ describe RostersController do
         roster = FactoryGirl.create(:roster)
         roster.users = User.all[1..5]
         
-        post :add_student, {id: roster.id.to_s, user_id: User.all[6].id.to_s}
+        patch :add_students, {id: roster.id.to_s, roster: {user_ids: [User.all[6].id.to_s]}}
         expect(response).to redirect_to(Roster.last)
       end
     end

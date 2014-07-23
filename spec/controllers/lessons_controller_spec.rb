@@ -11,7 +11,7 @@ describe LessonsController do
         4.times {FactoryGirl.create(:question)}
         1.times {FactoryGirl.create(:question, active: false)}
         get :show, {id: Lesson.first.id.to_s}
-        assigns(:questions).to match_array(Question.all[0..3])
+        expect(assigns(:questions)).to match_array(Question.all[0..3])
       end
       it 'should render :show view for a specific lesson on html request' do
         sign_in(admin)

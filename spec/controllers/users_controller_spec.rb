@@ -45,7 +45,7 @@ describe UsersController do
         sign_in(admin)
         10.times { |i| FactoryGirl.create(:user, email: "#{i.to_s}@gmail.com")}
         get :index
-        assigns(:users).should eq(User.all)
+        expect(assigns(:users)).to eq(User.all)
       end
       it 'should render users index view' do
         sign_in(admin)
@@ -61,7 +61,7 @@ describe UsersController do
         5.times { |i| FactoryGirl.create(:user, email: "#{i.to_s}@gmail.com")}
         sign_in(admin)
         get :show, {id: User.first.id.to_s}
-        assigns(:user).to eq(User.first)
+        expect(assigns(:user)).to eq(User.first)
       end
       it 'should render the :show view' do
         5.times { |i| FactoryGirl.create(:user, email: "#{i.to_s}@gmail.com")}
