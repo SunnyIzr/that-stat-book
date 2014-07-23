@@ -4,12 +4,10 @@ class AnswerSubmissionsController < ApplicationController
     @quiz = Quiz.find(params[:quiz_id])
     if @answer_submission.save
       unless @quiz.complete?
-        redirect_to ("/quizzes/#{@quiz.id}/new-question")
+        redirect_to random_question_path(quiz_id: @quiz.id)
       else
         redirect_to quiz_path(@quiz)
       end
-    else
-      render text: 'FAIL!'
     end
   end
 
