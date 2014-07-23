@@ -18,7 +18,7 @@ class QuestionsController < ApplicationController
   def show_random_question
     @quiz = Quiz.find(params[:quiz_id])
     @question = @quiz.new_random_question
-    redirect_to ("/questions/#{@question.id}?quiz_id=#{@quiz.id}")
+    redirect_to question_path(id: @question.id, quiz_id: @quiz.id)
   end
   
   def new
@@ -58,11 +58,6 @@ class QuestionsController < ApplicationController
         respond_to do |format|
           format.html { redirect_to( @question )}
           format.json { render :json => @question }
-        end
-      else
-        respond_to do |format|
-          format.html { render :action  => :edit } # edit.html.erb
-          format.json { render :nothing =>  true }
         end
       end
     end
