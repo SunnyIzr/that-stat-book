@@ -1,21 +1,15 @@
 class QuizzesController < ApplicationController
   helper ApplicationHelper
   def create
-    if params[:roster_id].nil?
-      if current_user.last_incomplete_quiz(params[:lesson_id].to_i).nil?
-        @quiz = Quiz.new(lesson_id: params[:lesson_id], user_id: current_user.id, roster_id: params[:roster_id])
-      else
-        @quiz = current_user.last_incomplete_quiz(params[:lesson_id].to_i)
-      end
-    else
-      if current_user.last_incomplete_roster_quiz(params[:lesson_id].to_i,params[:roster_id].to_i).nil?
-        @quiz = Quiz.new(lesson_id: params[:lesson_id], user_id: current_user.id, roster_id: params[:roster_id])
-      else
-        @quiz = current_user.last_incomplete_roster_quiz(params[:lesson_id].to_i,params[:roster_id].to_i)
-      end
-    end
+    user = current_user
+    lesson_id = params[:lesson_id].to_i
+    roster_id = params[:roster_id].to_i unless params[:roster_id].nil?
+
+    incomplete_quiz = roster_id.nil? ? user.last_incomplete_quiz(lesson_id) : user.last_incomplete_roster_quiz(lesson_id,roster_id)
+    @quiz = incomplete_quiz.nil? ? user.quizzes.new(quiz_params) : incomplete_quiz
+    
     if @quiz.save
-      redirect_to ("/quizzes/#{@quiz.id}/new-question")
+      redirect_to random_question_path(quiz_id: @quiz.id)
     else
       render text: 'FAIL!'
     end
@@ -53,7 +47,7 @@ class QuizzesController < ApplicationController
     if @quiz.pass?
       render :certificate
     else
-      render_text 'This Quiz is a Fail.'
+      render text: 'This Quiz is a Fail.'
     end
   end
 

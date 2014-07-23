@@ -171,12 +171,6 @@ describe QuestionsController do
         
         expect(response.body).to eq(Question.last.to_json)
       end
-      
-      it 'should return a 200 error if the new data does not persist' do
-        sign_in(admin)
-        
-      end
     end
   end
-  
 end
