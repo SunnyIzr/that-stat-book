@@ -18,7 +18,7 @@ describe Roster do
         FactoryGirl.create(:question)
         FactoryGirl.create(:choice, question_id: Question.last.id)
       end
-      User.all.each do |user|
+      User.find_each do |user|
         3.times do
           FactoryGirl.create(:quiz, user_id: user.id)
           Quiz.last.finish_incomplete
@@ -42,7 +42,7 @@ describe Roster do
         FactoryGirl.create(:question)
         FactoryGirl.create(:choice, question_id: Question.last.id, is_correct: true)
       end
-      User.all.each do |user|
+      User.find_each do |user|
         3.times do #Generating 3 passing 100% quizes for each user on each lesson
           FactoryGirl.create(:quiz, user_id: user.id)
           total_questions.times do |i|
@@ -60,7 +60,7 @@ describe Roster do
         FactoryGirl.create(:question)
         FactoryGirl.create(:choice, question_id: Question.last.id)
       end
-      User.all.each do |user|
+      User.find_each do |user|
         3.times do #Generating 3 failing quizes for each user on eaach leasson
           FactoryGirl.create(:quiz, user_id: user.id)
           Quiz.last.finish_incomplete

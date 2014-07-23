@@ -4,8 +4,12 @@ class QuizzesController < ApplicationController
     user = current_user
     lesson_id = params[:lesson_id].to_i
     roster_id = params[:roster_id].to_i unless params[:roster_id].nil?
-
-    incomplete_quiz = roster_id.nil? ? user.last_incomplete_quiz(lesson_id) : user.last_incomplete_roster_quiz(lesson_id,roster_id)
+    
+    if roster_id.nil?
+      incomplete_quiz = user.last_incomplete_quiz(lesson_id)
+    else
+      incomplete_quiz = user.last_incomplete_roster_quiz(lesson_id,roster_id)
+    end
     @quiz = incomplete_quiz.nil? ? user.quizzes.new(quiz_params) : incomplete_quiz
     
     if @quiz.save
