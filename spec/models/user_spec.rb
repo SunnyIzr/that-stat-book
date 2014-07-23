@@ -23,7 +23,7 @@ describe User do
       total_questions - 1.times { |i| FactoryGirl.create(:answer_submission, quiz_id: quiz.id, choice_id: Choice.all[i].id)}
     end
 
-    expect(User.last.completed_quizzes).should match_array(Quiz.all[0..2])
+    expect(User.last.completed_quizzes).to match_array(Quiz.all[0..2])
 
   end
   
@@ -54,7 +54,7 @@ describe User do
       total_questions - 1.times { |i| FactoryGirl.create(:answer_submission, quiz_id: quiz.id, choice_id: correct_choices[i].id)}
     end
 
-    expect(User.last.passed_quizzes).should match_array(Quiz.all[0..2])
+    expect(User.last.passed_quizzes).to match_array(Quiz.all[0..2])
 
   end
 
@@ -119,7 +119,7 @@ describe User do
       total_questions - 1.times { |i| FactoryGirl.create(:answer_submission, quiz_id: quiz.id, choice_id: correct_choices[i].id)}
     end
 
-    expect(User.last.completed_lessons).should match_array([Lesson.all[0],Lesson.all[1]])
+    expect(User.last.completed_lessons).to match_array([Lesson.all[0],Lesson.all[1]])
   end
 
   it 'should return current level' do
@@ -253,7 +253,7 @@ describe User do
       end
     end
     
-    expect(user.quiz_attempts(Lesson.first.id)).should match_array(Quiz.all[0..4])
+    expect(user.quiz_attempts(Lesson.first.id)).to match_array(Quiz.all[0..4])
   end
   
   it 'should return the last incomplete quiz given a specific lesson id' do
@@ -372,7 +372,7 @@ describe User do
     end
     roster = FactoryGirl.create(:roster)
     roster.lessons << Lesson.all[0..3]
-    expect(user.roster_quiz_attempts(roster)).should match_array(Quiz.all[0..11])
+    expect(user.roster_quiz_attempts(roster)).to match_array(Quiz.all[0..11])
   end
   
   it 'should calculate average score across on quiz attempts for the lessons on a given roster' do

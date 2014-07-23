@@ -22,7 +22,7 @@ describe Quiz do
       FactoryGirl.create(:choice, :question_id => Question.last.id)
       FactoryGirl.create(:answer_submission, :choice_id => Choice.last.id, :quiz_id => Quiz.last.id)
     end
-    expect(Quiz.first.answered_questions).should match_array(Question.all[0..9])
+    expect(Quiz.first.answered_questions).to match_array(Question.all[0..9])
   end
 
   it 'sholuld identify if a quiz is complete based on total_questions answer submissions' do

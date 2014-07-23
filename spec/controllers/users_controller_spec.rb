@@ -61,7 +61,7 @@ describe UsersController do
         5.times { |i| FactoryGirl.create(:user, email: "#{i.to_s}@gmail.com")}
         sign_in(admin)
         get :show, {id: User.first.id.to_s}
-        assigns(:user).should eq(User.first)
+        assigns(:user).to eq(User.first)
       end
       it 'should render the :show view' do
         5.times { |i| FactoryGirl.create(:user, email: "#{i.to_s}@gmail.com")}

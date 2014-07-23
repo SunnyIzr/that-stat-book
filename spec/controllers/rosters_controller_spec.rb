@@ -63,7 +63,7 @@ describe RostersController do
         
         expect(Roster.last.title).to eq('my brand new roster!')
         expect(Roster.last.professor).to eq(Professor.last)
-        expect(Roster.last.users).should match_array(User.all[1..5])
+        expect(Roster.last.users).to match_array(User.all[1..5])
       end
       it 'should redirect to roster#show' do
         sign_in(professor)
@@ -91,8 +91,8 @@ describe RostersController do
         patch :update, {id: roster.id.to_s, roster: {title: 'new title', user_ids: new_student_ids, lesson_ids: new_lesson_ids}, format: :json}
         
         expect(Roster.last.title).to eq('new title')
-        expect(Roster.last.users).should match_array(User.all[6..10])
-        expect(Roster.last.lessons).should match_array(Lesson.all[5..9])
+        expect(Roster.last.users).to match_array(User.all[6..10])
+        expect(Roster.last.lessons).to match_array(Lesson.all[5..9])
         
       end
       it 'should redirect to roster_path on html request' do
@@ -141,7 +141,7 @@ describe RostersController do
         roster.users = User.all[1..5]
         
         post :remove_student, {id: roster.id.to_s, user_id: User.all[3].id.to_s}
-        expect(Roster.last.users).should match_array([User.all[1],User.all[2],User.all[4],User.all[5]])
+        expect(Roster.last.users).to match_array([User.all[1],User.all[2],User.all[4],User.all[5]])
       end
       it 'should redirect to roster path' do
         sign_in(professor)
@@ -164,7 +164,7 @@ describe RostersController do
         roster.users = User.all[1..5]
         
         post :add_student, {id: roster.id.to_s, user_id: User.all[6].id.to_s}
-        expect(Roster.last.users).should match_array(User.all[1..6])
+        expect(Roster.last.users).to match_array(User.all[1..6])
       end
       it 'should redirect to roster path' do
         sign_in(professor)
