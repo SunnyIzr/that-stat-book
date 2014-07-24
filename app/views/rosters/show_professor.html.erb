@@ -9,8 +9,10 @@
         </span>
       </h2>
       <div id='accordion'>
-        <%= link_to 'Add Students','',  data: {toggle: 'modal', target: '#myModal'}, class: 'btn btn-primary' %>
-        <%= link_to 'Edit Lessons','#editLessons',  data: {toggle: 'collapse', parent: '#accordion'}, class: 'btn btn-primary' %>
+        <div class='roster-controls'>
+          <%= link_to 'Add Students','',  data: {toggle: 'modal', target: '#myModal'}, class: 'btn btn-primary' %>
+          <%= link_to 'Edit Lessons','#editLessons',  data: {toggle: 'collapse', parent: '#accordion'}, class: 'btn btn-primary' %>
+        </div>
         
         <div id='editLessons' class='panel-collapse collapse'>
           <div class='panel-body'>
