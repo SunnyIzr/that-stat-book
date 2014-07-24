@@ -14,7 +14,7 @@
       <h2>Get started with a Free Account.</h2>
       <p class='desc'>Sign up in 30 seconds. No credit card required. If you already have a StatsDojo account <%= link_to 'log in', new_user_session_path %>.</p>
 
-      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {class: 'nifty_form'}) do |f| %>
         <%= devise_error_messages! %>
 
         <div class='name'>
@@ -22,6 +22,18 @@
           <%= f.text_field :first_name, :placeholder =>'First Name', :autofocus => true, class: 'left' %>
           <%= f.text_field :last_name, :placeholder => 'Last Name', class: 'right' %>
         </div>
+        <div class='account-type'>
+          <p class='signup_label'>ACCOUNT TYPE</p>
+          <p class='left'>
+            <%= f.radio_button(:type, nil)%>
+            <%= label_tag('user_type', 'Student')%>
+          </p>
+          <p class='right'>
+            <%= f.radio_button(:type, 'Professor')%>
+            <%= label_tag('user_type_professor', 'Professor')%>
+          </p>
+        </div>
+
         
         
         <div class='school'>

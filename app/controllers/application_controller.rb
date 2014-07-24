@@ -15,7 +15,15 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :first_name
     devise_parameter_sanitizer.for(:sign_up) << :last_name
+    devise_parameter_sanitizer.for(:sign_up) << :type unless student_type?
     devise_parameter_sanitizer.for(:account_update) << :school
   end
   
+  def student_type?
+    if params[:user].present?
+      params[:user][:type] == 'on'
+    else
+      false
+    end
+  end
 end
