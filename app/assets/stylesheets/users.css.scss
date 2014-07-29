@@ -49,6 +49,9 @@
   h4{
     font-weight: lighter;
     color: $emphasis-color;
+    a{
+      font-size: 11px;
+    }
   }
   .delete-question{
     margin-top: -25px;
@@ -340,6 +343,25 @@
 #belt_purple{ background-color: #e6d8fe;}
 #belt_red{ background-color: #ff9f9f;}
 #belt_brown{ background-color: #dca68e;}
+
+
+#lessons-challenged-belt{
+  width: 70%;
+  float: left;
+}
+.challenged-belt-modal{
+  width:30%;
+  float: right;
+  margin-top: -35px;
+  img{
+    width: 40%;
+  }
+  
+}
+
+.challenged-lessons-modal-body{
+  height: 225px;
+}
 
 
 

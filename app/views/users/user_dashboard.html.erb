@@ -23,7 +23,7 @@
 
       <div class='current-lesson'>
         <div class='header'>
-          <h4> CURRENT ASSIGNMENT </h4>
+          <h4> CURRENT ASSIGNMENT <a data-toggle='modal' data-target='#myModal' href=''>View All Videos for This Belt</a> </h4> 
           <div class='header-break'></div>
           Topic: <strong><%= @lesson.title %></strong>
         </div>
@@ -61,7 +61,7 @@
           </li>
           <li>
             <div class='challenged-belts'>
-              <div class='header'>Challenged Belts</div>
+              <div class='header'>Challenged Belt</div>
               <div><%= image_tag('belt.png', class: @lesson.belt.belt) %></div>
             </div>
           </li>
@@ -87,6 +87,43 @@
     </div>
   </div>
   
+</div>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Lessons Remaining to Earn Belt</h4>
+      </div>
+      <div class="challenged-lessons-modal-body modal-body">
+        <table id='lessons-challenged-belt' class='table table-striped'>
+          <tbody>
+            <% @lesson.belt.lessons.each do |lesson| %>
+            <tr>
+              <td class='left'>
+                <% if @user.completed_lessons.include?(lesson) %>
+                  <i class="fa fa-check"></i>
+                <% end %>
+              </td>
+              <td>
+                <%= lesson.title %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <div class='challenged-belt-modal'>
+          <div class='header'>Challenged Belt</div>
+          <div><%= image_tag('belt.png', class: @lesson.belt.belt) %></div>
+        </div>
+      </div>
+      <div class="challenged-belts-close modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
