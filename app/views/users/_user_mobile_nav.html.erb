@@ -11,13 +11,13 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li <%='class=active' if current_page?(user_dashboard_path)%>>
-          <%= link_to 'Dashboard', user_dashboard_path %>
+          <%= link_to 'Belt Dashboard', user_dashboard_path %>
+        </li>
+        <li <%='class=active' if current_page?(user_summary_path)%>>
+          <%= link_to 'Belt Stats', user_summary_path %>
         </li>
         <li <%='class=active' if current_page?(rosters_path)%>>
           <%= link_to 'My Classes', rosters_path %>
-        </li>
-        <li <%='class=active' if current_page?(user_summary_path)%>>
-          <%= link_to 'My Stats', user_summary_path %>
         </li>
         <li>
           <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>

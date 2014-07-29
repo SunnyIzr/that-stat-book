@@ -2,6 +2,7 @@
 
 .rosters{
   h2{
+    margin-top: 67px;
     margin-bottom: 10px !important;
     width: 65%;
     border-bottom: 1px solid $faded-color; 
@@ -31,11 +32,30 @@
   }
 }
 
+.student-search{
+  width: 100%;
+  input{
+    width: 49%;
+    padding: 5px;
+  }
+}
+
 .student-select{
   select{
     width: 49%;
+    padding: 5px;
   }
   .confirmed-students{
     float: right;
   }
 }
+
+.modal-body{
+  label{
+    display: none;
+  }
+  .student-search{
+    margin-left: 0.9%;
+  }
+}
+
