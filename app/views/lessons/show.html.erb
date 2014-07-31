@@ -29,6 +29,7 @@
     <% end %>
   </div>
   
+  <% if @user.admin? %>
   <table class='table table-striped'>
       <thead>
         <tr>
@@ -51,6 +52,7 @@
         <% end %>
       </tbody>
     </table>
+    <% end %>
   </div>
 </div>
 
