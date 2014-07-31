@@ -3,9 +3,11 @@
   <input class='form-control' placeholder='Search Students...' id='student-search'>
 </div>
 <div class='student-select'>
-<%= select_tag 'users[]', options_for_select(@all_students.map{ |student| [student.list_name,student.id] }),id: 'student-list', class: 'existing-students', :multiple => true, :size => 10 %>
-<a href='#' id='move-student'>
-  <i class="fa fa-caret-right"></i>
-</a>
-<%= select_tag 'roster[user_ids]', options_for_select([]), class: 'confirmed-students', :multiple => true, :size => 10 %>
+  <div class='select-wrapper'>
+    <%= select_tag 'users[]', options_for_select(@all_students.map{ |student| [student.list_name,student.id] }),id: 'student-list', class: 'existing-students', :multiple => true, :size => 10 %>
+    <%= select_tag 'roster[user_ids]', options_for_select([]), class: 'confirmed-students', :multiple => true, :size => 10 %>
+    <a href='#' id='move-student'>
+      <i class="fa fa-caret-right"></i>
+    </a>
+  </div>
 </div>
