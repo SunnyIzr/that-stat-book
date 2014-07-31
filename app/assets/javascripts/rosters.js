@@ -1,10 +1,30 @@
 $(function() {
   studentSelect()
+  studentSelectBtn()
+  updateStudentsBtn()
 })
 
 var studentSelect = function() {
   $(document).on('dblclick','.existing-students option',function() {
     $('.confirmed-students').append(this)
+  })
+}
+
+var studentSelectBtn = function(){
+  $('#move-student').click(function(e){
+    e.preventDefault();
+    $('.existing-students option:selected').each(function(){
+      $('.confirmed-students').append(this)  
+    })
+  })
+}
+
+var updateStudentsBtn = function(){
+  $('.update-students-btn').click(function(e){
+    if ($('.confirmed-students option').size() == 0) {
+      e.preventDefault();
+      alert('You have not selected any students to add...')
+    }
   })
 }
 

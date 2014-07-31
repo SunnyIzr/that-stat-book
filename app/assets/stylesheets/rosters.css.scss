@@ -35,18 +35,24 @@
 .student-search{
   width: 100%;
   input{
-    width: 49%;
+    width: 44%;
     padding: 5px;
   }
 }
 
 .student-select{
   select{
-    width: 49%;
+    width: 44%;
     padding: 5px;
   }
   .confirmed-students{
     float: right;
+  }
+  #move-student{
+    font-size: 100px;
+    position: relative;
+    top: -57px;
+    left: 37px;
   }
 }
 
