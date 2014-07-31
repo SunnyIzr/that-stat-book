@@ -1,0 +1,27 @@
+<div class='row'>
+  <%= render 'user_nav' %>
+  <div class='col-sm-9'>
+    <div class='roster lessons dashboard'>
+      <h2> <%= @roster.title %> - <%= @student.name %> </h2>        
+      <table id='lessons' class='table table-striped'>
+        <thead>
+          <tr>
+            <th width='70%' class ='left'>LESSON</th>
+            <th>VIDEO VIEWS</th>
+            <th>QUIZ ATTEMPTS</th>
+            <th>AVG SCORE</th>
+          </tr>
+        </thead>
+        <tbody id='accordion' data-update-url="<%= sort_lessons_path %>">
+          <% @lessons.each do |lesson| %>
+          <tr id="lesson_<%= lesson.id %>">
+            <td><%= lesson.title %></td>
+            <td><%= @student.view_count(lesson.id) %></td>
+            <td><%= @student.quiz_attempts(lesson.id).size %></td>
+            <td><%= percent(@student.avg_score(lesson.id))%></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>

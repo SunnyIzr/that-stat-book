@@ -70,7 +70,7 @@
         <tbody data-update-url="<%= sort_lessons_path %>">
           <% @students.each do |student| %>
           <tr id="student_<%= student.id %>">
-            <td><%= student.name %></td>
+            <td><%= link_to student.name, student_roster_path(@roster.id,student.id) %></td>
             <td><%= student.roster_view_count(@roster) %></td>
             <td><%= student.roster_quiz_attempts(@roster).size %></td>
             <td><%= percent(student.roster_avg_score(@roster)) %></td>

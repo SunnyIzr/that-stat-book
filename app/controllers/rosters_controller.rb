@@ -26,6 +26,15 @@ class RostersController < ApplicationController
     end
   end
   
+  def show_roster_student
+    if current_user.class == Professor
+      @roster = Roster.find(params[:roster_id])
+      @student = User.find(params[:student_id])
+      @lessons = @roster.lessons.sort_by { |lesson| lesson.level }
+      render :show_roster_student
+    end
+  end
+  
   def new
     if current_user.class == Professor
       @roster = Roster.new

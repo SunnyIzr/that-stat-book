@@ -41,6 +41,9 @@ ThatStatBook::Application.routes.draw do
   
   patch '/rosters/:id/add_students' => 'rosters#add_students', as: :add_students
   post '/rosters/:id/remove_student/:user_id' => 'rosters#remove_student', as: :remove_student
+  
+  
+  get '/rosters/:roster_id/students/:student_id' => 'rosters#show_roster_student', as: :student_roster
 
 
   # Example of regular route:
