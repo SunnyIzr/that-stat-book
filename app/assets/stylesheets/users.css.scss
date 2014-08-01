@@ -50,7 +50,7 @@
     font-weight: lighter;
     color: $emphasis-color;
     a{
-      font-size: 11px;
+      font-size: 13px;
     }
   }
   .delete-question{
@@ -361,6 +361,11 @@
 
 .challenged-lessons-modal-body{
   height: 225px;
+}
+
+a.view-all-belts{
+  color: black;
+  text-decoration: underline;
 }
 
 
