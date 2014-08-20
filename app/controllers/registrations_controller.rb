@@ -1,14 +1,14 @@
 class RegistrationsController < Devise::RegistrationsController
    def create
-    school = School.find_or_create_by(school: account_update_params[:school])
-    school.save
-    school
     build_resource(sign_up_params)
-    resource.school = school
 
     resource_saved = resource.save
     yield resource if block_given?
     if resource_saved
+      school = School.find_or_create_by(school: account_update_params[:school])
+      school.save
+      resource.school = school
+      resource.save
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_flashing_format?
         sign_up(resource_name, resource)
