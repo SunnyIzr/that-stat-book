@@ -52,6 +52,10 @@ class User < ActiveRecord::Base
     completed_lessons
   end
   
+  def attempted_lessons
+    self.completed_quizzes.map { |quiz| quiz.lesson }
+  end
+  
   def completed_roster_lessons(roster_id)
     completed_lessons = []
     self.passed_roster_quizzes(roster_id).each {|quiz| completed_lessons |= [quiz.lesson]}

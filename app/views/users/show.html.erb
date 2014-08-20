@@ -24,7 +24,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @user.completed_lessons.each do |lesson| %>
+        <% @user.attempted_lessons.each do |lesson| %>
           <tr>
             <td><%= lesson.title %></td>
             <td class='stat'><%= @user.view_count(lesson.id) %></td>
