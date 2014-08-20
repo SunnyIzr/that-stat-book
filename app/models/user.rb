@@ -63,7 +63,7 @@ class User < ActiveRecord::Base
   end
   
   def attempted_lessons
-    self.completed_quizzes.map { |quiz| quiz.lesson }
+    self.completed_quizzes.map { |quiz| quiz.lesson }.uniq
   end
   
   def completed_roster_lessons(roster_id)
