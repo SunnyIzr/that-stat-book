@@ -23,7 +23,7 @@
           <td><%= link_to lesson.title, lesson_path(lesson) %></td>
           <td class='level'><%= lesson.level %></td>
           <td><%= lesson.belt.belt %></td>
-          <td><%= lesson.questions.size %></td>
+          <td><%= lesson.active_questions.size %></td>
           <td>
             <%= link_to "<i class='fa fa-trash-o'></i>".html_safe, lesson_path(lesson), method: :delete, data: { confirm: 'You are about to delete a lesson. This is irreversible. Are you sure?' } %>
           </td>

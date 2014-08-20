@@ -12,6 +12,10 @@ class Lesson < ActiveRecord::Base
     Lesson.pluck(:level).sort!
   end
   
+  def active_questions
+    self.questions.where(active: true)
+  end
+  
   def self.create_empty(level)
     max_level = levels.max
     max_level.downto(level) do |x|
