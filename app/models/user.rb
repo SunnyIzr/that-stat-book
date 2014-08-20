@@ -23,6 +23,16 @@ class User < ActiveRecord::Base
   def student?
     !self.admin? && self.type.nil?
   end
+  
+  def member_type
+    if self.student?
+      'Student'
+    elsif self.admin?
+      'Admin'
+    else
+      self.type
+    end
+  end
 
   def completed_quizzes
     self.quizzes.select {|quiz| quiz.complete? && quiz.belt?}
