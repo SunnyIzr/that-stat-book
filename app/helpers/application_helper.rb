@@ -7,7 +7,11 @@ module ApplicationHelper
   end
   
   def percent(float)
-    num = (float * 100).round(2)
-    num.to_s + '%'
+    if float.nil?
+      ''
+    else
+      num = (float * 100).round(2)
+      num.to_s + '%'
+    end
   end
 end
