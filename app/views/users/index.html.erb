@@ -5,6 +5,7 @@
   <div class='lessons col-sm-9'>
     <div class='dashboard'>
       <h2> Members </h2>
+      <input class='form-control' placeholder='Search Members...' id='member-search'>
   
   <table class='table table-striped'>
       <thead>
@@ -20,7 +21,7 @@
       <tbody>
         <% @users.each do |user| %>
           <tr>
-            <td><%= link_to user.name, user_path(user) %></td>
+            <td><%= link_to user.list_name, user_path(user) %></td>
             <td><%= user.member_type %></td>
             <td><%= user.school.school if user.school.present? %></td>
             <td><%= percent(user.quizzes.last.score) unless user.quizzes.empty? %></td>

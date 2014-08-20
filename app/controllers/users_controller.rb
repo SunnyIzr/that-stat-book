@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   end
   def index
     if current_user.admin?
-      @users = User.all
+      @users = User.all.sort_by{ |user| user.list_name}
     end
   end
   def show
