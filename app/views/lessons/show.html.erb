@@ -34,7 +34,10 @@
       <thead>
         <tr>
           <th class ='left'>QUESTION</th>
-          <th>CORRECT ANSWER</th>
+          <th>ANSWER</th>
+          <th>PERCENT CORRECT</th>
+          <th>CORRECT ATTEMPTS</th>
+          <th>TOTAL ATTEMPTS</th>
           <th></th>
         </tr>
       </thead>
@@ -43,6 +46,9 @@
           <tr>
             <td><%= link_to question.question, question_path(question) %></td>
             <td class='stat'><%= question.answer.choice %></td>
+            <td><%= percent(question.percent_correct) %></td>
+            <td><%= question.correct_attempts %></td>
+            <td><%= question.total_attempts %></td>
             <td>
               <% if @user.admin? %>
               <%= link_to "<i class='fa fa-trash-o'></i>".html_safe, question_path(question), method: :delete, data: { confirm: 'You are about to delete a question. This is irreversible. Are you sure?' } %>
