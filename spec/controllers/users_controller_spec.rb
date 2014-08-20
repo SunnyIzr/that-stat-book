@@ -45,7 +45,7 @@ describe UsersController do
         sign_in(admin)
         10.times { |i| FactoryGirl.create(:user, email: "#{i.to_s}@gmail.com")}
         get :index
-        expect(assigns(:users)).to eq(User.all)
+        expect(assigns(:users)).to eq(User.all.sort_by{|user| user.list_name})
       end
       it 'should render users index view' do
         sign_in(admin)
