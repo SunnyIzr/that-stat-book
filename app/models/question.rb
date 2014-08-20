@@ -14,6 +14,19 @@ class Question < ActiveRecord::Base
     self.choices.where(is_correct: true).first
   end
   
+  def total_attempts
+    self.answer_submissions.size
+  end
+  
+  def correct_attempts
+    self.answer_submissions.select{ |ans| ans.choice.is_correct }.size
+  end
+  
+  def percent_correct
+    attempts = self.total_attempts
+    attempts == 0 ? nil : self.correct_attempts / self.total_attempts
+  end
+  
   def random_wrong_choice
     self.choices.where(is_correct: false).first
   end
