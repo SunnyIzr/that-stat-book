@@ -24,7 +24,7 @@
             <td><%= link_to user.list_name, user_path(user) %></td>
             <td><%= user.member_type %></td>
             <td><%= user.school.school if user.school.present? %></td>
-            <td><%= percent(user.completed_quizzes.last.score) unless user.quizzes.empty? %></td>
+            <td><%= percent(user.completed_quizzes.last.score) unless user.completed_quizzes.empty? %></td>
             <td><%= user.belts.last.belt unless user.belts.empty? %></td>
             <td><%= link_to "<i class='fa fa-trash-o'></i>".html_safe, user_path(user), method: :delete, data: { confirm: 'You are about to delete this member. This is irreversible. Are you sure?' } %></td>
           </tr>
