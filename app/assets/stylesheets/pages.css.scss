@@ -129,7 +129,20 @@
     margin: 0 auto;
     text-align: center;
     margin-top: 30px;
-    margin-bottom: 200px;
+    margin-bottom: 50px;
+  }
+  .footer{
+    width: 100%;
+    border-top: 1px solid $primary-color;
+    margin-bottom: 100px;
+    padding-top: 10px;
+    .contact-us{
+      float: right;
+      font-size: 20px;
+    }
+    .facebook{
+      float:left;
+    }
   }
 }
 
