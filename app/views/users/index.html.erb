@@ -11,6 +11,7 @@
       <thead>
         <tr>
           <th class ='left'>Name</th>
+          <th>Email</th>
           <th>Type</th>
           <th>School</th>
           <th>Last Quiz Score</th>
@@ -22,6 +23,7 @@
         <% @users.each do |user| %>
           <tr>
             <td><%= link_to user.list_name, user_path(user) %></td>
+            <td><a href='mailto:<%= user.email %>'><%= user.email %></a></td>
             <td><%= user.member_type %></td>
             <td><%= user.school.school if user.school.present? %></td>
             <td><%= percent(user.completed_quizzes.last.score) unless user.completed_quizzes.empty? %></td>
