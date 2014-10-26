@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140722003759) do
+ActiveRecord::Schema.define(version: 20141026185933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,12 @@ ActiveRecord::Schema.define(version: 20140722003759) do
   end
 
   add_index "choices", ["question_id"], name: "index_choices_on_question_id", using: :btree
+
+  create_table "class_requests", force: true do |t|
+    t.integer "user_id"
+    t.integer "roster_id"
+    t.boolean "accepted",  default: false
+  end
 
   create_table "lessons", force: true do |t|
     t.string   "title"
