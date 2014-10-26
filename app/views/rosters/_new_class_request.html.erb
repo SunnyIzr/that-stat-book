@@ -1,0 +1,13 @@
+<div class='professor-select'>
+  <div class='select-wrapper'>
+  <%= form_for @class_request do %>
+    <h5> Select Professor </h5>
+    <%= select_tag 'professor', options_for_select(@professors.map{ |prof| [prof.list_name,prof.id] }),id: 'professor-list', :size => 5 %>
+    <h5> Select Class </h5>
+    <div id='class-select'>
+      <select id='roster-list' name='roster' size='5'></select>
+    </div>
+    <%= submit_tag 'Send Request', class: 'btn btn-primary btn-md' %>
+  <% end %>
+  </div>
+</div>

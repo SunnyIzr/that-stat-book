@@ -23,6 +23,8 @@ ThatStatBook::Application.routes.draw do
   
   resources :rosters, only: [:index,:show,:new,:update,:create]
   
+  resources :class_requests, only: [:create]
+  
   resources :suggestions do
     get :autocomplete_school_school, :on => :collection
   end
@@ -40,11 +42,10 @@ ThatStatBook::Application.routes.draw do
   get '/questions/:id/delete_image' => 'questions#delete_image', as: :delete_question_image
   
   patch '/rosters/:id/add_students' => 'rosters#add_students', as: :add_students
-  post '/rosters/:id/remove_student/:user_id' => 'rosters#remove_student', as: :remove_student
-  
+  post '/rosters/:id/remove_student/:user_id' => 'rosters#remove_student', as: :remove_student  
+  get '/rosters-prof/:prof_id' => 'rosters#get_rosters_by_prof' 
   
   get '/rosters/:roster_id/students/:student_id' => 'rosters#show_roster_student', as: :student_roster
-
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

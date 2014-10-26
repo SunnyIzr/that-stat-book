@@ -2,6 +2,7 @@ $(function() {
   studentSelect()
   studentSelectBtn()
   updateStudentsBtn()
+  profSelect()
 })
 
 var studentSelect = function() {
@@ -47,3 +48,37 @@ $(function() {
   });
   
 });
+
+var profSelect = function(){
+  $('#professor-list').change(function(){
+    profId = $(this).val()
+    $.getJSON('/rosters-prof/' + profId, function(res){
+      appendRosterSelect(res)
+    })
+  })
+}
+
+var appendRosterSelect = function(rosters){
+  var rosterList = "<select id='roster-list' name='roster' size='5'>"
+  $.each(rosters, function(k,v){
+    newOption = "<option value='" + v.id + "'>" + v.title + "</option>"
+    rosterList += newOption
+  })
+  rosterList += '</select>'
+  console.log(rosterList)
+  $('#class-select').html(rosterList)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

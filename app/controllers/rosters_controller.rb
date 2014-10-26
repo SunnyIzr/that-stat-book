@@ -4,8 +4,10 @@ class RostersController < ApplicationController
       @rosters = current_user.rosters.sort!
       render :index_professor
     elsif current_user.student?
+      @class_request = ClassRequest.new
       @user = current_user
       @rosters = current_user.rosters
+      @professors = Professor.all
       render :index_student
     end
   end
@@ -82,6 +84,11 @@ class RostersController < ApplicationController
     @student_pending_removal = User.find(params[:user_id])
     @roster.users.delete(@student_pending_removal)
     redirect_to roster_path(@roster)
+  end
+  
+  def get_rosters_by_prof
+    @rosters = Professor.find(params[:prof_id]).rosters
+    render json: @rosters
   end
   
   private
