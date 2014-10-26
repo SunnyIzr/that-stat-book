@@ -19,4 +19,12 @@ class ClassRequest < ActiveRecord::Base
     end
   end
   
+  def accept!
+    roster = self.roster
+    roster.users << self.user
+    roster.save
+    self.accepted = true
+    self.save
+  end
+  
 end

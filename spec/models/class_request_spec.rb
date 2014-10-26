@@ -22,4 +22,12 @@ describe ClassRequest do
     class_request2 = ClassRequest.new(user_id: student.id, roster_id: roster.id)
     expect(class_request2.valid?).to eq(false)
   end
+  it 'should accept a student' do
+    roster = FactoryGirl.create(:roster)
+    student = FactoryGirl.create(:user)
+    class_request = ClassRequest.create(user_id: student.id, roster_id: roster.id)
+    class_request.accept!
+    
+    expect(roster.users).to match_array([student])
+  end
 end
