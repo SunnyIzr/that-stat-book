@@ -2,6 +2,7 @@ class Roster < ActiveRecord::Base
   belongs_to :professor
   has_and_belongs_to_many :users
   has_and_belongs_to_many :lessons
+  has_many :class_requests
   
   def quiz_attempts
     total_quiz_attempts = []

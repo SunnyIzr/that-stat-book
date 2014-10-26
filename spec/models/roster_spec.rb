@@ -6,6 +6,7 @@ describe Roster do
   it {should belong_to (:professor)}
   it {should have_and_belong_to_many (:users)}
   it {should have_and_belong_to_many (:lessons)}
+  it {should have_many (:class_requests)}
   
   it 'should generate all quiz attempts for all associated users on all associated lessons' do
     10.times { |i| FactoryGirl.create(:user, email: "#{i}@gmail.com")}

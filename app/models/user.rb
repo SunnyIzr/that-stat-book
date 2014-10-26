@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_uniqueness_of :email, :case_sensitive => false
   self.inheritance_column = :type
+  has_many :class_requests
 
   def name
     self.first_name.capitalize + ' ' + self.last_name.capitalize

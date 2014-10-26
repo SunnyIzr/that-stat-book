@@ -8,7 +8,8 @@ describe User do
   it {should validate_uniqueness_of (:email)}
   it {should have_and_belong_to_many(:rosters)}
   it {should have_and_belong_to_many(:belts)}
-
+  it {should have_many (:class_requests)}
+  
   it 'should return all completed quizzes' do
     3.times do
       quiz = FactoryGirl.create(:quiz)
