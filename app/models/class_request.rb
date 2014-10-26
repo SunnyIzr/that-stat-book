@@ -14,17 +14,16 @@ class ClassRequest < ActiveRecord::Base
   end
   
   def cannot_create_duped_request
-    unless ClassRequest.where(user_id: self.user_id, roster_id: self.roster_id).empty?
+    if self.id.blank? && !ClassRequest.where(user_id: self.user_id, roster_id: self.roster_id).empty?
       errors.add(:roster_id, "request already exists")
     end
   end
   
   def accept!
     roster = self.roster
-    roster.users << self.user
+    roster.users << self.user unless roster.users.include?(self.user)
     roster.save
-    self.accepted = true
-    self.save
+    self.update!(accepted: true)
   end
   
 end

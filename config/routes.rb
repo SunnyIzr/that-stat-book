@@ -23,7 +23,7 @@ ThatStatBook::Application.routes.draw do
   
   resources :rosters, only: [:index,:show,:new,:update,:create]
   
-  resources :class_requests, only: [:create]
+  resources :class_requests, only: [:create, :index]
   
   resources :suggestions do
     get :autocomplete_school_school, :on => :collection
@@ -47,6 +47,8 @@ ThatStatBook::Application.routes.draw do
   
   get '/rosters/:roster_id/students/:student_id' => 'rosters#show_roster_student', as: :student_roster
 
+  get '/class_requests/:id/accept' => 'class_requests#accept', as: :accept_class_request
+  get '/class_requests/:id/reject' => 'class_requests#reject', as: :reject_class_request
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

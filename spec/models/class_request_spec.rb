@@ -30,4 +30,23 @@ describe ClassRequest do
     
     expect(roster.users).to match_array([student])
   end
+  it 'should mark class request as accepted' do
+    roster = FactoryGirl.create(:roster)
+    student = FactoryGirl.create(:user)
+    class_request = ClassRequest.create(user_id: student.id, roster_id: roster.id)
+    class_request.accept!
+    
+    expect(ClassRequest.last.accepted).to eq(true)
+  end
+  it 'should not add a duped users to roster users' do
+    roster = FactoryGirl.create(:roster)
+    student = FactoryGirl.create(:user)
+    class_request = ClassRequest.create(user_id: student.id, roster_id: roster.id)
+    class_request.accept!
+    class_request.accept!
+    class_request.accept!
+    
+    expect(Roster.last.users).to eq([student])
+  end
+  
 end

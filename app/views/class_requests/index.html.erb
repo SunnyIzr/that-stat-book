@@ -1,0 +1,30 @@
+<div class='row'>
+ <%= render 'users/prof_nav' %>
+ 
+ <div class='col-sm-9'>
+  <div class='lessons dashboard'>
+    <h2> Outstanding Student Requests </h2>        
+    <table id='lessons' class='table table-striped'>
+      <thead>
+        <tr>
+          <th class ='left'>DATE</th>
+          <th>NAME</th>
+          <th>EMAIL</th>
+          <th>CLASS</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @class_requests.each do |class_request| %>
+        <tr>
+          <td><%= class_request.created_at.strftime('%m/%d/%y') %></td>
+          <td><%= class_request.user.list_name %></td>
+          <td><%= class_request.user.email %></td>
+          <td><%= class_request.roster.title %></td>
+          <td><a class='btn btn-primary btn-sm' href='/class_requests/<%= class_request.id %>/accept'>Accept</a><a class='btn btn-primary btn-sm' href='/class_requests/<%= class_request.id %>/reject'>Reject</a></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

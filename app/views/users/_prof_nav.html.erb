@@ -4,5 +4,8 @@
       <li <%='class=selected' if current_page?(rosters_path)%>>
         <%= link_to 'My Classes', rosters_path %>
       </li>
+      <li <%='class=selected' if current_page?(class_requests_path)%>>
+        <%= link_to 'New Student Requests', class_requests_path %>
+      </li>
     </ul>
   </div>
