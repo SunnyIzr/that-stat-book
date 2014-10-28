@@ -7,5 +7,8 @@
       <li <%='class=selected' if current_page?(users_path)%>>
         <%= link_to 'Members', users_path %>
       </li>
+      <li <%='class=selected' if current_page?(rosters_path)%>>
+        <%= link_to 'Classes', rosters_path %>
+      </li>
     </ul>
   </div>

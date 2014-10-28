@@ -1,0 +1,47 @@
+<div class='row'>
+  <%= render 'users/admin_nav' %>
+  
+  <div class='rosters col-sm-9'>
+    <div class='lessons dashboard'>
+      <h2><%= @roster.title %></h2>
+      <div class='roster-stats lesson-stats'>
+        <ul>
+          <li>
+            <div class='header'>Views</div>
+            <div class='stat'><%= @roster.view_count %></div>
+          </li>
+          <li>
+            <div class='header'>Quiz Attempts</div>
+            <div class='stat'><%= @roster.quiz_attempts.size %></div>
+          </li>
+          <li>
+            <div class='header'>Average Score</div>
+            <div class='stat'><%= percent(@roster.avg_score) %></div>
+          </li>
+        </ul>
+      </div>
+      <br/>
+      <table id='students' class='table table-striped'>
+        <thead>
+          <tr>
+            <th class ='left'>STUDENT</th>
+            <th>VIDEO VIEWS</th>
+            <th>QUIZ ATTEMPTS</th>
+            <th>QUESTIONS</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody data-update-url="<%= sort_lessons_path %>">
+          <% @students.each do |student| %>
+          <tr id="student_<%= student.id %>">
+            <td><%= link_to student.name, student_roster_path(@roster.id,student.id) %></td>
+            <td><%= student.roster_view_count(@roster) %></td>
+            <td><%= student.roster_quiz_attempts(@roster).size %></td>
+            <td><%= percent(student.roster_avg_score(@roster)) %></td>
+            <td><%= link_to "<i class='fa fa-trash-o'></i>".html_safe, remove_student_path(@roster.id,student.id), method: :post,data: { confirm: 'You are about to remove this student from your roster. Are you sure?' } %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>

@@ -9,6 +9,9 @@ class RostersController < ApplicationController
       @rosters = current_user.rosters
       @professors = Professor.all
       render :index_student
+    elsif current_user.admin?
+      @rosters = Roster.all.sort_by{ |roster| roster.professor.list_name }
+      render :index_admin
     end
   end
   
@@ -25,6 +28,9 @@ class RostersController < ApplicationController
       @user = current_user
       @lessons = @roster.lessons.sort_by { |lesson| lesson.level }
       render :show_student
+    elsif current_user.admin?
+      @students = @roster.users.sort_by {|student| student.last_name }
+      render :show_admin
     end
   end
   
