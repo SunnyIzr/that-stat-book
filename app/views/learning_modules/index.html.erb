@@ -3,7 +3,7 @@
  
 
 
-  <div class='lessons col-sm-10'>
+  <div class='lessons col-sm-9'>
     <div class='dashboard'>
       <h2> Learning Modules - <%= @lesson.title %> </h2>
       <a href='#' class="btn btn-primary" data-toggle="modal" data-target="#newLearningModule">
@@ -22,8 +22,16 @@
         <tbody>
           <% @learning_modules.each do |learning_module| %>
           <tr>
-            <td><%= learning_module.title %></td>
-            <td><%= learning_module.description %></td>
+            <td>
+              <span class='rest-in-place' data-url='/learning_modules/<%= learning_module.id %>' data-object='learning_module' data-attribute='title' data-placeholder='Title'>
+                <%= learning_module.title %>
+              </span>
+            </td>
+            <td>
+              <span class='rest-in-place' data-url='/learning_modules/<%= learning_module.id %>' data-object='learning_module' data-attribute='description' data-placeholder='Description'>
+                <%= learning_module.description %>
+              </span>
+            </td>
             <td><%= learning_module.questions.size %></td>
             <td><%= link_to "<i class='fa fa-trash-o'></i>".html_safe, lesson_learning_module_path(@lesson, learning_module), method: :delete, data: { confirm: 'You are about to delete this Learning Module. This is irreversible. Are you sure?' } %></td>
           </tr>

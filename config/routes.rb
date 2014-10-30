@@ -14,8 +14,10 @@ ThatStatBook::Application.routes.draw do
     collection { post :sort }
     resources :questions, only: [:new,:create]
     resources :videos, only: [:new,:create]
-    resources :learning_modules, only: [:index,:create,:new,:destroy,:update]
+    resources :learning_modules, only: [:index,:create,:new,:destroy]
   end
+  
+  resources :learning_modules, only: [:update]
   resources :quizzes, only: [:create,:show]
   resources :questions, only: [:show,:destroy,:update]
   resources :choices, only: [:show,:update]
