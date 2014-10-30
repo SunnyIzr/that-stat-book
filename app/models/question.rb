@@ -2,6 +2,7 @@ class Question < ActiveRecord::Base
   belongs_to :lesson
   has_many :choices, :dependent => :destroy, inverse_of: :question
   has_many :answer_submissions, through: :choices
+  belongs_to :learning_module
   validates_presence_of :question
   validates_presence_of :lesson_id
   accepts_nested_attributes_for :choices

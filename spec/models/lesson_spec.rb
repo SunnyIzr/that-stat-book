@@ -4,6 +4,7 @@ describe Lesson do
   it {should have_many (:questions)}
   it {should have_many (:quizzes)}
   it {should have_many (:videos)}
+  it {should have_many (:learning_modules)}
   it {should have_and_belong_to_many (:rosters)}
   it {should validate_presence_of (:title)}
   it {should validate_presence_of (:level)}
