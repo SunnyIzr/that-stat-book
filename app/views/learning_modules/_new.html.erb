@@ -1,0 +1,5 @@
+<%= bootstrap_form_for @lesson.learning_modules.new, url:lesson_learning_modules_path(@lesson) do |f| %>
+<%= f.text_field :title, required: true %>
+<%= f.text_area :description, rows: 10,  required: true %>
+<%= f.submit 'Create', class: 'btn btn-primary' %>
+<% end %>

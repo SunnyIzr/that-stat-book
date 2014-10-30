@@ -7,60 +7,85 @@
  
 
 
-  <div class='lessons col-sm-9'>
+  <div class='lessons col-sm-10'>
     <div class='dashboard'>
       <h2> Lesson: 
         <span class="rest-in-place" data-url="/lessons/<%=@lesson.id%>" data-object="lesson" data-attribute="title" data-placeholder="lesson">
           <%=@lesson.title%>
         </span>
       </h2>
-  <div class='video-preview'>
-    <% @lesson.videos.each do |video| %>
-      <video controls="controls">
-        <source src=<%=video.video%> type=<%=video.video_content_type%>>
-        <source src=<%=video.ogv_video%> type=<%=video.ogv_video_content_type%>>
-      </video>
-    <% end %>
-  </div>
-  <div>
-    <% if @user.admin? %>
-    <%= link_to 'New Question', new_lesson_question_path(@lesson), class: 'btn btn-primary' %>
-    <%= link_to 'Add/Change Video', new_lesson_video_path(@lesson), class: 'new-video-load btn btn-primary' %>
-    <% end %>
-  </div>
-  
-  <% if @user.admin? %>
-  <table class='table table-striped'>
-      <thead>
-        <tr>
-          <th class ='left'>QUESTION</th>
-          <th>ANSWER</th>
-          <th>PERCENT CORRECT</th>
-          <th>CORRECT ATTEMPTS</th>
-          <th>TOTAL ATTEMPTS</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @questions.each do |question| %>
-          <tr>
-            <td><%= link_to question.question, question_path(question) %></td>
-            <td class='stat'><%= question.answer.choice %></td>
-            <td><%= percent(question.percent_correct) %></td>
-            <td><%= question.correct_attempts %></td>
-            <td><%= question.total_attempts %></td>
-            <td>
-              <% if @user.admin? %>
-              <%= link_to "<i class='fa fa-trash-o'></i>".html_safe, question_path(question), method: :delete, data: { confirm: 'You are about to delete a question. This is irreversible. Are you sure?' } %>
-              <% end %>
-            </td>
-          </tr>
+      <div class='video-preview'>
+        <% @lesson.videos.each do |video| %>
+          <video controls="controls">
+            <source src=<%=video.video%> type=<%=video.video_content_type%>>
+            <source src=<%=video.ogv_video%> type=<%=video.ogv_video_content_type%>>
+          </video>
         <% end %>
-      </tbody>
-    </table>
-    <% end %>
+      </div>
+      <div>
+        <% if @user.admin? %>
+        <%= link_to 'New Question', new_lesson_question_path(@lesson), class: 'btn btn-primary' %>
+        <%= link_to 'Add/Change Video', new_lesson_video_path(@lesson), class: 'new-video-load btn btn-primary' %>
+        
+        <%= link_to 'Add/Change Learning Modules', lesson_learning_modules_path(@lesson), class: 'btn btn-primary' %>
+
+        <% end %>
+      </div>
+      
+      <% if @user.admin? %>
+      <table class='table table-striped'>
+          <thead>
+            <tr>
+              <th width='25%' class ='left'>QUESTION</th>
+              <th width='25%'>ANSWER</th>
+              <th width='25%'>LEARNING MODULE</th>
+              <th>PERCENT CORRECT</th>
+              <th>CORRECT ATTEMPTS</th>
+              <th>TOTAL ATTEMPTS</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @questions.each do |question| %>
+              <tr>
+                <td><%= link_to question.question, question_path(question) %></td>
+                <td class='stat'><%= question.answer.choice %></td>
+                <td>
+                  <div class="dropdown">
+                    <div class='dropdown-title'>
+                      <button class="btn dropdown-toggle" type="button" id="qlm<%=question.id%>" data-toggle="dropdown">
+                        <%= question.learning_module.nil? ? '(None Selected)' : question.learning_module.title %> </a>
+                      </button>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="qlm<%=question.id%>">
+                        <% @learning_modules.each do |learning_module| %>
+                          <li role="presentation">
+                            <a role="menuitem" tabindex="-1" href="/questions/<%= question.id %>/update_learning_module/<%= learning_module.id %>">
+                              <%= learning_module.title %>
+                            </a>
+                          </li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  </div>
+                  
+                </td>
+                <td><%= percent(question.percent_correct) %></td>
+                <td><%= question.correct_attempts %></td>
+                <td><%= question.total_attempts %></td>
+                <td>
+                  <% if @user.admin? %>
+                  <%= link_to "<i class='fa fa-trash-o'></i>".html_safe, question_path(question), method: :delete, data: { confirm: 'You are about to delete a question. This is irreversible. Are you sure?' } %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <% end %>
+      
+      </div>
+    </div>
   </div>
-</div>
 
 
 <script>

@@ -1,0 +1,30 @@
+<div class='row'>
+ <%= render 'users/admin_nav' %>
+ 
+ 
+  <div class='lessons col-sm-9'>
+    <div class='dashboard'>
+      <h2><%= @user.list_name %> - Classes </h2>
+  
+  <table class='table table-striped'>
+      <thead>
+        <tr>
+          <th class ='left'>Class</th>
+          <th>Professor</th>
+          <th>Number of Students</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @rosters.each do |roster| %>
+          <tr>
+            <td><%= roster.title %></td>
+            <td><%= roster.professor.list_name %></td>
+            <td><%= roster.users.size %></td>
+            <td><%= link_to 'More Details', roster_path(roster) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

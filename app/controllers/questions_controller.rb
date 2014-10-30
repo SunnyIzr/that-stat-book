@@ -63,6 +63,15 @@ class QuestionsController < ApplicationController
     end
   end
   
+  def update_learning_module
+    if current_user.admin?
+      @question = Question.find(params[:id])
+      @learning_module = LearningModule.find(params[:learning_module_id])
+      @question.update!(learning_module: @learning_module)
+      redirect_to lesson_path(@question.lesson)
+    end
+  end
+  
   def delete_image
     @question = Question.find(params[:id])
     @question.image = nil

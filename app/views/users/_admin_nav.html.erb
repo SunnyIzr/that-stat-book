@@ -5,10 +5,10 @@
         <%= link_to 'Lessons', lessons_path %>
       </li>
       <li <%='class=selected' if current_page?(users_path)%>>
-        <%= link_to 'Members', users_path %>
+        <%= link_to 'Students', users_path %>
       </li>
-      <li <%='class=selected' if current_page?(rosters_path)%>>
-        <%= link_to 'Classes', rosters_path %>
+      <li <%='class=selected' if current_page?(professors_path)%>>
+        <%= link_to 'Professors', professors_path %>
       </li>
     </ul>
   </div>

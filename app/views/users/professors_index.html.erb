@@ -1,0 +1,31 @@
+<div class='row'>
+ <%= render 'users/admin_nav' %>
+ 
+ 
+  <div class='lessons col-sm-9'>
+    <div class='dashboard'>
+      <h2> Professors </h2>
+  
+  <table class='table table-striped'>
+      <thead>
+        <tr>
+          <th class ='left'>Name</th>
+          <th>Email</th>
+          <th>University</th>
+          <th>Number of Students</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @professors.each do |professor| %>
+          <tr>
+            <td><%= professor.list_name %></td>
+            <td><%= professor.email %></td>
+            <td><%= professor.school.school %></td>
+            <td><%= link_to 'View Classes', user_path(professor) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

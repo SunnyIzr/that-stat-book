@@ -3,6 +3,8 @@ class LessonsController < ApplicationController
     unless current_user.student?
       @user = current_user
       @lesson = Lesson.find(params[:id])
+      @learning_module = @lesson.learning_modules.new
+      @learning_modules = @lesson.learning_modules
       @questions = @lesson.questions.select { |q| q.active == true }
       respond_to do |format|
         format.html {render :show}

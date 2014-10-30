@@ -14,6 +14,7 @@ ThatStatBook::Application.routes.draw do
     collection { post :sort }
     resources :questions, only: [:new,:create]
     resources :videos, only: [:new,:create]
+    resources :learning_modules, only: [:index,:create,:new,:destroy,:update]
   end
   resources :quizzes, only: [:create,:show]
   resources :questions, only: [:show,:destroy,:update]
@@ -28,6 +29,8 @@ ThatStatBook::Application.routes.draw do
   resources :suggestions do
     get :autocomplete_school_school, :on => :collection
   end
+
+  get '/questions/:id/update_learning_module/:learning_module_id' => 'questions#update_learning_module'
 
   get '/quizzes/:quiz_id/new-question' => 'questions#show_random_question', as: :random_question
   get '/quizzes/:quiz_id/incomplete' => 'quizzes#incomplete'
@@ -49,6 +52,8 @@ ThatStatBook::Application.routes.draw do
 
   get '/class_requests/:id/accept' => 'class_requests#accept', as: :accept_class_request
   get '/class_requests/:id/reject' => 'class_requests#reject', as: :reject_class_request
+  
+  get '/professors' => 'users#professors_index', as: :professors
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

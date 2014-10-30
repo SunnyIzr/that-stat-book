@@ -12,6 +12,16 @@
         width: 350px;
       }
     }
+    table{
+      width: 100%;
+    }
+    .dropdown-title{
+      .btn{
+        width: 100%;
+        padding-top: 3px;
+        padding-bottom: 3px;
+      }
+    }
   }
 
 .rest-in-place-question{
@@ -63,4 +73,8 @@
     }
   }
   
+}
+
+#newLearningModule{
+  text-align: left;
 }

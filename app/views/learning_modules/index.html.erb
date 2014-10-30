@@ -1,0 +1,52 @@
+<div class='row'>
+  <%= render 'users/admin_nav' %>
+ 
+
+
+  <div class='lessons col-sm-10'>
+    <div class='dashboard'>
+      <h2> Learning Modules - <%= @lesson.title %> </h2>
+      <a href='#' class="btn btn-primary" data-toggle="modal" data-target="#newLearningModule">
+        New Learning Module
+      </a>
+
+      <table class='table table-striped'>
+        <thead>
+          <tr>
+            <td>TITLE</td>
+            <td>DESCRIPTION</td>
+            <td>Qs</td>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @learning_modules.each do |learning_module| %>
+          <tr>
+            <td><%= learning_module.title %></td>
+            <td><%= learning_module.description %></td>
+            <td><%= learning_module.questions.size %></td>
+            <td><%= link_to "<i class='fa fa-trash-o'></i>".html_safe, lesson_learning_module_path(@lesson, learning_module), method: :delete, data: { confirm: 'You are about to delete this Learning Module. This is irreversible. Are you sure?' } %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      
+      <div class="modal fade" id="newLearningModule" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title" id="myModalLabel">New Learning Module</h4>
+            </div>
+            <div class="modal-body">
+              <%= render 'new' %>
+            </div>
+          </div>
+        </div>
+      </div>
+        
+    </div>
+  </div>
+</div>
+
+

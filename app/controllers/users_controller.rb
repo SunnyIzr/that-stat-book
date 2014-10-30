@@ -22,12 +22,21 @@ class UsersController < ApplicationController
   end
   def index
     if current_user.admin?
-      @users = User.all.sort_by{ |user| user.list_name}
+      @users = User.all.select{|user| user.student?}.sort_by{ |user| user.list_name}
+    end
+  end
+  def professors_index
+    if current_user.admin?
+      @professors = User.all.select{|user| user.type == 'Professor' }.sort_by{ |user| user.list_name}
     end
   end
   def show
     if current_user.admin?
       @user = User.find(params[:id])
+      unless @user.student?
+        @rosters = @user.rosters
+        render :show_professor
+      end
     end
   end
   def destroy
