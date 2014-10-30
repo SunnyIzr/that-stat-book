@@ -1,0 +1,31 @@
+<div class='row'>
+  <%= render 'users/prof_nav' %>
+  
+  <div class='col-sm-9'>
+    <div class='lessons dashboard'>
+      <h2><%= @student.name %> - <%= @lesson.title %></h2>
+      <h4>Latest Feedback</h4>
+      <table class='table table-striped'>
+        <thead>
+          <tr>
+            <th class ='left'>QUESTION</th>
+            <th>ANSWER SUBMISSION</th>
+            <th>CORRECT?</th>
+            <th>FEEDBACK</th>
+            <th>EXPLANATION</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @answers.each do |ans|%>
+          <tr>
+            <td><%= ans.question.question %></td>
+            <td><%= ans.choice.choice %></td>
+            <td><%= ans.choice.is_correct? ? 'Yes' : 'No' %></td>
+            <td><%= ans.learning_module.title unless ans.learning_module.nil?%></td>
+            <td><%= ans.learning_module.description unless ans.learning_module.nil? %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>

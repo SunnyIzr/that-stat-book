@@ -21,14 +21,21 @@ class QuizzesController < ApplicationController
 
   def show
     @quiz = Quiz.find(params[:id])
-    @new_quiz = Quiz.new
     @user = current_user
-    if @quiz.complete?
-      @user.update_belts
-      UserMailer.successful_pass_email(@user) if @quiz.pass?
-      render :show
+    if @user.student?
+    @new_quiz = Quiz.new
+      if @quiz.complete?
+        @user.update_belts
+        UserMailer.successful_pass_email(@user) if @quiz.pass?
+        render :show
+      else
+        render :incomplete
+      end
     else
-      render :incomplete
+      @student = @quiz.user
+      @lesson = @quiz.lesson
+      @answers = @quiz.answer_submissions.sort_by{|as| as.choice.is_correct?.to_s }
+      render :show_professor
     end
   end
   

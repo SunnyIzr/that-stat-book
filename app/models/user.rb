@@ -42,6 +42,10 @@ class User < ActiveRecord::Base
   def completed_roster_quizzes(roster_id)
     self.quizzes.select {|quiz| quiz.complete? && quiz.roster_id == roster_id}
   end
+  
+  def last_completed_quiz(lesson_id)
+    self.completed_quizzes.select{ |quiz| quiz.lesson.id == lesson_id }.sort_by{ |quiz| quiz.created_at }.last
+  end
 
   def passed_quizzes
     self.completed_quizzes.select {|quiz| quiz.pass?}
