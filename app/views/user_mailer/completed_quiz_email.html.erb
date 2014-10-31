@@ -17,7 +17,7 @@ Thanks for taking the <%= @quiz.lesson.title %> Quiz.  Your score was <%= (@quiz
   <% @quiz.answer_submissions.each_with_index do |ans,index| %>
     <%= index + 1 %>. <%= ans.question.question %><br/>
     <% unless ans.learning_module.nil? %>
-      Feedback: <strong> <%= ans.learning_module.title %> </strong> - <%= ans.learning_module.description %><br/>
+      Feedback: <strong> <%= ans.learning_module.title %> </strong> - <%= ans.learning_module.description %><br/><br/>
     <% end %>
   <% end %>
   
