@@ -41,11 +41,11 @@ describe UsersController do
   
   describe 'GET #index' do
     context 'user is admin' do
-      it 'should populate a list of all users' do
+      it 'should populate a list of all students' do
         sign_in(admin)
         10.times { |i| FactoryGirl.create(:user, email: "#{i.to_s}@gmail.com")}
         get :index
-        expect(assigns(:users)).to eq(User.all.sort_by{|user| user.list_name})
+        expect(assigns(:users)).to eq(User.all.select{|user| user.student?}.sort_by{|user| user.list_name})
       end
       it 'should render users index view' do
         sign_in(admin)
