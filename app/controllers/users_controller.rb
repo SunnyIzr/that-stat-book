@@ -46,4 +46,11 @@ class UsersController < ApplicationController
       redirect_to users_path
     end
   end
+  def feedback
+    @user = current_user
+    if @user.student?
+      @lessons = @user.completed_lessons
+      @lessons << @user.assigned_lesson
+    end
+  end
 end

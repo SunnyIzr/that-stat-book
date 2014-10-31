@@ -1,0 +1,24 @@
+Hi <%= @user.name %>!<br/>
+<br/>
+<br/>
+Thanks for taking the <%= @quiz.lesson.title %> Quiz.  Your score was <%= (@quiz.score * 100).round(2) %>%.<br/>
+<br/>
+<% if @quiz.pass? %>
+  Congratulations on passing! Great work!<br/>
+<% else %>
+  While you didn't pass, remember "Failure is not Permanent"!<br/>
+<% end %>
+<br/>
+<% if @quiz.score < 1.0 %>
+  In order to improve, please take  look at the following feedback, also available on your dashboard in areas you need to improve upon. Look forward to having you attempt the Quiz again!<br/>
+  <br/>
+  <br/>
+  INCORRECT QUESTIONS:<br/>
+  <% @quiz.answer_submissions.each_with_index do |ans,index| %>
+    <%= index + 1 %>. <%= ans.question.question %><br/>
+    <% unless ans.learning_module.nil? %>
+      Feedback: <strong> <%= ans.learning_module.title %> </strong> - <%= ans.learning_module.description %><br/>
+    <% end %>
+  <% end %>
+  
+<% end %>

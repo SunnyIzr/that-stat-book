@@ -1,0 +1,15 @@
+<div class='row'>
+  <%= render 'users/user_nav' %>
+    <div class='col-sm-9'>
+    <div class='lessons dashboard'>
+      <h2><%= @lesson.title %></h2>
+      <% if current_page?(quiz_feedback_path) %>
+      <p><i>Last attempted on <%= @quiz.created_at.strftime('%-m/%-d/%y')%></i></p>
+      <% end %>
+      
+      <%= render 'quiz_feedback' %>
+      
+      </div>
+    </div>
+  </div>
+</div>

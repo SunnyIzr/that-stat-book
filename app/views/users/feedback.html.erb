@@ -1,0 +1,31 @@
+<div class='row'>
+  <%= render 'users/user_nav' %>
+  <div class='col-sm-9'>
+    <div class='roster lessons dashboard'>
+      <h2>View Feedback</h2>        
+      <table id='lessons' class='table table-striped'>
+        <thead>
+          <tr>
+            <th width='70%' class ='left'>LESSON</th>
+            <th>VIDEO VIEWS</th>
+            <th>QUIZ ATTEMPTS</th>
+            <th>AVG SCORE</th>
+            <th>LATEST FEEDBACK</th>
+          </tr>
+        </thead>
+        <tbody id='accordion' data-update-url="<%= sort_lessons_path %>">
+          <% @lessons.each do |lesson| %>
+          <tr id="lesson_<%= lesson.id %>">
+            <td><%= lesson.title %></td>
+            <td><%= @user.view_count(lesson.id) %></td>
+            <td><%= @user.quiz_attempts(lesson.id).size %></td>
+            <td><%= percent(@user.avg_score(lesson.id))%></td>
+            <% quiz = @user.last_completed_quiz(lesson.id) %>
+            <td><%= link_to 'LATEST FEEDBACK', quiz_feedback_path(quiz), class: 'btn btn-primary' unless quiz.nil? %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

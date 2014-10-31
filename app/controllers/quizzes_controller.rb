@@ -22,11 +22,13 @@ class QuizzesController < ApplicationController
   def show
     @quiz = Quiz.find(params[:id])
     @user = current_user
+    @lesson = @quiz.lesson
+    @incorrect_answers = @quiz.answer_submissions.select{ |ans| !ans.choice.is_correct? }
     if @user.student?
     @new_quiz = Quiz.new
       if @quiz.complete?
         @user.update_belts
-        UserMailer.successful_pass_email(@user) if @quiz.pass?
+        UserMailer.completed_quiz_email(@user,@quiz)
         render :show
       else
         render :incomplete
@@ -60,6 +62,13 @@ class QuizzesController < ApplicationController
     else
       render text: 'This Quiz is a Fail.'
     end
+  end
+  
+  def feedback
+    @user = current_user
+    @quiz = Quiz.find(params[:id])
+    @lesson = @quiz.lesson
+    @incorrect_answers = @quiz.answer_submissions.select{ |ans| !ans.choice.is_correct? }
   end
 
   private

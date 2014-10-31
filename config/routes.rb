@@ -8,6 +8,7 @@ ThatStatBook::Application.routes.draw do
 
   get '/home' => 'users#dashboard', as: :user_dashboard
   get '/summary' => 'users#summary', as: :user_summary
+  get '/feedback' => 'users#feedback', as: :feedback
   
   resources :users, only: [:show,:index,:destroy]
   resources :lessons, only: [:show,:index,:update,:destroy,:new,:create] do
@@ -37,6 +38,7 @@ ThatStatBook::Application.routes.draw do
   get '/quizzes/:quiz_id/new-question' => 'questions#show_random_question', as: :random_question
   get '/quizzes/:quiz_id/incomplete' => 'quizzes#incomplete'
   get '/quizzes/:quiz_id/certificate' => 'quizzes#certificate', as: :certificate
+  get '/quizzes/:id/feedback' => 'quizzes#feedback', as: :quiz_feedback
   
   get 'rearrange' => 'lessons#rearrange'
   

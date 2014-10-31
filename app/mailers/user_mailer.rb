@@ -1,8 +1,10 @@
 class UserMailer < ActionMailer::Base
   default from: 'StatsDojo <notifications@statsdojo.com>'
  
-  def successful_pass_email(user)
+  def completed_quiz_email(user,quiz)
     @user = user
-    mail(to: @user.email, subject: 'Congratulations on Passing!').deliver
+    @quiz = quiz
+    subject = @quiz.pass? ? 'Congratulations on Passing!' : 'Your Recent Quiz Attempt'
+    mail(to: @user.email, subject: subject).deliver
   end
 end
