@@ -21,7 +21,7 @@
           <tr>
             <td><%= professor.list_name %></td>
             <td><%= professor.email %></td>
-            <td><%= professor.school.school %></td>
+            <td><%= professor.school.school unless professor.school.nil?%></td>
             <td><%= link_to 'View Classes', user_path(professor) %></td>
           </tr>
         <% end %>
