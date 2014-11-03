@@ -1,7 +1,8 @@
 class ClassRequestsController < ApplicationController
   def create
     roster = Roster.find(params[:roster])
-    ClassRequest.create(user: current_user, roster: roster)
+    @class_request = ClassRequest.create(user: current_user, roster: roster)
+    UserMailer.new_student_request(@class_request)
     redirect_to rosters_path
   end
   
