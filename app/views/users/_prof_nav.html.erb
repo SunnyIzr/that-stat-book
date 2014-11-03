@@ -5,7 +5,7 @@
         <%= link_to 'My Classes', rosters_path %>
       </li>
       <li <%='class=selected' if current_page?(class_requests_path)%>>
-        <%= link_to 'New Student Requests', class_requests_path %>
+        <%= link_to 'New Student Requests - ' + current_user.class_requests.select{ |cr| !cr.accepted}.size.to_s, class_requests_path %>
       </li>
     </ul>
   </div>

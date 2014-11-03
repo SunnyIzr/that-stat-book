@@ -7,7 +7,7 @@ class RostersController < ApplicationController
       @class_request = ClassRequest.new
       @user = current_user
       @rosters = current_user.rosters
-      @professors = Professor.all
+      @professors = Professor.all.select{ |prof| prof.school == @user.school }
       render :index_student
     elsif current_user.admin?
       @rosters = Roster.all.sort_by{ |roster| roster.professor.list_name }
