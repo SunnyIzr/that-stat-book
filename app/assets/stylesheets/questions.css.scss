@@ -3,6 +3,12 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import 'variables';
 
+.question-nav{
+  .side-nav{
+    display: none;
+  }
+}
+
 .question-answer{
   h3{
     font-weight: lighter;
