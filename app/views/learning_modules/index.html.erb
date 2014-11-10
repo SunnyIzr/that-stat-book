@@ -5,16 +5,15 @@
 
   <div class='lessons col-sm-9'>
     <div class='dashboard'>
-      <h2> Learning Modules - <%= @lesson.title %> </h2>
+      <h2> Developmental Topic Areas - <%= @lesson.title %> </h2>
       <a href='#' class="btn btn-primary" data-toggle="modal" data-target="#newLearningModule">
-        New Learning Module
+        Developmental Topic Area
       </a>
 
       <table class='table table-striped'>
         <thead>
           <tr>
-            <td>TITLE</td>
-            <td>DESCRIPTION</td>
+            <td>DEVELOPMENTAL TOPIC AREA</td>
             <td>Qs</td>
             <td></td>
           </tr>
@@ -25,11 +24,6 @@
             <td>
               <span class='rest-in-place' data-url='/learning_modules/<%= learning_module.id %>' data-object='learning_module' data-attribute='title' data-placeholder='Title'>
                 <%= learning_module.title %>
-              </span>
-            </td>
-            <td>
-              <span class='rest-in-place' data-url='/learning_modules/<%= learning_module.id %>' data-object='learning_module' data-attribute='description' data-placeholder='Description'>
-                <%= learning_module.description %>
               </span>
             </td>
             <td><%= learning_module.questions.size %></td>

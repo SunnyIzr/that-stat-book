@@ -10,8 +10,7 @@
             <th class ='left'>QUESTION</th>
             <th>ANSWER SUBMISSION</th>
             <th>CORRECT?</th>
-            <th>FEEDBACK</th>
-            <th>EXPLANATION</th>
+            <th>DEVELOPMENTAL TOPIC AREA</th>
           </tr>
         </thead>
         <tbody>
@@ -21,7 +20,6 @@
             <td><%= ans.choice.choice %></td>
             <td><%= ans.choice.is_correct? ? 'Yes' : 'No' %></td>
             <td><%= ans.learning_module.title unless ans.learning_module.nil?%></td>
-            <td><%= ans.learning_module.description unless ans.learning_module.nil? %></td>
           </tr>
           <% end %>
         </tbody>

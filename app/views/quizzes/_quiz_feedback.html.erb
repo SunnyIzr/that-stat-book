@@ -2,9 +2,8 @@
 <table class='table table-striped'>
   <thead>
     <tr>
-      <th width='25%'class ='left'>INCORRECT QUESTION</th>
-      <th>FEEDBACK</th>
-      <th>EXPLANATION</th>
+      <th class ='left'>INCORRECT QUESTION</th>
+      <th>DEVELOPMENTAL TOPIC AREA</th>
     </tr>
   </thead>
   <tbody>
@@ -12,7 +11,6 @@
     <tr>
       <td><%= ans.question.question %></td>
       <td><%= ans.learning_module.title unless ans.learning_module.nil?%></td>
-      <td><%= ans.learning_module.description unless ans.learning_module.nil? %></td>
     </tr>
     <% end %>
   </tbody>
