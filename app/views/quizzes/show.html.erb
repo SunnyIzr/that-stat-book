@@ -47,7 +47,7 @@
               </a>
             </div>
             <div>
-              <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-url='http://statsdojo.com' data-text='I just passed my StatsDojo Test and got a <%= percent(@quiz.score) %>%!' data-count='none'>Tweet</a>
+              <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-url='http://statsdojo.com' data-text='I just passed my StatsDojo Test and got a <%= percent(@quiz.score) %>!' data-count='none'>Tweet</a>
             </div>
             <div class="g-plusone" data-href='http://statsdojo.com' data-annotation="none"></div>
         </div>
@@ -62,7 +62,7 @@
     <div class='col-sm-8 col-xs-12'>
       <div class='right-panel'>
         <div class='score'>
-          <p class='stat'><%= percent(@quiz.score) %>%</p>
+          <p class='stat'><%= percent(@quiz.score) %></p>
           <p class='sub-head'> Your Score </p>
         </div>
         <div class='belt-status'>
@@ -106,7 +106,7 @@
   <div class='fail row'>
     <div class='col-sm-4'>
       <div class='score'>
-        <p class='stat'><%= percent(@quiz.score) %>%</p>
+        <p class='stat'><%= percent(@quiz.score) %></p>
         <p class='sub-head'> Your Score </p>
       </div>
     </div>
