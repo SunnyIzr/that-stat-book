@@ -14,8 +14,9 @@ class UsersController < ApplicationController
   def summary
     @user = current_user
     if @user.student?
-      @lessons = @user.completed_lessons
-      @lessons << @user.assigned_lesson
+      # @lessons = @user.completed_lessons
+      # @lessons << @user.assigned_lesson
+      @lessons = Lesson.all
       @quiz = Quiz.new
       render :summary
     end
