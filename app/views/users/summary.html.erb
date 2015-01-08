@@ -29,7 +29,7 @@
                   <%= lesson.title %>
                   <%= form_for @quiz, url: quizzes_path, html:{class: 'nifty_form'} do %>
                   <p class='lesson-links'>
-                    <a href='#' data-toggle="modal" data-target="#<%=lesson.id%>"> View Video </a>
+                    <%= link_to 'View Video', lesson_path(lesson) %>
                     <span class='mdot'> &#183; </span>
                     <%= hidden_field_tag :lesson_id, lesson.id %>
                     <%= submit_tag 'Take Quiz', class: 'linkify' %>
@@ -53,29 +53,6 @@
   </div>
 </div>
 
-<% @lessons.each do |lesson| %>
-  <div class="modal fade" id="<%=lesson.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="myModalLabel"><%= lesson.title %></h4>
-        </div>
-        <div class="modal-body">
-          <% lesson.videos.each do |video| %>
-            <video controls="controls" data-user-id=<%=@user.id%> data-video-id=<%=video.id%>>
-              <source src=<%=video.video%> type=<%=video.video_content_type%>>
-              <source src=<%=video.ogv_video%> type=<%=video.ogv_video_content_type%>>
-            </video>              
-          <% end %>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-<% end %>
 
 
 <script>

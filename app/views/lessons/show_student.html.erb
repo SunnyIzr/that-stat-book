@@ -1,0 +1,31 @@
+<div class='row'>
+  <%= render 'users/user_nav' %>
+ 
+
+
+  <div class='lessons col-sm-10'>
+    <div class='dashboard'>
+      <%= link_to "< All Videos", user_summary_path %>
+      <h2> Lesson: <%=@lesson.title%></h2>
+      <div class='video-preview'>
+        <% @lesson.videos.each do |video| %>
+          <video controls="controls" data-user-id=<%=@user.id%> data-video-id=<%=video.id%>>
+            <source src=<%=video.video%> type=<%=video.video_content_type%>>
+            <source src=<%=video.ogv_video%> type=<%=video.ogv_video_content_type%>>
+          </video>
+        <% end %>
+      </div>
+      <%= form_for @quiz, url: quizzes_path, html:{class: 'nifty_form'} do |f| %>
+        <%= hidden_field_tag :lesson_id, @lesson.id %>
+        <%= submit_tag 'Take Quiz', class: 'btn btn-lg btn-primary linkify' %>
+      <%end%>
+    </div>
+  </div>
+
+
+<script>
+$(document).ready(function() {
+  videoLoad();
+  videoView();
+  });
+</script>
