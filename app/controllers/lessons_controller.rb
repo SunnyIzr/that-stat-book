@@ -1,8 +1,8 @@
 class LessonsController < ApplicationController
   def show
+    @user = current_user
+    @lesson = Lesson.find(params[:id])
     unless current_user.student?
-      @user = current_user
-      @lesson = Lesson.find(params[:id])
       @learning_module = @lesson.learning_modules.new
       @learning_modules = @lesson.learning_modules
       @questions = @lesson.questions.select { |q| q.active == true }
@@ -11,7 +11,8 @@ class LessonsController < ApplicationController
         format.json {render :json => @lesson}
       end
     else
-      render text: 'Restricted'
+      @quiz = Quiz.new
+      render :show_student
     end
   end
   
