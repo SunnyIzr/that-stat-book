@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     if @user.student?
       # @lessons = @user.completed_lessons
       # @lessons << @user.assigned_lesson
-      @lessons = Lesson.all
+      @lessons = Lesson.all.sort_by { |l| l.level }
       @quiz = Quiz.new
       render :summary
     end

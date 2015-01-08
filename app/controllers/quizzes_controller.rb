@@ -4,7 +4,6 @@ class QuizzesController < ApplicationController
     user = current_user
     lesson_id = params[:lesson_id].to_i
     roster_id = params[:roster_id].to_i unless params[:roster_id].nil?
-    
     if roster_id.nil?
       incomplete_quiz = user.last_incomplete_quiz(lesson_id)
     else
