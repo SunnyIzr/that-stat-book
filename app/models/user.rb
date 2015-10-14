@@ -99,7 +99,7 @@ class User < ActiveRecord::Base
   end
 
   def assigned_lesson
-    Lesson.find_by(level: self.level)
+    Lesson.find_by(level: self.level).nil? ? Lesson.all.sort_by{ |lesson| lesson.level}.last : Lesson.find_by(level: self.level)
   end
   
   def assigned_roster_lesson(roster_id)
