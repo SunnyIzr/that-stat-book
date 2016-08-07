@@ -8,15 +8,15 @@
         <ul>
           <li>
             <div class='header'>Views</div>
-            <div class='stat'><%= @roster.view_count %></div>
+            <div class='stat'><%= @roster_stats[:view_count] %></div>
           </li>
           <li>
             <div class='header'>Quiz Attempts</div>
-            <div class='stat'><%= @roster.quiz_attempts.size %></div>
+            <div class='stat'><%= @roster_stats[:quiz_attempts] %></div>
           </li>
           <li>
             <div class='header'>Average Score</div>
-            <div class='stat'><%= percent(@roster.avg_score) %></div>
+            <div class='stat'><%= percent(@roster_stats[:avg_score]) %></div>
           </li>
         </ul>
       </div>
@@ -31,12 +31,12 @@
           </tr>
         </thead>
         <tbody data-update-url="<%= sort_lessons_path %>">
-          <% @students.each do |student| %>
+          <% @student_stats.each do |student| %>
           <tr id="student_<%= student.id %>">
-            <td><%= student.name %></td>
-            <td><%= student.roster_view_count(@roster) %></td>
-            <td><%= student.roster_quiz_attempts(@roster).size %></td>
-            <td><%= percent(student.roster_avg_score(@roster)) %></td>
+            <td><%= student[0].name %></td>
+            <td><%= student[1][:view_count] %></td>
+            <td><%= student[1][:quiz_attempts] %></td>
+            <td><%= percent(student[1][:avg_score]) %></td>
           </tr>
           <% end %>
         </tbody>
