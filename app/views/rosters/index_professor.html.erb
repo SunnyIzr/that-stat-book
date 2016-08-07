@@ -16,13 +16,13 @@
         </tr>
       </thead>
       <tbody data-update-url="<%= sort_lessons_path %>">
-        <% @rosters.each do |roster| %>
-        <tr id="roster_<%= roster.id %>">
-          <td><%= link_to roster.title, roster_path(roster) %></td>
-          <td><%= roster.view_count %></td>
-          <td><%= roster.quiz_attempts.size %></td>
-          <td><%= percent(roster.avg_score)%></td>
-          <td><%= roster.users.size%></td>
+        <% @roster_stats.each do |roster| %>
+        <tr id="roster_<%= roster[0].id %>">
+          <td><%= link_to roster[0].title, roster_path(roster[0]) %></td>
+          <td><%= roster[1][:view_count] %></td>
+          <td><%= roster[1][:quiz_attempts] %></td>
+          <td><%= percent(roster[1][:avg_score]) %></td>
+          <td><%= roster[0].users.size %></td>
         </tr>
         <% end %>
       </tbody>

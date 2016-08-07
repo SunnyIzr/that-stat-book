@@ -4,6 +4,7 @@ class Quiz < ActiveRecord::Base
   belongs_to :roster
   has_many :questions
   has_many :answer_submissions, :dependent => :destroy
+  has_many :choices, through: :answer_submissions
   validates_presence_of :user_id
   validates_presence_of :lesson_id
   validates_presence_of :time
@@ -35,8 +36,10 @@ class Quiz < ActiveRecord::Base
   end
 
   def score
-    scores = self.answer_submissions.map { |ans| ans.choice.is_correct ? 1 : 0 }
-    scores.inject{ |sum,ans_score| sum + ans_score }.to_f / scores.size
+    # scores = self.answer_submissions.map { |ans| ans.choice.is_correct ? 1 : 0 }
+    # scores.inject{ |sum,ans_score| sum + ans_score }.to_f / scores.size
+    scores = self.choices.pluck(:is_correct).map{|c| c ? 1.0: 0.0}
+    scores.sum / scores.size
   end
 
   def pass?

@@ -2,6 +2,7 @@ class RostersController < ApplicationController
   def index
     if current_user.class == Professor
       @rosters = current_user.rosters.sort!
+      @roster_stats = @rosters.map{|roster| [roster,roster.stats] }
       render :index_professor
     elsif current_user.student?
       @class_request = ClassRequest.new
@@ -18,9 +19,11 @@ class RostersController < ApplicationController
   def show
     @roster = Roster.find(params[:id])
     if current_user.class == Professor
+      @roster_stats = @roster.stats
       @new_student = User.new
       @all_lessons = Lesson.all.sort_by { |lesson| lesson.level }
       @students = @roster.users.sort_by {|student| student.last_name }
+      @student_stats = @students.map{|student| [student,student.stats(@roster)]}
       @all_students = User.all.select{ |user| user.student? }.sort_by{ |student| student.last_name } - @students
       render :show_professor
     elsif current_user.student?

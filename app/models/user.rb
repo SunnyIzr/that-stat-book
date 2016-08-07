@@ -160,8 +160,9 @@ class User < ActiveRecord::Base
   #Roster-Level Stats
   
   def roster_quiz_attempts(roster)
-    lessons = roster.lessons
-    lessons.map{ |lesson| self.quiz_attempts(lesson.id)}.flatten
+    # lessons = roster.lessons
+    # lessons.map{ |lesson| self.quiz_attempts(lesson.id)}.flatten
+    self.quizzes.select("quizzes.*").joins(:answer_submissions).group("quizzes.id").having("count(answer_submissions.id) >= ?", 20).to_a
   end
   
   def roster_avg_score(roster)
@@ -175,6 +176,15 @@ class User < ActiveRecord::Base
   def roster_view_count(roster)
     lessons = roster.lessons
     lessons.map{ |lesson| self.view_count(lesson)}.sum
+  end
+  
+  def stats(roster)
+    attempts = self.roster_quiz_attempts(roster)
+    {
+      quiz_attempts: attempts.size,
+      avg_score: attempts.empty? ? 0 : attempts.map{|quiz| quiz.score}.sum / attempts.size,
+      view_count: self.video_views.size
+    }
   end
 
 end
