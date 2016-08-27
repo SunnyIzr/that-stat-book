@@ -32,6 +32,7 @@ class RostersController < ApplicationController
       @lessons = @roster.lessons.sort_by { |lesson| lesson.level }
       render :show_student
     elsif current_user.admin?
+      @roster_stats = @roster.stats
       @students = @roster.users.sort_by {|student| student.last_name }
       @student_stats = @students.map{|student| [student,student.stats(@roster)]}
       render :show_admin
