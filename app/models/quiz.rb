@@ -43,7 +43,7 @@ class Quiz < ActiveRecord::Base
   end
 
   def pass?
-    self.score >= 0.7
+    self.score >= 0.8
   end
   
   def remaining_questions
